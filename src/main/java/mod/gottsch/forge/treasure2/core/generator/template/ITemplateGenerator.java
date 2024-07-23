@@ -53,8 +53,6 @@ public interface ITemplateGenerator<RESULT extends IGeneratorResult<?>> {
 	 * NOTE not 100% sure that this  belongs here
 	 * @param coords
 	 * @param entranceCoords
-	 * @param size
-	 * @param placement
 	 * @return
 	 */
 	public static ICoords alignEntranceToCoords(ICoords coords, ICoords entranceCoords) {
@@ -82,7 +80,7 @@ public interface ITemplateGenerator<RESULT extends IGeneratorResult<?>> {
 //		default -> coords;
 //		};
 	}
-	
+
 	public Block getNullBlock();
 	public void setNullBlock(Block nullBlock);
 

@@ -182,7 +182,7 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			
 			// NOTE these values are still relative to origin (spawnCoords);
 //			ICoords newEntrance = new Coords(GottschTemplate.transformedVec3d(placement, entranceCoords.toVec3()));
-			ICoords newEntrance = GeometryUtil.rotate(entranceCoords, rotation);
+			ICoords newEntrance = GeometryUtil.mcRotate(entranceCoords, rotation);
 			if (entranceCoords.equals(new Coords(0, 0, 0))) {
 				newEntrance = entranceCoords;
 			}
@@ -192,15 +192,16 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			/*
 			 *  adjust spawn coords to line up room entrance and the pit
 			 */
-			BlockPos transformedSize = template.get().getSize(rotation);
+//			BlockPos transformedSize = template.get().getSize(rotation);
 //			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance, transformedSize, placement);
 //			ICoords roomCoords = alignToPit(spawnCoords, newEntrance, transformedSize, placement);
 
 			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance);
 			Treasure.LOGGER.debug("aligned spawn coords -> {}", spawnCoords.toShortString());
 
-			ICoords standardizedSpawnCoords = GeneratorUtil.standardizePosition(spawnCoords, rotatedSize, placement);
-			Treasure.LOGGER.debug("new rotated standardized coords -> {}", standardizedSpawnCoords.toShortString());
+			// TODO what is standarized spawn coords used for?
+//			ICoords standardizedSpawnCoords = GeneratorUtil.standardizePosition(spawnCoords, rotatedSize, placement);
+//			Treasure.LOGGER.debug("new rotated standardized coords -> {}", standardizedSpawnCoords.toShortString());
 
 
 			Treasure.LOGGER.debug("aligned room coords -> {}", roomCoords.toShortString());
