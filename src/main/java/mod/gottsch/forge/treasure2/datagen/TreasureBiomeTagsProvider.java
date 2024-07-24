@@ -30,25 +30,28 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
- * 
+ *
  * @author Mark Gottschling on May 20, 2023
  *
  */
 public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
+    private String BOP = "biomesoplenty";
+    private String BYG = "byg";
+
     /**
-     * 
+     *
      * @param generatorIn
      * @param existingFileHelper
      */
-	public TreasureBiomeTagsProvider(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
+    public TreasureBiomeTagsProvider(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
         super(generatorIn, Treasure.MODID, existingFileHelper);
     }
-    
+
     @Override
     protected void addTags() {
-    	String BOP = "biomesoplenty";
 
-    	// blocks rarity
+
+        // blocks rarity
 //    	tag(TreasureTags.Biomes.DESERT_WELL1).add(Biomes.DESERT);
 //    	tag(TreasureTags.Biomes.DESERT_WELL2).add(Biomes.DESERT);
 //    	tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
@@ -165,5 +168,86 @@ public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "wintry_origin_valley"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "withered_abyss"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "woodland"));
+
+        // Oh Biomes You'll Go support
+        allOptional(BYG, "allium_fields");
+        allOptional(BYG, "amaranth_fields");
+        allOptional(BYG, "araucaria_savanna");
+        allOptional(BYG, "arisian_undergrowth");
+        allOptional(BYG, "aspen_forest");
+        allOptional(BYG, "atacama_desert");
+        allOptional(BYG, "autumnal_forest");
+        allOptional(BYG, "autumnal_taiga");
+        allOptional(BYG, "autumnal_valley");
+        allOptional(BYG, "baobab_savanna");
+        allOptional(BYG, "basalt_barrera");
+        allOptional(BYG, "bayou");
+        allOptional(BYG, "black_forest");
+        allOptional(BYG, "borealis_grove");
+        allOptional(BYG, "brimstone_caverns");
+        allOptional(BYG, "bulbis_gardens");
+        allOptional(BYG, "canadian_shield");
+        allOptional(BYG, "cardinal_tundra");
+        allOptional(BYG, "cherry_blossom_forest");
+        allOptional(BYG, "cika_woods");
+        allOptional(BYG, "coconino_meadow");
+        allOptional(BYG, "coniferous_forest");
+        allOptional(BYG, "crag_gardens");
+        allOptional(BYG, "crimson_gardens");
+        allOptional(BYG, "cryptic_wastes");
+        allOptional(BYG, "cypress_swamplands");
+        allOptional(BYG, "dacite_ridges");
+        allOptional(BYG, "dacite_shore");
+        allOptional(BYG, "dead_sea");
+        allOptional(BYG, "ebony_woods");
+        allOptional(BYG, "embur_bog");
+        allOptional(BYG, "ethereal_islands");
+        allOptional(BYG, "firecracker_shrubland");
+        allOptional(BYG, "forgotten_forest");
+        allOptional(BYG, "fragment_forest");
+        allOptional(BYG, "frosted_coniferous_forest");
+        allOptional(BYG, "frosted_taiga");
+        allOptional(BYG, "glowstone_gardens");
+        allOptional(BYG, "guiana_shield");
+        allOptional(BYG, "howling_peaks");
+        allOptional(BYG, "imparius_grove");
+        allOptional(BYG, "ivis_fields");
+        allOptional(BYG, "jacaranda_forest");
+        allOptional(BYG, "lush_stacks");
+        allOptional(BYG, "magma_wastes");
+        allOptional(BYG, "maple_taiga");
+        allOptional(BYG, "mojave_desert");
+        allOptional(BYG, "nightshade_forest");
+        allOptional(BYG, "orchard");
+        allOptional(BYG, "prairie");
+        allOptional(BYG, "quartz_desert");
+        allOptional(BYG, "rainbow_beach");
+        allOptional(BYG, "red_oak_forest");
+        allOptional(BYG, "red_rock_valley");
+        allOptional(BYG, "redwood_thicket");
+        allOptional(BYG, "rose_fields");
+        allOptional(BYG, "shattered_glacier");
+        allOptional(BYG, "shulkren_forest");
+        allOptional(BYG, "sierra_badlands");
+        allOptional(BYG, "skyris_vale");
+        allOptional(BYG, "subzero_hypogeal");
+        allOptional(BYG, "sythian_torrids");
+        allOptional(BYG, "temperate_grove");
+        allOptional(BYG, "temperate_rainforest");
+        allOptional(BYG, "tropical_rainforest");
+        allOptional(BYG, "twilight_meadow");
+        allOptional(BYG, "viscal_isles");
+        allOptional(BYG, "wailing_garth");
+        allOptional(BYG, "warped_desert");
+        allOptional(BYG, "weeping_mire");
+        allOptional(BYG, "weeping_witch_forest");
+        allOptional(BYG, "white_mangrove_marshes");
+        allOptional(BYG, "windswept_desert");
+        allOptional(BYG, "zelkova_forest");
+    }
+
+    private void allOptional(String domain, String biome) {
+        tag(TreasureTags.Biomes.ALL_OVERWORLD)
+                .addOptional(new ResourceLocation(domain, biome));
     }
 }

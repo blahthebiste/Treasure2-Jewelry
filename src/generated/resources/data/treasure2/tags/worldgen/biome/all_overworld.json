@@ -276,6 +276,302 @@
     {
       "id": "biomesoplenty:woodland",
       "required": false
+    },
+    {
+      "id": "byg:allium_fields",
+      "required": false
+    },
+    {
+      "id": "byg:amaranth_fields",
+      "required": false
+    },
+    {
+      "id": "byg:araucaria_savanna",
+      "required": false
+    },
+    {
+      "id": "byg:arisian_undergrowth",
+      "required": false
+    },
+    {
+      "id": "byg:aspen_forest",
+      "required": false
+    },
+    {
+      "id": "byg:atacama_desert",
+      "required": false
+    },
+    {
+      "id": "byg:autumnal_forest",
+      "required": false
+    },
+    {
+      "id": "byg:autumnal_taiga",
+      "required": false
+    },
+    {
+      "id": "byg:autumnal_valley",
+      "required": false
+    },
+    {
+      "id": "byg:baobab_savanna",
+      "required": false
+    },
+    {
+      "id": "byg:basalt_barrera",
+      "required": false
+    },
+    {
+      "id": "byg:bayou",
+      "required": false
+    },
+    {
+      "id": "byg:black_forest",
+      "required": false
+    },
+    {
+      "id": "byg:borealis_grove",
+      "required": false
+    },
+    {
+      "id": "byg:brimstone_caverns",
+      "required": false
+    },
+    {
+      "id": "byg:bulbis_gardens",
+      "required": false
+    },
+    {
+      "id": "byg:canadian_shield",
+      "required": false
+    },
+    {
+      "id": "byg:cardinal_tundra",
+      "required": false
+    },
+    {
+      "id": "byg:cherry_blossom_forest",
+      "required": false
+    },
+    {
+      "id": "byg:cika_woods",
+      "required": false
+    },
+    {
+      "id": "byg:coconino_meadow",
+      "required": false
+    },
+    {
+      "id": "byg:coniferous_forest",
+      "required": false
+    },
+    {
+      "id": "byg:crag_gardens",
+      "required": false
+    },
+    {
+      "id": "byg:crimson_gardens",
+      "required": false
+    },
+    {
+      "id": "byg:cryptic_wastes",
+      "required": false
+    },
+    {
+      "id": "byg:cypress_swamplands",
+      "required": false
+    },
+    {
+      "id": "byg:dacite_ridges",
+      "required": false
+    },
+    {
+      "id": "byg:dacite_shore",
+      "required": false
+    },
+    {
+      "id": "byg:dead_sea",
+      "required": false
+    },
+    {
+      "id": "byg:ebony_woods",
+      "required": false
+    },
+    {
+      "id": "byg:embur_bog",
+      "required": false
+    },
+    {
+      "id": "byg:ethereal_islands",
+      "required": false
+    },
+    {
+      "id": "byg:firecracker_shrubland",
+      "required": false
+    },
+    {
+      "id": "byg:forgotten_forest",
+      "required": false
+    },
+    {
+      "id": "byg:fragment_forest",
+      "required": false
+    },
+    {
+      "id": "byg:frosted_coniferous_forest",
+      "required": false
+    },
+    {
+      "id": "byg:frosted_taiga",
+      "required": false
+    },
+    {
+      "id": "byg:glowstone_gardens",
+      "required": false
+    },
+    {
+      "id": "byg:guiana_shield",
+      "required": false
+    },
+    {
+      "id": "byg:howling_peaks",
+      "required": false
+    },
+    {
+      "id": "byg:imparius_grove",
+      "required": false
+    },
+    {
+      "id": "byg:ivis_fields",
+      "required": false
+    },
+    {
+      "id": "byg:jacaranda_forest",
+      "required": false
+    },
+    {
+      "id": "byg:lush_stacks",
+      "required": false
+    },
+    {
+      "id": "byg:magma_wastes",
+      "required": false
+    },
+    {
+      "id": "byg:maple_taiga",
+      "required": false
+    },
+    {
+      "id": "byg:mojave_desert",
+      "required": false
+    },
+    {
+      "id": "byg:nightshade_forest",
+      "required": false
+    },
+    {
+      "id": "byg:orchard",
+      "required": false
+    },
+    {
+      "id": "byg:prairie",
+      "required": false
+    },
+    {
+      "id": "byg:quartz_desert",
+      "required": false
+    },
+    {
+      "id": "byg:rainbow_beach",
+      "required": false
+    },
+    {
+      "id": "byg:red_oak_forest",
+      "required": false
+    },
+    {
+      "id": "byg:red_rock_valley",
+      "required": false
+    },
+    {
+      "id": "byg:redwood_thicket",
+      "required": false
+    },
+    {
+      "id": "byg:rose_fields",
+      "required": false
+    },
+    {
+      "id": "byg:shattered_glacier",
+      "required": false
+    },
+    {
+      "id": "byg:shulkren_forest",
+      "required": false
+    },
+    {
+      "id": "byg:sierra_badlands",
+      "required": false
+    },
+    {
+      "id": "byg:skyris_vale",
+      "required": false
+    },
+    {
+      "id": "byg:subzero_hypogeal",
+      "required": false
+    },
+    {
+      "id": "byg:sythian_torrids",
+      "required": false
+    },
+    {
+      "id": "byg:temperate_grove",
+      "required": false
+    },
+    {
+      "id": "byg:temperate_rainforest",
+      "required": false
+    },
+    {
+      "id": "byg:tropical_rainforest",
+      "required": false
+    },
+    {
+      "id": "byg:twilight_meadow",
+      "required": false
+    },
+    {
+      "id": "byg:viscal_isles",
+      "required": false
+    },
+    {
+      "id": "byg:wailing_garth",
+      "required": false
+    },
+    {
+      "id": "byg:warped_desert",
+      "required": false
+    },
+    {
+      "id": "byg:weeping_mire",
+      "required": false
+    },
+    {
+      "id": "byg:weeping_witch_forest",
+      "required": false
+    },
+    {
+      "id": "byg:white_mangrove_marshes",
+      "required": false
+    },
+    {
+      "id": "byg:windswept_desert",
+      "required": false
+    },
+    {
+      "id": "byg:zelkova_forest",
+      "required": false
     }
   ]
 }
