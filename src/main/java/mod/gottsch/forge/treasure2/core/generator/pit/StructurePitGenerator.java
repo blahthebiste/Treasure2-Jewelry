@@ -181,8 +181,8 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			placement.setRotation(rotation).setRandom(context.random());
 			
 			// NOTE these values are still relative to origin (spawnCoords);
-//			ICoords newEntrance = new Coords(GottschTemplate.transformedVec3d(placement, entranceCoords.toVec3()));
-			ICoords newEntrance = GeometryUtil.rotate(entranceCoords, rotation);
+			ICoords newEntrance = GeometryUtil.mcRotate(entranceCoords, rotation);
+
 			if (entranceCoords.equals(new Coords(0, 0, 0))) {
 				newEntrance = entranceCoords;
 			}

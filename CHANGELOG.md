@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.6] - 2024-07-24
+
+### Changed
+-Fixed GeometryUtil.mcRotate() for Countclockwise90/Clockwise270 rotation.
+
+## [3.8.5] - 2024-07-23
+
+### Changed
+- Fixed pit shaft and pit room alignments! For real this time.
+- Updated crypt3.nbt to include the missing bottom level which had the entrance marker.
+- Updated treasure2-structures toml file.
+- Updated StructureMarkerGenerator to use mcRotate() instead of rotate()
+- Updated StructurePitGenerator to use mcRotate() instead of rotate()
+
+### Added
+- Added Oh Biomes You'll Go support.
+- Added crypt5.nbt that is like crypt3 but with a full skeleton.
+- Added mcRotate() to GeometryUtil.
+
+
 ## [3.8.4] - 2024-07-18
 
 ### Changed
@@ -179,4 +199,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod tentatively called 'GealdorCraft', which will have built-in itegration with Treasure2.
+- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod called 'Magic Treasures', which will have built-in integration with Treasure2.

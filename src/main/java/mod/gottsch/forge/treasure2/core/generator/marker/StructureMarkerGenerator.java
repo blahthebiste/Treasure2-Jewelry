@@ -113,11 +113,9 @@ public class StructureMarkerGenerator implements IMarkerGenerator<GeneratorResul
 
 		// TODO move into TemplateGenerator
 		// NOTE these values are still relative to origin (spawnCoords), so they are like a size
-		// NOTE look at StructureTemplate.transform(). minecraft essentially has a 0,0 point and a -0, -0 point
-		// so when rotating a point around a coords, the regular formula (180) of (x,y) -> (x, -y)
-//		ICoords newEntrance = new Coords(GottschTemplate.transformedVec3d(placement, entranceCoords.toVec3()));
-		ICoords newEntrance = GeometryUtil.rotate(entranceCoords, rotation);
-		// TODO wrap entrance calcu in method as it needs massaging
+		ICoords newEntrance = GeometryUtil.mcRotate(entranceCoords, rotation);
+
+		// TODO wrap entrance calc in method as it needs massaging
 		if (entranceCoords.equals(new Coords(0, 0, 0))) {
 			newEntrance = entranceCoords;
 		}
