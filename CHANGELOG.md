@@ -199,4 +199,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod tentatively called 'GealdorCraft', which will have built-in itegration with Treasure2.
+- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod called 'Magic Treasures', which will have built-in integration with Treasure2.
