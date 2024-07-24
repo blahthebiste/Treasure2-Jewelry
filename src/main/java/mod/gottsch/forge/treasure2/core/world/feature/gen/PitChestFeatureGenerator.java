@@ -174,10 +174,13 @@ public class PitChestFeatureGenerator implements IFeatureGenerator {
 	 * @return
 	 */
 	public IPitGenerator<GeneratorResult<ChestGeneratorData>> selectPitGenerator(RandomSource random) {
-		PitType pitType = RandomHelper.checkProbability(random, Config.SERVER.pits.structureProbability.get()) ? PitType.STRUCTURE : PitType.STANDARD;
+		Treasure.LOGGER.debug("pit structure config prob -> {}", Config.SERVER.pits.structureProbability.get());
+		boolean meetsCriteria = RandomHelper.checkProbability(random, Config.SERVER.pits.structureProbability.get());
+		Treasure.LOGGER.debug("meets pit structure config prob criteria -> {}", meetsCriteria);
+		PitType pitType = meetsCriteria ? PitType.STRUCTURE : PitType.STANDARD;
 		List<IPitGenerator<GeneratorResult<ChestGeneratorData>>> pitGenerators = PitGeneratorRegistry.get(pitType);
 		IPitGenerator<GeneratorResult<ChestGeneratorData>> pitGenerator = pitGenerators.get(random.nextInt(pitGenerators.size()));
-		Treasure.LOGGER.debug("using PitType: {}, Gen: {}", pitType, pitGenerator.getClass().getSimpleName());
+		Treasure.LOGGER.debug("using PitType -> {}, Gen -> {}", pitType, pitGenerator.getClass().getSimpleName());
 
 		return pitGenerator;
 	}

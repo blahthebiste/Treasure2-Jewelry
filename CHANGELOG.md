@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.4] - 2024-07-23
+
+### Changed
+- Fixed pit shaft and pit room alignments! For real this time.
+- Updated crypt3.nbt to include the missing bottom level which had the entrance marker.
+- Updated treasure2-structures toml file.
+- Updated StructureMarkerGenerator to use mcRotate() instead of rotate()
+- Updated StructurePitGenerator to use mcRotate() instead of rotate()
+
+### Added
+- Added crypt5.nbt that is like crypt3 but with a full skeleton.
+- Added mcRotate() to GeometryUtil.
+
 ## [3.8.4] - 2024-07-18
 
 ### Changed
