@@ -17,6 +17,7 @@
  */
 package mod.gottsch.forge.treasure2.core.block.entity;
 
+import mod.gottsch.forge.treasure2.core.block.DeferredSubaquaticGeneratorBlock;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -129,6 +130,12 @@ public class TreasureBlockEntities {
 			Registration.BLOCK_ENTITIES.register("deferred_wither_tree_generator",
 					() -> BlockEntityType.Builder.of(DeferredWitherTreeGeneratorBlockEntity::new,
 									TreasureBlocks.DEFERRED_WITHER_TREE_GENERATOR.get())
+							.build(null));
+
+	public static final RegistryObject<BlockEntityType<DeferredSubaquaticGeneratorBlockEntity>> DEFERRED_SUBAQUATIC_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_subaquatic_generator",
+					() -> BlockEntityType.Builder.of(DeferredSubaquaticGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_SUBAQUATIC_GENERATOR.get())
 							.build(null));
 	
 	public static final RegistryObject<BlockEntityType<MistEmitterBlockEntity>> MIST_EMITTER_BLOCK_ENTITY_TYPE = 

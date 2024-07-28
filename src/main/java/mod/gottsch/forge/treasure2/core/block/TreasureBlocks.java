@@ -210,6 +210,8 @@ public class TreasureBlocks {
 			.strength(3.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredWitherTreeGeneratorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_SUBAQUATIC_GENERATOR = Registration.BLOCKS.register("deferred_subaquatic_generator", () -> new DeferredSubaquaticGeneratorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
 	
 	// falling blocks
 	public static final RegistryObject<Block> FALLING_GRASS = Registration.BLOCKS.register("falling_grass", () -> new FallingGrassBlock(Properties.of().mapColor(MapColor.DIRT)

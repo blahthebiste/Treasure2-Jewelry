@@ -42,6 +42,7 @@ import net.minecraft.resources.ResourceLocation;
  * @author Mark Gottschling on Jun 1, 2023
  *
  */
+@Deprecated
 public class SubaquaticStructureFeatureGenerator implements IFeatureGenerator {
 	private ResourceLocation name = new ResourceLocation(Treasure.MODID, "subaquatic_structure");
 	

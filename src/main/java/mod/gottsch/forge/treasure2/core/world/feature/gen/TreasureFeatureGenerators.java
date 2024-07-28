@@ -24,11 +24,7 @@ import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.registry.FeatureGeneratorRegistry;
 import mod.gottsch.forge.treasure2.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.world.feature.FeatureType;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.AquaticChestFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.DeferredWitherFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.IFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.WeightedChestFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.WitherFeatureGeneratorSelector;
+import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.*;
 
 /**
  * 
@@ -41,13 +37,20 @@ public class TreasureFeatureGenerators {
 	public static final IFeatureGenerator SIMPLE_SURFACE_FEATURE_GENERATOR = new SimpleSurfaceChestFeatureGenerator();
 	public static final IFeatureGenerator PIT_FEATURE_GENERATOR = new PitChestFeatureGenerator();
 	public static final IFeatureGenerator SURFACE_STRUCTURE_FEATURE_GENERATOR = new SurfaceStructureFeatureGenerator();
+	// the actual feature generator that is called by a Tickable Block Entity
 	public static final IFeatureGenerator WITHER_FEATURE_GENERATOR = new WitherFeatureGenerator();
+	/*
+	 * a deferred feature generator that places a Tickable Block Entity, which calls the actual feature generator to generate at a specific player proximity.
+	 */
 	public static final IFeatureGenerator DEFERRED_WITHER_FEATURE_GENERATOR = new DeferredWitherFeatureGenerator();
+	public static final IFeatureGenerator DEFERRED_SUBAQUATIC_FEATURE_GENERATOR = new DeferredSubaquaticStructureFeatureGenerator();
 	public static final IFeatureGenerator SUBAQUATIC_FEATURE_GENERATOR = new SubaquaticStructureFeatureGenerator();
 	
 	// feature generator selectors
 	public static final IFeatureGeneratorSelector STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR = new WeightedChestFeatureGeneratorSelector();
 	public static final IFeatureGeneratorSelector WITHER_FEATURE_GENERATOR_SELECTOR = new DeferredWitherFeatureGeneratorSelector();
+	public static final IFeatureGeneratorSelector DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR = new DeferredAquaticFeatureGeneratorSelector();
+	@Deprecated
 	public static final IFeatureGeneratorSelector AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR = new AquaticChestFeatureGeneratorSelector();
 	
 	static {
