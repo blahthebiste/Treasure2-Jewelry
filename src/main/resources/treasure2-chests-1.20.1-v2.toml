@@ -28,7 +28,7 @@
 			name="treasure2:pit"
 			weight=65
 		[[chestConfigs.generators.featureGenerators]]
-			name="treasure2:surface_structure"
+			name="treasure2:deferred_surface_structure"
 			weight=25
 
 		[[chestConfigs.generators.rarities]]

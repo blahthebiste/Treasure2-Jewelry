@@ -137,6 +137,12 @@ public class TreasureBlockEntities {
 					() -> BlockEntityType.Builder.of(DeferredSubaquaticGeneratorBlockEntity::new,
 									TreasureBlocks.DEFERRED_SUBAQUATIC_GENERATOR.get())
 							.build(null));
+
+	public static final RegistryObject<BlockEntityType<DeferredSurfaceGeneratorBlockEntity>> DEFERRED_SURFACE_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_surface_generator",
+					() -> BlockEntityType.Builder.of(DeferredSurfaceGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_SURFACE_GENERATOR.get())
+							.build(null));
 	
 	public static final RegistryObject<BlockEntityType<MistEmitterBlockEntity>> MIST_EMITTER_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("mist_emitter", 

@@ -36,15 +36,19 @@ public class TreasureFeatureGenerators {
 	// feature generators
 	public static final IFeatureGenerator SIMPLE_SURFACE_FEATURE_GENERATOR = new SimpleSurfaceChestFeatureGenerator();
 	public static final IFeatureGenerator PIT_FEATURE_GENERATOR = new PitChestFeatureGenerator();
-	public static final IFeatureGenerator SURFACE_STRUCTURE_FEATURE_GENERATOR = new SurfaceStructureFeatureGenerator();
-	// the actual feature generator that is called by a Tickable Block Entity
+
+	// the actual feature generators that are called by a Tickable Block Entity
 	public static final IFeatureGenerator WITHER_FEATURE_GENERATOR = new WitherFeatureGenerator();
+	public static final IFeatureGenerator SURFACE_STRUCTURE_FEATURE_GENERATOR = new SurfaceStructureFeatureGenerator();
+	public static final IFeatureGenerator SUBAQUATIC_FEATURE_GENERATOR = new SubaquaticStructureFeatureGenerator();
+
 	/*
-	 * a deferred feature generator that places a Tickable Block Entity, which calls the actual feature generator to generate at a specific player proximity.
+	 * a deferred feature generators that places a Tickable Block Entity, which calls the actual feature generator to generate at a specific player proximity.
 	 */
 	public static final IFeatureGenerator DEFERRED_WITHER_FEATURE_GENERATOR = new DeferredWitherFeatureGenerator();
+	public static final IFeatureGenerator DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR = new DeferredSurfaceStructureFeatureGenerator();
 	public static final IFeatureGenerator DEFERRED_SUBAQUATIC_FEATURE_GENERATOR = new DeferredSubaquaticStructureFeatureGenerator();
-	public static final IFeatureGenerator SUBAQUATIC_FEATURE_GENERATOR = new SubaquaticStructureFeatureGenerator();
+
 	
 	// feature generator selectors
 	public static final IFeatureGeneratorSelector STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR = new WeightedChestFeatureGeneratorSelector();
@@ -55,14 +59,15 @@ public class TreasureFeatureGenerators {
 	
 	static {
 		/*
-		 * Default feature generators setup statically. 
+		 * Default feature generators setup statically. If loading of the treasure2-chests toml works correctly,
+		 * it will clear these values and re-initialize.
 		 * NOTE currently only 1 setup for a feature, ie non-dimensional.
 		 */
 		// setup pre-made feature generators
 		WeightedChestFeatureGeneratorSelector selector = (WeightedChestFeatureGeneratorSelector)STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR;
 		selector.add(10, TreasureFeatureGenerators.SIMPLE_SURFACE_FEATURE_GENERATOR);
 		selector.add(65, TreasureFeatureGenerators.PIT_FEATURE_GENERATOR);
-		selector.add(25, SURFACE_STRUCTURE_FEATURE_GENERATOR);
+		selector.add(25, DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR);
 	}
 	
 	/**
