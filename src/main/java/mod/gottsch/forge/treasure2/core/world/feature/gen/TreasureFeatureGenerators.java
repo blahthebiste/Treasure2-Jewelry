@@ -19,16 +19,16 @@ package mod.gottsch.forge.treasure2.core.world.feature.gen;
 
 import java.util.Optional;
 
+import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.core.block.DeferredGeneratorBlock;
+import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.config.ChestFeaturesConfiguration.Generator;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.registry.FeatureGeneratorRegistry;
 import mod.gottsch.forge.treasure2.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.world.feature.FeatureType;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.AquaticChestFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.DeferredWitherFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.IFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.WeightedChestFeatureGeneratorSelector;
-import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.WitherFeatureGeneratorSelector;
+import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.*;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * 
@@ -39,27 +39,45 @@ public class TreasureFeatureGenerators {
 
 	// feature generators
 	public static final IFeatureGenerator SIMPLE_SURFACE_FEATURE_GENERATOR = new SimpleSurfaceChestFeatureGenerator();
-	public static final IFeatureGenerator PIT_FEATURE_GENERATOR = new PitChestFeatureGenerator();
-	public static final IFeatureGenerator SURFACE_STRUCTURE_FEATURE_GENERATOR = new SurfaceStructureFeatureGenerator();
+
+	// the actual feature generators that are called by a Tickable Block Entity
 	public static final IFeatureGenerator WITHER_FEATURE_GENERATOR = new WitherFeatureGenerator();
-	public static final IFeatureGenerator DEFERRED_WITHER_FEATURE_GENERATOR = new DeferredWitherFeatureGenerator();
+	public static final IFeatureGenerator SURFACE_STRUCTURE_FEATURE_GENERATOR = new SurfaceStructureFeatureGenerator();
 	public static final IFeatureGenerator SUBAQUATIC_FEATURE_GENERATOR = new SubaquaticStructureFeatureGenerator();
-	
+	public static final IFeatureGenerator PIT_FEATURE_GENERATOR = new PitChestFeatureGenerator();
+
+	/*
+	 * a deferred feature generators that places a Tickable Block Entity, which calls the actual feature generator to generate at a specific player proximity.
+	 */
+	public static final IFeatureGenerator DEFERRED_WITHER_FEATURE_GENERATOR =
+			new DeferredFeatureGenerator(new ResourceLocation(Treasure.MODID, "deferred_wither"), (DeferredGeneratorBlock) TreasureBlocks.DEFERRED_WITHER_TREE_GENERATOR.get());
+	public static final IFeatureGenerator DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR =
+			new DeferredFeatureGenerator(new ResourceLocation(Treasure.MODID, "deferred_subaquatic_structure"), (DeferredGeneratorBlock) TreasureBlocks.DEFERRED_SUBAQUATIC_GENERATOR.get());
+	public static final IFeatureGenerator DEFERRED_SUBAQUATIC_FEATURE_GENERATOR =
+			new DeferredFeatureGenerator(new ResourceLocation(Treasure.MODID, "deferred_surface_structure"), (DeferredGeneratorBlock) TreasureBlocks.DEFERRED_SURFACE_GENERATOR.get());
+
+	//	public static final IFeatureGenerator DEFERRED_PIT_FEATURE_GENERATOR = new DeferredPitFeatureGenerator();
+	public static final IFeatureGenerator DEFERRED_PIT_FEATURE_GENERATOR =
+		new DeferredFeatureGenerator(new ResourceLocation(Treasure.MODID, "deferred_pit"), (DeferredGeneratorBlock) TreasureBlocks.DEFERRED_PIT_GENERATOR.get());
+
 	// feature generator selectors
 	public static final IFeatureGeneratorSelector STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR = new WeightedChestFeatureGeneratorSelector();
 	public static final IFeatureGeneratorSelector WITHER_FEATURE_GENERATOR_SELECTOR = new DeferredWitherFeatureGeneratorSelector();
+	public static final IFeatureGeneratorSelector DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR = new DeferredAquaticFeatureGeneratorSelector();
+	@Deprecated
 	public static final IFeatureGeneratorSelector AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR = new AquaticChestFeatureGeneratorSelector();
 	
 	static {
 		/*
-		 * Default feature generators setup statically. 
+		 * Default feature generators setup statically. If loading of the treasure2-chests toml works correctly,
+		 * it will clear these values and re-initialize.
 		 * NOTE currently only 1 setup for a feature, ie non-dimensional.
 		 */
 		// setup pre-made feature generators
 		WeightedChestFeatureGeneratorSelector selector = (WeightedChestFeatureGeneratorSelector)STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR;
 		selector.add(10, TreasureFeatureGenerators.SIMPLE_SURFACE_FEATURE_GENERATOR);
-		selector.add(65, TreasureFeatureGenerators.PIT_FEATURE_GENERATOR);
-		selector.add(25, SURFACE_STRUCTURE_FEATURE_GENERATOR);
+		selector.add(65, TreasureFeatureGenerators.DEFERRED_PIT_FEATURE_GENERATOR);
+		selector.add(25, DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR);
 	}
 	
 	/**
