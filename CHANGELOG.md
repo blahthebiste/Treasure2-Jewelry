@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Fixed Deferred generator block entities using the wrong config-based conditional statement.
+- Updated treasure2-chests-1.20.1 toml file to v3.
 
 ### Added
 - Added Deferred generators for Surface, Subaquatic structures, and Pits.
