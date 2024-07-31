@@ -44,7 +44,7 @@ import net.minecraft.resources.ResourceLocation;
  */
 public class SubaquaticStructureFeatureGenerator implements IFeatureGenerator {
 	private ResourceLocation name = new ResourceLocation(Treasure.MODID, "subaquatic_structure");
-	
+
 	@Override
 	public ResourceLocation getName() {
 		return name;
