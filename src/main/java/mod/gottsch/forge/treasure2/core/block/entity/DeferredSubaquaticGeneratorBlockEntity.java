@@ -58,7 +58,7 @@ import java.util.Optional;
  * @author Mark Gottschling on July 27, 2024
  *
  */
-public class DeferredSubaquaticGeneratorBlockEntity extends BlockEntity implements IChestFeature {
+public class DeferredSubaquaticGeneratorBlockEntity extends DeferredGeneratorBlockEntity {
 
     private IRarity rarity;
 
@@ -66,116 +66,20 @@ public class DeferredSubaquaticGeneratorBlockEntity extends BlockEntity implemen
         super(TreasureBlockEntities.DEFERRED_SUBAQUATIC_GENERATOR_ENTITY_TYPE.get(), pos, state);
     }
 
-    public void tickServer() {
-        if (Config.SERVER.markers.enableSpawner.get()) {
-            if (getLevel().isClientSide()) {
-                return;
-            }
 
-            try {
-                IFeatureType FEATURE_TYPE = FeatureType.AQUATIC;
-                ResourceLocation dimension = WorldInfo.getDimension(getLevel());
-                ICoords spawnCoords = new Coords(getBlockPos());
-
-                // get the chest registry
-                GeneratedCache<GeneratedChestContext> chestCache = DimensionalGeneratedCache.getChestGeneratedCache(dimension, FEATURE_TYPE);
-                if (chestCache == null) {
-                    Treasure.LOGGER.debug("GeneratedRegistry is null for dimension & AQUATIC. This shouldn't be. Should be initialized.");
-                    return;
-                }
-
-                // get the generator config
-                ChestFeaturesConfiguration config = Config.chestConfig;
-                if (config == null) {
-                    Treasure.LOGGER.debug("ChestConfiguration is null. This shouldn't be.");
-                    failAndPlaceholdChest((ServerLevel)getLevel(), chestCache, rarity, spawnCoords, FEATURE_TYPE);
-                    return;
-                }
-
-                ChestFeaturesConfiguration.Generator generatorConfig = config.getGenerator(FEATURE_TYPE.getName());
-                if (generatorConfig == null) {
-                    Treasure.LOGGER.warn("unable to locate a config for feature type -> {}.", FEATURE_TYPE.getName());
-                    failAndPlaceholdChest((ServerLevel)getLevel(), chestCache, rarity, spawnCoords, FEATURE_TYPE);
-                    return;
-                }
-
-                // TODO this could be selected from a feature selector
-                IFeatureGenerator featureGenerator = TreasureFeatureGenerators.SUBAQUATIC_FEATURE_GENERATOR;
-                Treasure.LOGGER.debug("feature generator -> {}", featureGenerator.getClass().getSimpleName());
-
-                Optional<ChestFeaturesConfiguration.ChestRarity> rarityConfig = generatorConfig.getRarity(rarity);
-                if (!rarityConfig.isPresent()) {
-                    Treasure.LOGGER.warn("unable to locate rarity config for rarity - >{}", rarity);
-                    failAndPlaceholdChest((ServerLevel)getLevel(), chestCache, rarity, spawnCoords, FEATURE_TYPE);
-                    return;
-                }
-                // call generate
-                Optional<GeneratorResult<ChestGeneratorData>> result =
-                        featureGenerator.generate(
-                                new FeatureGenContext(
-                                    (ServerLevel)getLevel(),
-                                    ((ServerLevel)getLevel()).getChunkSource().getGenerator(),
-                                    getLevel().getRandom(),
-                                    FEATURE_TYPE),
-                                spawnCoords, rarity, rarityConfig.get());
-
-                if (result.isPresent()) {
-                    cacheGeneratedChest((ServerLevel)getLevel(), rarity, FEATURE_TYPE, chestCache, result.get());
-                    updateChestGeneratorRegistry(dimension, rarity, FEATURE_TYPE);
-                } else {
-                    failAndPlaceholdChest((ServerLevel)getLevel(), chestCache, rarity, spawnCoords, FEATURE_TYPE);
-                    return;
-                }
-
-                // save world data
-                TreasureSavedData savedData = TreasureSavedData.get(getLevel());
-                if (savedData != null) {
-                    savedData.setDirty();
-                }
-
-            } catch(Exception e) {
-                Treasure.LOGGER.error("unable to generate wither tree", e);
-            } finally {
-                if (getLevel().getBlockState(getBlockPos()).getBlock() == TreasureBlocks.DEFERRED_SUBAQUATIC_GENERATOR.get()) {
-                    getLevel().setBlock(getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
-                }
-            }
-        }
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        tag.putString("rarity", getRarity().getName());
-        super.saveAdditional(tag);
+    public IFeatureType getFeatureType() {
+        return FeatureType.AQUATIC;
     }
 
     @Override
-    public void load(@NotNull CompoundTag tag) {
-        super.load(tag);
-        try {
-            Optional<IRarity> rarity = Optional.empty();
-            if (tag.contains("rarity")) {
-                rarity = TreasureApi.getRarity(tag.getString("rarity"));
-            }
-
-            setRarity(rarity.orElse(Rarity.NONE));
-        } catch (Exception e) {
-            Treasure.LOGGER.error("error reading to tag:", e);
-        }
+    public IFeatureGenerator getFeatureGenerator() {
+        return TreasureFeatureGenerators.SUBAQUATIC_FEATURE_GENERATOR;
     }
 
-    public IRarity getRarity() {
-        return rarity;
-    }
-
-    public void setRarity(IRarity rarity) {
-        this.rarity = rarity;
-    }
-
-	@Override
-	public boolean meetsProximityCriteria(ServerLevelAccessor world, ResourceLocation dimension, IFeatureType key,
-			ICoords spawnCoords, int minDistance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

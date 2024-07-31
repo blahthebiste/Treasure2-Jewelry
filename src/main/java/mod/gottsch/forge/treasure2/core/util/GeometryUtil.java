@@ -77,7 +77,7 @@ public class GeometryUtil {
      *
      * 90° clockwise rotation: (x,y) becomes (-y,x)
      * 180° clockwise and counterclockwise rotation: (x,y) becomes (−x,−y)
-     * 270° clockwise rotation: (x,y) becomes (y,x)
+     * 270° clockwise rotation: (x,y) becomes (y,-x)
      *
      * @param coords
      * @param rotation
@@ -87,7 +87,7 @@ public class GeometryUtil {
         return switch(rotation) {
             case CLOCKWISE_90 -> new Coords(-coords.getZ(), coords.getY(), coords.getX());
             case CLOCKWISE_180 -> new Coords(-coords.getX(), coords.getY(), -coords.getZ());
-            case COUNTERCLOCKWISE_90 -> new Coords(coords.getZ(), coords.getY(), coords.getX());
+            case COUNTERCLOCKWISE_90 -> new Coords(coords.getZ(), coords.getY(), -coords.getX());
             case NONE -> coords;
             default -> coords;
         };

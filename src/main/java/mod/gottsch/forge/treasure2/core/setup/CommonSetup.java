@@ -146,7 +146,7 @@ public class CommonSetup {
 		 *  modders to insert addtional feature generators.
 		 */
 		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN,TreasureFeatureGenerators.SIMPLE_SURFACE_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.PIT_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_PIT_FEATURE_GENERATOR);
 		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR);
 		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_WITHER_FEATURE_GENERATOR);
 		

@@ -22,25 +22,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
-import mod.gottsch.forge.treasure2.core.block.entity.CardboardBoxBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.CauldronChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.CompressorChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.CrateChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.CrystalSkullChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.DreadPirateChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.GoldSkullChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.GoldStrongboxBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.IronStrongboxBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.IronboundChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.MilkCrateBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.MoldyCrateChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.PirateChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.SafeBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.SkullChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.SpiderChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.VikingChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.WitherChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.WoodChestBlockEntity;
+import mod.gottsch.forge.treasure2.core.block.entity.*;
 import mod.gottsch.forge.treasure2.core.lock.LockLayouts;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.core.Direction;
@@ -208,13 +190,15 @@ public class TreasureBlocks {
 
 	public static final RegistryObject<Block> DEFERRED_RANDOM_VANILLA_SPAWNER = Registration.BLOCKS.register("deferred_random_vanilla_spawner", () -> new DeferredRandomVanillaSpawnerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredWitherTreeGeneratorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredGeneratorBlock(DeferredWitherTreeGeneratorBlockEntity.class, BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEFERRED_SURFACE_GENERATOR = Registration.BLOCKS.register("deferred_surface_generator", () -> new DeferredSurfaceGeneratorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+	public static final RegistryObject<Block> DEFERRED_SURFACE_GENERATOR = Registration.BLOCKS.register("deferred_surface_generator", () -> new DeferredGeneratorBlock(DeferredSurfaceGeneratorBlockEntity.class, BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEFERRED_SUBAQUATIC_GENERATOR = Registration.BLOCKS.register("deferred_subaquatic_generator", () -> new DeferredSubaquaticGeneratorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+	public static final RegistryObject<Block> DEFERRED_SUBAQUATIC_GENERATOR = Registration.BLOCKS.register("deferred_subaquatic_generator", () -> new DeferredGeneratorBlock(DeferredSubaquaticGeneratorBlockEntity.class, BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	
+	public static final RegistryObject<Block> DEFERRED_PIT_GENERATOR = Registration.BLOCKS.register("deferred_pit_generator", () -> new DeferredGeneratorBlock(DeferredPitGeneratorBlockEntity.class, BlockBehaviour.Properties.of().mapColor(MapColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+
 	// falling blocks
 	public static final RegistryObject<Block> FALLING_GRASS = Registration.BLOCKS.register("falling_grass", () -> new FallingGrassBlock(Properties.of().mapColor(MapColor.DIRT)
 			.strength(0.6F).sound(SoundType.GRASS)));
