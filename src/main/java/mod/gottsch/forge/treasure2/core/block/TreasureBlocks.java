@@ -191,7 +191,14 @@ public class TreasureBlocks {
 
 	public static final RegistryObject<Block> DEFERRED_RANDOM_VANILLA_SPAWNER = Registration.BLOCKS.register("deferred_random_vanilla_spawner", () -> new DeferredRandomVanillaSpawnerBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredWitherTreeGeneratorBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
+	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredGeneratorBlock(DeferredWitherTreeGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+
+	public static final RegistryObject<Block> DEFERRED_SURFACE_GENERATOR = Registration.BLOCKS.register("deferred_surface_generator", () -> new DeferredGeneratorBlock(DeferredSurfaceGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_SUBAQUATIC_GENERATOR = Registration.BLOCKS.register("deferred_subaquatic_generator", () -> new DeferredGeneratorBlock(DeferredSubaquaticGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_PIT_GENERATOR = Registration.BLOCKS.register("deferred_pit_generator", () -> new DeferredGeneratorBlock(DeferredPitGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
 	
 	// falling blocks

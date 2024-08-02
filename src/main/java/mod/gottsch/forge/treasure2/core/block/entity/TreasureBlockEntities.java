@@ -103,8 +103,25 @@ public class TreasureBlockEntities {
 	public static final RegistryObject<BlockEntityType<WitherChestBlockEntity>> WITHER_CHEST_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("wither_chest_block_entity", 
 					() -> BlockEntityType.Builder.of(WitherChestBlockEntity::new, TreasureBlocks.WITHER_CHEST.get()).build(null));
-	
-	
+
+	public static final RegistryObject<BlockEntityType<DeferredSubaquaticGeneratorBlockEntity>> DEFERRED_SUBAQUATIC_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_subaquatic_generator",
+					() -> BlockEntityType.Builder.of(DeferredSubaquaticGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_SUBAQUATIC_GENERATOR.get())
+							.build(null));
+
+	public static final RegistryObject<BlockEntityType<DeferredSurfaceGeneratorBlockEntity>> DEFERRED_SURFACE_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_surface_generator",
+					() -> BlockEntityType.Builder.of(DeferredSurfaceGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_SURFACE_GENERATOR.get())
+							.build(null));
+
+	public static final RegistryObject<BlockEntityType<DeferredPitGeneratorBlockEntity>> DEFERRED_PIT_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_pit_generator",
+					() -> BlockEntityType.Builder.of(DeferredPitGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_PIT_GENERATOR.get())
+							.build(null));
+
 	public static final RegistryObject<BlockEntityType<TreasureProximitySpawnerBlockEntity>> TREASURE_PROXIMITY_SPAWNER_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("treasure_proximity_spawner", 
 			() -> BlockEntityType.Builder.of(TreasureProximitySpawnerBlockEntity::new, 
