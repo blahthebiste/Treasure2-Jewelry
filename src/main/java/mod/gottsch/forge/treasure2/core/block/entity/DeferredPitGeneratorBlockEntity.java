@@ -1,6 +1,6 @@
 /*
  * This file is part of  Treasure2.
- * Copyright (c) 2023 Mark Gottschling (gottsch)
+ * Copyright (c) 2024 Mark Gottschling (gottsch)
  *
  * All rights reserved.
  *
@@ -19,7 +19,6 @@
  */
 package mod.gottsch.forge.treasure2.core.block.entity;
 
-import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.treasure2.core.world.feature.FeatureType;
 import mod.gottsch.forge.treasure2.core.world.feature.IFeatureType;
 import mod.gottsch.forge.treasure2.core.world.feature.gen.IFeatureGenerator;
@@ -29,15 +28,13 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /**
  *
- * @author Mark Gottschling on Oct 12, 2023
+ * @author Mark Gottschling on July 28, 2024
  *
  */
-public class DeferredWitherTreeGeneratorBlockEntity extends DeferredGeneratorBlockEntity {
+public class DeferredPitGeneratorBlockEntity extends DeferredGeneratorBlockEntity {
 
-    private IRarity rarity;
-
-    public DeferredWitherTreeGeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(TreasureBlockEntities.DEFERRED_WITHER_TREE_GENERATOR_ENTITY_TYPE.get(), pos, state);
+    public DeferredPitGeneratorBlockEntity(BlockPos pos, BlockState state) {
+        super(TreasureBlockEntities.DEFERRED_PIT_GENERATOR_ENTITY_TYPE.get(), pos, state);
     }
 
     @Override
@@ -52,6 +49,6 @@ public class DeferredWitherTreeGeneratorBlockEntity extends DeferredGeneratorBlo
 
     @Override
     public IFeatureGenerator getFeatureGenerator() {
-        return TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR;
+        return TreasureFeatureGenerators.PIT_FEATURE_GENERATOR;
     }
 }

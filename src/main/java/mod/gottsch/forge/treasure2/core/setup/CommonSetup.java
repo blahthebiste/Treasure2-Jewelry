@@ -138,7 +138,7 @@ public class CommonSetup {
 		TreasureApi.registerFeatureType(FeatureType.WELL);
 		
 		/*
-		 *  register the feature generators.
+		 *  register the feature generators. the registered generators are the only allowed generators.
 		 *  a feature generator is a bridge or proxy between the feature object
 		 *  and the generators that add changes to the world.  this allows
 		 *  modders to insert addtional feature generators.
@@ -146,10 +146,10 @@ public class CommonSetup {
 		// TODO make these weighted values in the config with a default.
 //		StringUtils.defaultIfBlank(Config.getValue(), 10);
 		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN,TreasureFeatureGenerators.SIMPLE_SURFACE_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.PIT_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.SURFACE_STRUCTURE_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR);
-		
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_PIT_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_WITHER_FEATURE_GENERATOR);
+
 		/*
 		 * register the feature generator selectors.
 		 * different featureType + rarity could use different feature generator selectors.
@@ -170,18 +170,18 @@ public class CommonSetup {
 		TreasureApi.registerFeatureGeneatorSelector(FeatureType.TERRANEAN, SpecialRarity.CAULDRON, TreasureFeatureGenerators.STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR);
 		TreasureApi.registerFeatureGeneatorSelector(FeatureType.TERRANEAN, SpecialRarity.WITHER, TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR_SELECTOR);
 
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.COMMON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.UNCOMMON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.SCARCE, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.RARE, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.EPIC, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.LEGENDARY, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.MYTHICAL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.GOLD_SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CRYSTAL_SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CAULDRON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.COMMON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.UNCOMMON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.SCARCE, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.RARE, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.EPIC, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.LEGENDARY, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.MYTHICAL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.GOLD_SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CRYSTAL_SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CAULDRON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+
 		// register structure categories
 		TreasureApi.registerStructureCategory(StructureCategory.SUBAQUATIC);
 		TreasureApi.registerStructureCategory(StructureCategory.SUBTERRANEAN);

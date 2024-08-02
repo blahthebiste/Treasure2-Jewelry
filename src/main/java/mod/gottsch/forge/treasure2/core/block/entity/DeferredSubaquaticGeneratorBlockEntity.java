@@ -29,16 +29,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /**
  *
- * @author Mark Gottschling on Oct 12, 2023
+ * @author Mark Gottschling on July 27, 2024
  *
  */
-public class DeferredWitherTreeGeneratorBlockEntity extends DeferredGeneratorBlockEntity {
+public class DeferredSubaquaticGeneratorBlockEntity extends DeferredGeneratorBlockEntity {
 
     private IRarity rarity;
 
-    public DeferredWitherTreeGeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(TreasureBlockEntities.DEFERRED_WITHER_TREE_GENERATOR_ENTITY_TYPE.get(), pos, state);
+    public DeferredSubaquaticGeneratorBlockEntity(BlockPos pos, BlockState state) {
+        super(TreasureBlockEntities.DEFERRED_SUBAQUATIC_GENERATOR_ENTITY_TYPE.get(), pos, state);
     }
+
 
     @Override
     public boolean isEnabled() {
@@ -47,11 +48,12 @@ public class DeferredWitherTreeGeneratorBlockEntity extends DeferredGeneratorBlo
 
     @Override
     public IFeatureType getFeatureType() {
-        return FeatureType.TERRANEAN;
+        return FeatureType.AQUATIC;
     }
 
     @Override
     public IFeatureGenerator getFeatureGenerator() {
-        return TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR;
+        return TreasureFeatureGenerators.SUBAQUATIC_FEATURE_GENERATOR;
     }
+
 }
