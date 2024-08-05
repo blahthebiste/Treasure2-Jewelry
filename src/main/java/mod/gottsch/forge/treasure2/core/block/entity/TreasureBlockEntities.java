@@ -17,7 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.block.entity;
 
-import mod.gottsch.forge.treasure2.core.block.DeferredSubaquaticGeneratorBlock;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.world.level.block.entity.BlockEntityType;

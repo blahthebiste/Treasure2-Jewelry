@@ -41,6 +41,11 @@ public class ItemModelsProvider extends ItemModelProvider {
 		singleTexture(TreasureItems.LOGO.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/treasure_tab"));
 
+		// patchouli images
+		singleTexture(TreasureItems.LOGO.getId().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/patchouli/mob"));
+
+
 		// keys
 		singleTexture(TreasureItems.WOOD_KEY.getId().getPath(),
 				modLoc("item/horizontal_left_key"), "layer0", modLoc("item/key/wood_key"));

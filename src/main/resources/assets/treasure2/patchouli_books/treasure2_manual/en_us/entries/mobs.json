@@ -1,0 +1,67 @@
+{
+  "name": "Mobs",
+  "icon": "treasure2:mob",
+  "category": "treasure2:manual",
+  "pages": [
+    "Treasure2 adds a few mobs, mainly mimics, that haunt treasure sites. Be wary, for carelessness could cost you dearly.",
+    {
+      "type": "patchouli:text",
+      "title": "Mimics",
+      "text": "A mimic is a monstrous shapeshifter that disguises itself as an inanimate object, most commonly a treasure chest. Its skin is tough and adaptable, allowing it to mimic the appearance and texture of various materials. While in its disguised form, it patiently awaits unsuspecting victims to approach."
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/wood_chest_mimic_patchouli.png"],
+      "title": "Wood Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/crate_chest_mimic_patchouli.png"],
+      "title": "Crate Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/viking_chest_mimic_patchouli.png"],
+      "title": "Viking Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/pirate_chest_mimic_patchouli.png"],
+      "title": "Pirate Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/milk_crate_mimic_patchouli.png"],
+      "title": "Milk Crate Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/cauldron_mimic_patchouli.png"],
+      "title": "Cauldron Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Bound Souls",
+      "text": "Sometimes, to protect their treasure, people sacrifice themselves, binding their soul to site where the treasure lays and are summoned to fight whenever a player approaches."
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/bound_soul_patchouli.png"],
+      "title": "Bound Soul",
+      "text": "",
+      "border": true
+    }
+  ]
+}

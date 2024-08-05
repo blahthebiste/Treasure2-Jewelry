@@ -47,6 +47,9 @@ public class TreasureItems {
 	// tab items
 	public static final RegistryObject<Item> LOGO = Registration.ITEMS.register("treasure_tab", () -> new Item(new Item.Properties()));
 
+	// patchouli items
+	public static final RegistryObject<Item> MOB = Registration.ITEMS.register("mob", () -> new Item(new Item.Properties()));
+
 	// item properties
 	public static final Item.Properties TREASURE_ITEM_PROPERTIES = new Item.Properties();
 	public static final Supplier<Item.Properties> TREASURE_PROPS_SUPPLIER = () -> new Item.Properties();
