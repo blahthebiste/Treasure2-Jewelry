@@ -170,6 +170,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.VIKING_CHEST.get(), "Viking Chest");
         add(TreasureBlocks.CARDBOARD_BOX.get(), "Cardboard Box");
         add(TreasureBlocks.MILK_CRATE.get(), "Milk Crate");
+        add(TreasureBlocks.MILK_CRATE.get(), "Barrel Chest");
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_BRANCH.get(), "Wither Branch");
@@ -229,6 +230,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Crate Chest Mimic");
         add(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Moldy Chest Mimic");
         add(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), "Cardboard Box Mimic");
+        add(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), "Milk Crate Mimic");
+        add(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), "Barrel Mimic");
 
         // eggs
         add(TreasureItems.BOUND_SOUL_EGG.get(), "Bound Soul Spawn Egg");
@@ -240,6 +243,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.get(), "Moldy Crate Chest Mimic Spawn Egg");
         add(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.get(), "Cardboard Box Mimic Spawn Egg");
         add(TreasureItems.MILK_CRATE_MIMIC_EGG.get(), "Milk Crate Mimic Spawn Egg");
+        add(TreasureItems.BARREL_MIMIC_EGG.get(), "Barrel Mimic Spawn Egg");
 
         /*
          *  Util.tooltips

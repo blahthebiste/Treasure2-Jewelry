@@ -38,6 +38,7 @@ public class LockLayouts {
 	public static final LockLayout LOW_RISE;
 	public static final LockLayout VIKING;
 	public static final LockLayout MILK_CRATE;
+	public static final LockLayout SIMPLE_FULL;
 		
 	static {
 		NONE = new LockLayout(0);
@@ -110,5 +111,9 @@ public class LockLayouts {
 		VIKING = new LockLayout(1).addSlots(
 				new LockSlot(0, Heading.NORTH, 0.5F, 0.55F, 0.17F, 0F)
 			);
+
+		SIMPLE_FULL = new LockLayout(1).addSlots(
+				new LockSlot(0, Heading.NORTH, 0.5F, 0.5F, 0.0F, 0F)
+		);
 	}
 }

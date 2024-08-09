@@ -99,7 +99,11 @@ public class TreasureBlockEntities {
 	public static final RegistryObject<BlockEntityType<MilkCrateBlockEntity>> MILK_CRATE_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("milk_crate_block_entity", 
 					() -> BlockEntityType.Builder.of(MilkCrateBlockEntity::new, TreasureBlocks.MILK_CRATE.get()).build(null));
-	
+
+	public static final RegistryObject<BlockEntityType<BarrelChestBlockEntity>> BARREL_CHEST_BLOCK_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("barrel_chest_block_entity",
+					() -> BlockEntityType.Builder.of(BarrelChestBlockEntity::new, TreasureBlocks.BARREL_CHEST.get()).build(null));
+
 	public static final RegistryObject<BlockEntityType<WitherChestBlockEntity>> WITHER_CHEST_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("wither_chest_block_entity", 
 					() -> BlockEntityType.Builder.of(WitherChestBlockEntity::new, TreasureBlocks.WITHER_CHEST.get()).build(null));

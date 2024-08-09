@@ -49,6 +49,7 @@ public class TreasureBlockTagsProvider extends BlockTagsProvider {
     	tag(TreasureTags.Blocks.UNCOMMON_CHESTS).add(TreasureBlocks.CRATE_CHEST.get());
     	tag(TreasureTags.Blocks.UNCOMMON_CHESTS).add(TreasureBlocks.IRONBOUND_CHEST.get());
     	tag(TreasureTags.Blocks.UNCOMMON_CHESTS).add(TreasureBlocks.VIKING_CHEST.get());
+		tag(TreasureTags.Blocks.UNCOMMON_CHESTS).add(TreasureBlocks.BARREL_CHEST.get());
     	tag(TreasureTags.Blocks.SCARCE_CHESTS).add(TreasureBlocks.PIRATE_CHEST.get());
     	tag(TreasureTags.Blocks.SCARCE_CHESTS).add(TreasureBlocks.IRON_STRONGBOX.get());
 //    	tag(TreasureTags.Blocks.SCARCE_CHESTS).add(TreasureBlocks.SKULL_CHEST.get());

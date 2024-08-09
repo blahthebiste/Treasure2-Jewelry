@@ -42,7 +42,7 @@ public class ItemModelsProvider extends ItemModelProvider {
 				mcLoc("item/generated"), "layer0", modLoc("item/treasure_tab"));
 
 		// patchouli images
-		singleTexture(TreasureItems.LOGO.getId().getPath(),
+		singleTexture(TreasureItems.MOB.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/patchouli/mob"));
 
 
@@ -336,6 +336,6 @@ public class ItemModelsProvider extends ItemModelProvider {
 		withExistingParent(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.MILK_CRATE_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
-
+		withExistingParent(TreasureItems.BARREL_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 	}
 }

@@ -356,6 +356,7 @@ public class TreasureItems {
 	public static final RegistryObject<Item> MOLDY_CRATE_CHEST_MIMIC_EGG = Registration.ITEMS.register("moldy_crate_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE, 0x635360, 0x464646, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> CARDBOARD_BOX_MIMIC_EGG = Registration.ITEMS.register("cardboard_box_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE, 0x6f5e60, 0x404040, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> MILK_CRATE_MIMIC_EGG = Registration.ITEMS.register("milk_crate_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE, 0x965738, 0x773e28, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> BARREL_MIMIC_EGG = Registration.ITEMS.register("barrel_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE, 0x9f854d, 0x54452c, TREASURE_PROPS_SUPPLIER.get()));
 
 	// tiers
 	public static final ForgeTier COPPER = new ForgeTier(1, 200, 5.0F, 1.0F, 10, BlockTags.NEEDS_STONE_TOOL, () -> Ingredient.of(Items.COPPER_INGOT));
