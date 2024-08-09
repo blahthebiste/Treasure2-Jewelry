@@ -67,7 +67,7 @@ public class TreasureBlocks {
 			LockLayouts.CRATE, Properties.of().mapColor(MapColor.WOOD).strength(2.0F).lightLevel(light)));
 
 	public static final RegistryObject<Block> IRONBOUND_CHEST = Registration.BLOCKS.register("ironbound_chest", () -> new StandardChestBlock(IronboundChestBlockEntity.class,
-			LockLayouts.STANDARD, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)));
+			LockLayouts.STANDARD, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildIronboundChest()));
 
 	public static final RegistryObject<Block> PIRATE_CHEST = Registration.BLOCKS.register("pirate_chest", () -> new StandardChestBlock(PirateChestBlockEntity.class,
 			LockLayouts.STANDARD, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)));
