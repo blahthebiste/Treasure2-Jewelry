@@ -19,14 +19,15 @@
  */
 package mod.gottsch.forge.treasure2.core.capability;
 
-import java.util.List;
-
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 /**
  * 
@@ -34,11 +35,15 @@ import net.minecraft.world.level.Level;
  *
  */
 public interface IDurabilityHandler {
-    public static final int MAX_DURABILITY = 1000; 
+	public static final int MAX_DURABILITY = 1000;
 
-	public int getDurability();
+	int getDefaultDurability();
 
-	public void setDurability(int damage);
+	void setDefaultDurability(int defaultDurability);
+
+	int durability(Item item);
+
+	void setDurability(int maxDamage);
 
 	public int getMaxDurability();
 

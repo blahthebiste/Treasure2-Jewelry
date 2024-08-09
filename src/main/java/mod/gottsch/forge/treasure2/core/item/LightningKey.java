@@ -17,8 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import java.util.List;
-
 import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -28,6 +26,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 /**
  * 
  * @author Mark Gottschling on Sep 11, 2020
@@ -35,12 +35,16 @@ import net.minecraft.world.level.Level;
  */
 public class LightningKey extends KeyItem {
 
+	public LightningKey(Item.Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
 	/**
 	 * 
 	 * @param properties
 	 */
-	public LightningKey(Item.Properties properties) {
-		super(properties);
+	public LightningKey(Item.Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			return lock.getCategory() == KeyLockCategory.ELEMENTAL;

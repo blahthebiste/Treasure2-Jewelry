@@ -25,6 +25,7 @@ import mod.gottsch.forge.treasure2.core.world.feature.gen.TreasureFeatureGenerat
  * @author Mark Gottschling on Jun 1, 2023
  *
  */
+@Deprecated
 public class AquaticChestFeatureGeneratorSelector implements IFeatureGeneratorSelector {
 
 	@Override

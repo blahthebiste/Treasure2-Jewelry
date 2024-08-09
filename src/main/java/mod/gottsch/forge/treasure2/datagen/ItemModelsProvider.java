@@ -322,15 +322,16 @@ public class ItemModelsProvider extends ItemModelProvider {
 		});
 		
 		// eggs
-		withExistingParent(TreasureItems.BOUND_SOUL_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.WOOD_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.PIRATE_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.VIKING_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.CAULDRON_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.CRATE_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		withExistingParent(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
-		
+		withExistingParent(TreasureItems.BOUND_SOUL_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.WOOD_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.PIRATE_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.VIKING_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.CAULDRON_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.CRATE_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.MILK_CRATE_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
 		// topaz rings
 		//        singleTexture(TreasureItems.ADORNMENT_ITEMS.get(modLoc("topaz_iron_ring")).getRegistryName().getPath(),        		
 		//        		mcLoc("treasure2:item/adornment"), "layer0", modLoc("item/adornments/topaz_iron_ring"));

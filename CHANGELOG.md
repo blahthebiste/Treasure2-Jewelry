@@ -5,6 +5,67 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.9.0] - 2024-08-08
+
+### Changed
+- Fixed Deferred generator block entities using the wrong config-based conditional statement.
+- Updated treasure2-chests-1.20.1 toml file to v3.
+- Fixed the breaking of a merged key taking too much damage.
+
+### Added
+- Added Deferred generators for Surface, Subaquatic structures, and Pits.
+
+
+## [3.8.6] - 2024-07-24
+
+### Changed
+-Fixed GeometryUtil.mcRotate() for Countclockwise90/Clockwise270 rotation.
+
+## [3.8.5] - 2024-07-23
+
+### Changed
+- Fixed pit shaft and pit room alignments! For real this time.
+- Updated crypt3.nbt to include the missing bottom level which had the entrance marker.
+- Updated treasure2-structures toml file.
+- Updated StructureMarkerGenerator to use mcRotate() instead of rotate()
+- Updated StructurePitGenerator to use mcRotate() instead of rotate()
+
+### Added
+- Added crypt5.nbt that is like crypt3 but with a full skeleton.
+- Added mcRotate() to GeometryUtil.
+
+
+## [3.8.4] - 2024-07-18
+
+### Changed
+
+- Fixed add patchouli guide book on first use.
+- Added condition to KeyItem.isDamageable() to prevent exception due to mixin use.
+
+## [3.8.2] - 2024-07-11
+
+### Changed
+
+- Fixed crafted Keys from only having 0 durability/usage on server.
+- Fixed reading datapacks in flat/exploded directory format.
+- Fixed high-level loot tables to include high-level combat items.
+- KeyItem now takes a default durability value in the constructor.
+
+## [3.8.1] - 2024
+
+### Changed
+
+- Fixed the inventory size of chests display in inventory.
+- Increased the success probability of Pilferers and Thiefs Locks Picks to 48/60 respectively.
+- Fixed the IChestGenerator.buildLootTableList not using the correct key when searching for injectable loot tables.
+- Fixed Cauldron Chest not displaying a rarity.
+- Update mimics to have a smoother chomp animation.
+
+### Added
+
+- Config options for Pilferers and Thiefs Lock Picks success probabilities for different rarities.
+- Patchouli book support with entries for Chests, Keys, Locks and Key Ring. Added to your inventory on first join.
+
 ## [3.8.0] - 2024-04-21
 
 ### Changed
@@ -121,4 +182,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod tentatively called 'GealdorCraft', which will have built-in itegration with Treasure2.
+- Removed all Charms and charm-related content. They are being moved to a new stand-alone mod called 'Magic Treasures', which will have built-in integration with Treasure2.

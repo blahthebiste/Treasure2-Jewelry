@@ -1,7 +1,7 @@
 /*
  * This file is part of  Treasure2.
  * Copyright (c) 2018 Mark Gottschling (gottsch)
- * 
+ *
  * All rights reserved.
  *
  * Treasure2 is free software: you can redistribute it and/or modify
@@ -19,22 +19,11 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.block.AbstractTreasureChestBlock;
-import mod.gottsch.forge.treasure2.core.block.ITreasureChestBlock;
 import mod.gottsch.forge.treasure2.core.block.ITreasureChestBlockProxy;
 import mod.gottsch.forge.treasure2.core.block.entity.AbstractTreasureChestBlockEntity;
 import mod.gottsch.forge.treasure2.core.block.entity.ITreasureChestBlockEntity;
@@ -53,31 +42,36 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+
+import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
 
 /**
- * 
+ *
  * @author Mark Gottschling on Jan 11, 2018
  *
  */
 public class KeyItem extends Item implements IKeyEffects {
 	public static final int DEFAULT_MAX_USES = 25;
 	public static final String DURABILITY_TAG = "treasure2:durability";
-	
+
 	/*
 	 * The category that the key belongs to
 	 */
@@ -107,22 +101,39 @@ public class KeyItem extends Item implements IKeyEffects {
 	 * A list of predicates that determine if a key fits into a lock.
 	 */
 	private List<Predicate<LockItem >> fitsLock;
-	
+
 	/*
 	 * A list of predicates that determine if a key will break a lock.
 	 */
 	private List<Predicate<LockItem >> breaksLock;
 
+	/*
+	 * The default (dynamic) durability of the item.
+	 * This value should be changed during LevelEvent.load event to equal
+	 * the value specified in the config.
+	 */
+	private int durability = Integer.MIN_VALUE;
+
 	/**
-	 * 
+	 *
 	 * @param properties
 	 */
 	public KeyItem(Item.Properties properties) {
-		super(properties.defaultDurability(DEFAULT_MAX_USES));
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	/**
+	 *
+	 * @param properties
+	 * @param durability
+	 */
+	public KeyItem(Item.Properties properties, int durability) {
+		super(properties.defaultDurability(durability));//.defaultDurability(DEFAULT_MAX_USES));
 		setCategory(KeyLockCategory.ELEMENTAL);
 		setBreakable(true);
 		setCraftable(false);
-		setSuccessProbability(90D);	
+		setSuccessProbability(90D);
+		setDurability(durability);
 	}
 
 	@Override
@@ -130,7 +141,8 @@ public class KeyItem extends Item implements IKeyEffects {
 		DurabilityCapability provider = new DurabilityCapability();
 		LazyOptional<IDurabilityHandler> cap = provider.getCapability(TreasureCapabilities.DURABILITY, null);
 		cap.ifPresent(c -> {
-			c.setDurability(stack.getMaxDamage());
+			// to be overridden during LevelEvent.load event
+			c.setDefaultDurability(this.getDurability());
 		});
 		return provider;
 	}
@@ -172,7 +184,7 @@ public class KeyItem extends Item implements IKeyEffects {
 	/**
 	 * Format:
 	 * 		Item Name (vanilla minecraft)
-	 * 		Rarity: [...]  [color = Gold] 
+	 * 		Rarity: [...]  [color = Gold]
 	 * 		Category:  [...] [color = Gold]
 	 * 		Uses Remaining: [n]
 	 * 		Max Uses: [n] [color = Gold]
@@ -186,22 +198,25 @@ public class KeyItem extends Item implements IKeyEffects {
 		if (stack.getCapability(DURABILITY).isPresent()) {
 			stack.getCapability(DURABILITY).ifPresent(cap -> {
 				if (cap.isInfinite()) {
-					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount.infinite"), cap.getDurability() - stack.getDamageValue(), cap.getDurability()));					
+//					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount.infinite"), cap.getDurability() - stack.getDamageValue(), cap.getDurability()));
+					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount.infinite")));
 				}
 				else {
-					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), cap.getDurability() - stack.getDamageValue(), cap.getDurability()));
+//					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), cap.getDurability() - stack.getDamageValue(), cap.getDurability()));
+					tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), cap.durability(stack.getItem()) - stack.getDamageValue(), cap.durability(stack.getItem())));
 				}
 			});
 		}
 		else {
-			tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()));
+//			tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()));
+			tooltip.add(new TranslatableComponent(LangUtil.tooltip("cap.durability.amount"), /*stack.getMaxDamage() - stack.getDamageValue()*/"whaat", getDurability()));
 		}
-		
+
 		tooltip.add(new TranslatableComponent(LangUtil.tooltip("key_lock.rarity"), ChatFormatting.BLUE + new TranslatableComponent(getRarity().getValue().toLowerCase()).getString().toUpperCase() ));
 		tooltip.add(new TranslatableComponent(LangUtil.tooltip("key_lock.category"), ChatFormatting.GOLD + new TranslatableComponent(getCategory().toString().toLowerCase()).getString().toUpperCase()));
 
 		LangUtil.appendAdvancedHoverText(tooltip, tt -> {
-			
+
 			// is breakable tooltip
 			MutableComponent breakable = null;
 			if (isBreakable()) {
@@ -221,7 +236,7 @@ public class KeyItem extends Item implements IKeyEffects {
 				craftable = new TranslatableComponent(LangUtil.tooltip("boolean.no")).withStyle(ChatFormatting.DARK_RED);
 			}
 			tooltip.add(new TranslatableComponent(LangUtil.tooltip("key_lock.craftable"), craftable));
-		
+
 			appendHoverSpecials(stack, worldIn, tooltip, flag);
 			appendHoverExtras(stack, worldIn, tooltip, flag);
 		});
@@ -238,7 +253,7 @@ public class KeyItem extends Item implements IKeyEffects {
 
 	public  void appendHoverSpecials(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flag) {
 	}
-	
+
 	public void appendHoverExtras(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flag) {
 	}
 
@@ -246,18 +261,26 @@ public class KeyItem extends Item implements IKeyEffects {
 	 * Queries the percentage of the 'Durability' bar that should be drawn.
 	 *
 	 * @param stack The current ItemStack
-	 * @return 
+	 * @return
 	 * @return 0.0 for 100% (no damage / full bar), 1.0 for 0% (fully damaged / empty bar)
 	 */
 	@Override
 	public int getBarWidth(ItemStack stack) {
-		return stack.getCapability(DURABILITY).map(cap -> {
-			return Math.round(13.0F - (float)stack.getDamageValue() * 13.0F / (float)cap.getDurability());
-		}).orElse(Math.round(13.0F - (float)stack.getDamageValue() * 13.0F / (float)this.getMaxDamage(stack)));
+		return stack.getCapability(DURABILITY).map(handler -> {
+			return Math.round(13.0F - (float)stack.getDamageValue() * 13.0F / (float)handler.durability(stack.getItem()));
+		}).orElse(Math.round(13.0F - (float)stack.getDamageValue() * 13.0F / (float)this.getDurability()));
+	}
+
+	@Override
+	public int getBarColor(ItemStack stack) {
+		super.getBarColor(stack);
+		float stackMaxDamage = stack.getCapability(DURABILITY).map(handler -> handler.durability(stack.getItem())).orElse(this.getDurability());
+		float f = Math.max(0.0F, (stackMaxDamage - (float)stack.getDamageValue()) / stackMaxDamage);
+		return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public boolean isValidRepairItem(ItemStack itemToRepair, ItemStack resourceItem) {
@@ -267,10 +290,10 @@ public class KeyItem extends Item implements IKeyEffects {
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		// exit if on the client
-		if (WorldInfo.isClientSide(context.getLevel())) {			
+		if (WorldInfo.isClientSide(context.getLevel())) {
 			return InteractionResult.FAIL;
 		}
-		
+
 		BlockPos chestPos = context.getClickedPos();
 		BlockState state = context.getLevel().getBlockState(chestPos);
 		Block block = state.getBlock();
@@ -298,7 +321,7 @@ public class KeyItem extends Item implements IKeyEffects {
 			}
 
 			try {
-				ItemStack heldItemStack = context.getPlayer().getItemInHand(context.getHand());	
+				ItemStack heldItemStack = context.getPlayer().getItemInHand(context.getHand());
 				boolean breakKey = true;
 				boolean fitsLock = false;
 				LockState lockState = null;
@@ -317,7 +340,7 @@ public class KeyItem extends Item implements IKeyEffects {
 						if (!state.getValue(AbstractTreasureChestBlock.DISCOVERED)) {
 							chestBlockEntity = ((AbstractTreasureChestBlock) block).discovered((AbstractTreasureChestBlockEntity) chestBlockEntity, state, context.getLevel(), chestPos, context.getPlayer());
 						}
-						
+
 						// update the client
 						chestBlockEntity.sendUpdates();
 
@@ -327,7 +350,7 @@ public class KeyItem extends Item implements IKeyEffects {
 				}
 
 				IDurabilityHandler cap = heldItemStack.getCapability(DURABILITY).orElseThrow(IllegalStateException::new);
-				
+
 				// check key's breakability
 				if (breakKey) {
 					if (!context.getPlayer().isCreative() && (isBreakable() || anyLockBreaksKey(chestBlockEntity.getLockStates(), this)) && Config.SERVER.keysAndLocks.enableKeyBreaks.get()) {
@@ -335,9 +358,16 @@ public class KeyItem extends Item implements IKeyEffects {
 						// it is only 'breaking' 1 key's worth of damage
 						// ex k1(1/10d) + k2(0/10d) = k3(1/20d), only apply 9 damage
 						// so k3 = (10/20d) ie 1 key's worth damage was applied.
-						int damage = heldItemStack.getDamageValue() + (heldItemStack.getMaxDamage() - (heldItemStack.getDamageValue() % heldItemStack.getMaxDamage()));
+//						int damage = heldItemStack.getDamageValue() + (heldItemStack.getMaxDamage() - (heldItemStack.getDamageValue() % heldItemStack.getMaxDamage()));
+//						int durability = cap.durability(heldItemStack.getItem());
+						// get the default durability of of the item
+						int durability = getDurability();
+						int damage = heldItemStack.getDamageValue() + (durability - (heldItemStack.getDamageValue() % /*heldItemStack.getMaxDamage()*/durability));
+
 						heldItemStack.setDamageValue(damage);
-						if (heldItemStack.getDamageValue() >= cap.getDurability()) {
+//						if (heldItemStack.getDamageValue() >= cap.getDurability()) {
+						Treasure.LOGGER.debug("damaging key -> {}", heldItemStack.getDamageValue());
+						if (heldItemStack.getDamageValue() >= cap.durability(heldItemStack.getItem())) {
 							// break key;
 							heldItemStack.shrink(1);
 						}
@@ -353,32 +383,35 @@ public class KeyItem extends Item implements IKeyEffects {
 					}
 					else {
 						doKeyUnableToUnlockEffects(context.getLevel(), context.getPlayer(), chestPos);
-					}						
+					}
 				}
 
 				// user attempted to use key - increment the damage
 				if (!context.getPlayer().isCreative() && isDamageable(heldItemStack) && !isKeyBroken) {
 					heldItemStack.setDamageValue(heldItemStack.getDamageValue() + 1);
-					if (heldItemStack.getDamageValue() >= cap.getDurability()) {
+//					if (heldItemStack.getDamageValue() >= cap.getDurability()) {
+					Treasure.LOGGER.debug("damaging key -> {}", heldItemStack.getDamageValue());
+
+					if (heldItemStack.getDamageValue() >= cap.durability(heldItemStack.getItem())) {
 						heldItemStack.shrink(1);
 					}
 				}
 			} catch (Exception e) {
 				Treasure.LOGGER.error("error: ", e);
-			}			
-		}		
+			}
+		}
 
 		return super.useOn(context);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param context
 	 * @param chestTileEntity
 	 * @param lockState
 	 */
 	public void doUnlock(UseOnContext context, ITreasureChestBlockEntity chestTileEntity, LockState lockState) {
-		LockItem lock = lockState.getLock();		
+		LockItem lock = lockState.getLock();
 		lock.doUnlock(context.getLevel(), context.getPlayer(), context.getClickedPos(), lockState);
 
 		if (!breaksLock(lock)) {
@@ -408,7 +441,7 @@ public class KeyItem extends Item implements IKeyEffects {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param lockStates
 	 * @return
 	 */
@@ -427,11 +460,11 @@ public class KeyItem extends Item implements IKeyEffects {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param lockItem
 	 * @return
 	 */
-	public boolean unlock(LockItem lockItem) {	
+	public boolean unlock(LockItem lockItem) {
 		if (lockItem.acceptsKey(this) || fitsLock(lockItem)) {
 			Treasure.LOGGER.debug("lock -> {} accepts key -> {}", lockItem.getRegistryName(), this.getRegistryName());
 			if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability())) {
@@ -443,7 +476,7 @@ public class KeyItem extends Item implements IKeyEffects {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param lockItem
 	 * @return
 	 */
@@ -461,7 +494,7 @@ public class KeyItem extends Item implements IKeyEffects {
     }
 
 	/**
-	 * 
+	 *
 	 * @param lockStates
 	 * @param key
 	 * @return
@@ -471,7 +504,7 @@ public class KeyItem extends Item implements IKeyEffects {
 			if (ls.getLock() != null) {
 				if (ls.getLock().breaksKey(key)) {
 					return true;
-				}				
+				}
 			}
 		}
 		return false;
@@ -527,7 +560,7 @@ public class KeyItem extends Item implements IKeyEffects {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isBreakable() {
@@ -535,7 +568,7 @@ public class KeyItem extends Item implements IKeyEffects {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param breakable
 	 */
 	public KeyItem setBreakable(boolean breakable) {
@@ -562,11 +595,11 @@ public class KeyItem extends Item implements IKeyEffects {
 		breaksLock.add(p);
 		return this;
 	}
-	
+
 	public List<Predicate<LockItem>> getBreaksLock() {
 		return breaksLock;
 	}
-	
+
 	/**
 	 * @return the successProbability
 	 */
@@ -587,6 +620,10 @@ public class KeyItem extends Item implements IKeyEffects {
 	 * @return the damageable
 	 */
 	public boolean isDamageable(ItemStack stack) {
+		if (stack == null) {
+			return super.isDamageable(stack);
+		}
+
 		IDurabilityHandler handler = stack.getCapability(TreasureCapabilities.DURABILITY).map(h -> h).orElse(null);
 		if (handler != null) {
 			return !handler.isInfinite();
@@ -594,10 +631,11 @@ public class KeyItem extends Item implements IKeyEffects {
 		return true;
 	}
 
-	/**
-	 * @param damageable the damageable to set
-	 */
-//	public void setDamageable(boolean damageable) {
-//		this.damageable = damageable;
-//	}
+	public int getDurability() {
+		return durability;
+	}
+
+	public void setDurability(int durability) {
+		this.durability = durability;
+	}
 }

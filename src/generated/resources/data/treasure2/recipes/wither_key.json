@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " bt",
+    " b ",
+    " br"
+  ],
+  "key": {
+    "t": {
+      "item": "treasure2:treasure_tool"
+    },
+    "b": {
+      "item": "treasure2:wither_stick_item"
+    },
+    "r": {
+      "item": "treasure2:wither_root_item"
+    }
+  },
+  "result": {
+    "item": "treasure2:wither_key"
+  }
+}

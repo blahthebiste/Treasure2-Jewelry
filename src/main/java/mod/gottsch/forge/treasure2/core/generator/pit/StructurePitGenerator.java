@@ -19,11 +19,8 @@
  */
 package mod.gottsch.forge.treasure2.core.generator.pit;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
 import mod.gottsch.forge.gottschcore.size.Quantity;
+import mod.gottsch.forge.gottschcore.spatial.Coords;
 import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.gottschcore.world.IWorldGenContext;
 import mod.gottsch.forge.gottschcore.world.gen.structure.BlockInfoContext;
@@ -35,6 +32,7 @@ import mod.gottsch.forge.treasure2.core.generator.ChestGeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorResult;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorUtil;
 import mod.gottsch.forge.treasure2.core.generator.TemplateGeneratorData;
+import mod.gottsch.forge.treasure2.core.generator.template.ITemplateGenerator;
 import mod.gottsch.forge.treasure2.core.generator.template.TemplateGenerator;
 import mod.gottsch.forge.treasure2.core.registry.TreasureTemplateRegistry;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
@@ -44,6 +42,10 @@ import mod.gottsch.forge.treasure2.core.util.GeometryUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 
 /**
@@ -173,13 +175,18 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			Rotation rotation = Rotation.values()[context.random().nextInt(Rotation.values().length)];
 			Treasure.LOGGER.debug("rotation used -> {}", rotation);
 
+			BlockPos rotatedSize = template.get().getSize(rotation);
+			Treasure.LOGGER.debug("rotated size -> {}", rotatedSize.toShortString());
+
 			// setup placement
 			PlacementSettings placement = new PlacementSettings();
 			placement.setRotation(rotation).setRandom(context.random());
 
 			// NOTE these values are still relative to origin (spawnCoords);
-//			ICoords newEntrance = new Coords(GottschTemplate.transformedVec3d(placement, entranceCoords.toVec3()));
-			ICoords newEntrance = GeometryUtil.rotate(entranceCoords, rotation);
+			ICoords newEntrance = GeometryUtil.mcRotate(entranceCoords, rotation);
+			if (entranceCoords.equals(new Coords(0, 0, 0))) {
+				newEntrance = entranceCoords;
+			}
 			Treasure.LOGGER.debug("new entrance coords -> {}", newEntrance.toShortString());
 
 
@@ -188,8 +195,13 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			 */
 			BlockPos transformedSize = template.get().getSize(rotation);
 //			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance, transformedSize, placement);
-			ICoords roomCoords = alignToPit(spawnCoords, newEntrance, transformedSize, placement);
+//			ICoords roomCoords = alignToPit(spawnCoords, newEntrance, transformedSize, placement);
 
+			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance);
+			Treasure.LOGGER.debug("aligned spawn coords -> {}", spawnCoords.toShortString());
+
+			ICoords standardizedSpawnCoords = GeneratorUtil.standardizePosition(spawnCoords, rotatedSize, placement);
+			Treasure.LOGGER.debug("new rotated standardized coords -> {}", standardizedSpawnCoords.toShortString());
 			Treasure.LOGGER.debug("aligned room coords -> {}", roomCoords.toShortString());
 
 			// generate the structure

@@ -19,7 +19,6 @@ package mod.gottsch.forge.treasure2.client.model.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.entity.monster.PirateChestMimic;
 import net.minecraft.client.model.EntityModel;
@@ -143,11 +142,10 @@ public class PirateChestMimicModel<T extends Entity> extends EntityModel<T> {
 			
 			// chomp lid
 			if (mimic.hasTarget()) {
-				lid.xRot = -degToRad(mimic.getAmount() * 45);
+				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
 			}
 			else {
-//				lid.xRot = -degToRad(22.5f);
-				bobMouth(lid, 22.5f, 25f, ageInTicks);
+				bobMouth(lid, 22.5f, 3f, ageInTicks);
 			}
 			
 			latch.xRot = 2.4870942F;

@@ -16,9 +16,9 @@
  * along with Treasure2.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.treasure2.client.model.entity;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.entity.monster.MoldyCrateChestMimic;
 import net.minecraft.client.model.EntityModel;
@@ -139,10 +139,10 @@ public class MoldyCrateChestMimicModel<T extends Entity> extends EntityModel<T> 
 			
 			// chomp lid
 			if (mimic.hasTarget()) {
-				lid.xRot = -degToRad(mimic.getAmount() * 45);
-			} else {
-//				lid.xRot = -degToRad(22.5f);
-				bobMouth(lid, 22.5f, 25f, ageInTicks);
+				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
+			}
+			else {
+				bobMouth(lid, 22.5f, 3f, ageInTicks);
 			}
 			eye1.xRot = -1.003564F;
 			eyeSocket.xRot = -0.174533F;

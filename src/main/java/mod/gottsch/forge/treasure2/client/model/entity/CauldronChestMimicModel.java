@@ -19,18 +19,13 @@ package mod.gottsch.forge.treasure2.client.model.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.entity.monster.CauldronChestMimic;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -181,11 +176,10 @@ public class CauldronChestMimicModel<T extends Entity> extends EntityModel<T> {
 			
 			// chomp lid
 			if (mimic.hasTarget()) {
-				lid.xRot = mimic.getAmount() * -0.7854F; // TODO could use sin or cos method like legs
+				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
 			}
 			else {
-//				lid.xRot = -degToRad(22.5f);
-				bobMouth(lid, 22.5f, 25f, ageInTicks);
+				bobMouth(lid, 22.5f, 3f, ageInTicks);
 			}
 			rightLid.zRot = -2.26893F; //130
 			leftLid.zRot = -rightLid.zRot;

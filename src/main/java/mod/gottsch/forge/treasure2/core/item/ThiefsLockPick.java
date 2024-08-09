@@ -17,9 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import java.util.List;
-import java.util.Random;
-
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.treasure2.Treasure;
@@ -29,10 +26,12 @@ import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -41,13 +40,25 @@ import net.minecraft.world.level.Level;
  *
  */
 public class ThiefsLockPick extends KeyItem {
+	/*
+	 * The probability of a successful unlocking uncommon locks
+	 */
+	private double uncommonSuccessProbability;
+	/*
+	 * The probability of a successful unlocking scarce locks
+	 */
+	private double scarceSuccessProbability;
 
 	/**
 	 * 
 	 * @param properties
 	 */
-	public ThiefsLockPick(Item.Properties properties) {
-		super(properties);
+	public ThiefsLockPick(Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	public ThiefsLockPick(Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			IRarity rarity = KeyLockRegistry.getRarityByLock(lock);
@@ -107,18 +118,42 @@ public class ThiefsLockPick extends KeyItem {
 				}
 			}
 			else if (lockItem.getRarity() == Rarity.UNCOMMON) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability() - (this.getSuccessProbability()/4))) {
-					Treasure.LOGGER.debug("Unlock attempt met probability");
+				if (RandomHelper.checkProbability(new Random(), this.getUncommonSuccessProbability())) {					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				
 			}
 			else if (lockItem.getRarity() == Rarity.SCARCE) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability()/2)) {
+				if (RandomHelper.checkProbability(new Random(), this.getScarceSuccessProbability())) {
 					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				
 			}		
 		}
 		return false;
+	}
+
+
+	public ThiefsLockPick setSuccessProbability(double commonProbability, double uncommonProbability, double scarceProbability) {
+		setSuccessProbability(commonProbability);
+		setUncommonSuccessProbability(uncommonProbability);
+		setScarceSuccessProbability(scarceProbability);
+
+		return this;
+	}
+
+	public double getUncommonSuccessProbability() {
+		return uncommonSuccessProbability;
+	}
+
+	public void setUncommonSuccessProbability(double uncommonSuccessProbability) {
+		this.uncommonSuccessProbability = uncommonSuccessProbability;
+	}
+
+	public double getScarceSuccessProbability() {
+		return scarceSuccessProbability;
+	}
+
+	public void setScarceSuccessProbability(double scarceSuccessProbability) {
+		this.scarceSuccessProbability = scarceSuccessProbability;
 	}
 }

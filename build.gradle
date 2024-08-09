@@ -40,6 +40,12 @@ minecraft {
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     runs {
+        // required for using mixin in forge
+        client {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+        }
+
         client {
             workingDirectory project.file('run')
 
@@ -165,7 +171,8 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
-            
+
+    maven { url = "https://maven.blamejared.com" }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
      //flatDir {
       //   dir 'libs'
@@ -176,7 +183,7 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.80'
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -189,7 +196,10 @@ dependencies {
 	//compileOnly fg.deobf("curse.maven:champions-307152:${cf_champions}")
 	compileOnly fg.deobf("curse.maven:jade-324717:4575623") // jade 1.18.2
 	compileOnly fg.deobf("curse.maven:compass-coords-368398:3765883")
-	
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
+
 	// implementation files(gottschcore_path)
 	//runtimeOnly files(minimap_path)
     // Examples using mod jars from ./libs

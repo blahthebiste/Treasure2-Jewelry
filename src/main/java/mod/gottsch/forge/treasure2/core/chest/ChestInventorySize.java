@@ -17,6 +17,9 @@
  */
 package mod.gottsch.forge.treasure2.core.chest;
 
+import mod.gottsch.forge.treasure2.core.block.ITreasureChestBlock;
+import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
+
 /**
  * @author Mark Gottschling on Mar 3, 2018
  *
@@ -34,6 +37,21 @@ public enum ChestInventorySize implements IChestInventorySize{
 		this.size = size;
 	}
 
+	public static int getSizeOf(ITreasureChestBlock chest) {
+		if (chest == TreasureBlocks.IRON_STRONGBOX.get()
+				|| chest == TreasureBlocks.GOLD_STRONGBOX.get()) {
+			return STRONGBOX.size;
+		} else if (chest == TreasureBlocks.COMPRESSOR_CHEST.get()) {
+			return COMPRESOR.size;
+		} else if (chest == TreasureBlocks.SKULL_CHEST.get()
+				|| chest == TreasureBlocks.GOLD_SKULL_CHEST.get()
+				|| chest == TreasureBlocks.CRYSTAL_SKULL_CHEST.get()) {
+			return SKULL.size;
+		} else if (chest == TreasureBlocks.WITHER_CHEST.get()) {
+			return WITHER.size;
+		}
+		return STANDARD.size;
+	}
 	/**
 	 * @return the size
 	 */
