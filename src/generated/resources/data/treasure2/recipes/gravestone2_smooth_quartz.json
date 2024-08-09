@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  t",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "t": {
+      "item": "treasure2:treasure_tool"
+    },
+    "s": {
+      "item": "minecraft:smooth_quartz"
+    }
+  },
+  "result": {
+    "item": "treasure2:gravestone2_smooth_quartz"
+  }
+}

@@ -17,11 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.block;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
-
 import mod.gottsch.forge.treasure2.core.block.entity.*;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.lock.LockLayouts;
@@ -37,6 +32,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 /**
  * 
@@ -175,7 +175,14 @@ public class TreasureBlocks {
 
 	public static final RegistryObject<Block> DEFERRED_RANDOM_VANILLA_SPAWNER = Registration.BLOCKS.register("deferred_random_vanilla_spawner", () -> new DeferredRandomVanillaSpawnerBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredWitherTreeGeneratorBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
+	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredGeneratorBlock(DeferredWitherTreeGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+
+	public static final RegistryObject<Block> DEFERRED_SURFACE_GENERATOR = Registration.BLOCKS.register("deferred_surface_generator", () -> new DeferredGeneratorBlock(DeferredSurfaceGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_SUBAQUATIC_GENERATOR = Registration.BLOCKS.register("deferred_subaquatic_generator", () -> new DeferredGeneratorBlock(DeferredSubaquaticGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_PIT_GENERATOR = Registration.BLOCKS.register("deferred_pit_generator", () -> new DeferredGeneratorBlock(DeferredPitGeneratorBlockEntity.class, Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> SKULL_CROSSBONES = Registration.BLOCKS.register("skull_and_crossbones", () -> new GravestoneBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)

@@ -19,14 +19,6 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
-
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.block.AbstractTreasureChestBlock;
@@ -63,11 +55,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Optional;
+
+import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
 
 /**
  * @author Mark Gottschling on Mar 9, 2018
@@ -178,7 +175,8 @@ public class KeyRingItem extends Item implements MenuProvider {
 									// so k3 = (10/20d) ie 1 key's worth damage was applied.
 									int damage = keyStack.getDamageValue() + (keyStack.getMaxDamage() - (keyStack.getDamageValue() % keyStack.getMaxDamage()));
 									keyStack.setDamageValue(damage);
-									if (keyStack.getDamageValue() >= cap.getDurability()) {
+//									if (keyStack.getDamageValue() >= cap.getDurability()) {
+									if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 										// break key;
 										keyStack.shrink(1);
 									}								
@@ -197,7 +195,8 @@ public class KeyRingItem extends Item implements MenuProvider {
 							}
 							if (!context.getPlayer().isCreative() && key.isDamageable(keyStack) && !isKeyBroken) {
 								keyStack.setDamageValue(keyStack.getDamageValue() + 1);
-								if (keyStack.getDamageValue() >= cap.getDurability()) {
+//								if (keyStack.getDamageValue() >= cap.getDurability()) {
+								if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 									keyStack.shrink(1);
 								}
 							}

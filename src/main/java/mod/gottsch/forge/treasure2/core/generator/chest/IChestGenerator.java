@@ -19,15 +19,7 @@
  */
 package mod.gottsch.forge.treasure2.core.generator.chest;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import com.google.common.collect.Lists;
-
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.loot.LootPoolShell;
 import mod.gottsch.forge.gottschcore.loot.LootTableShell;
@@ -86,6 +78,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 
 /**
@@ -317,13 +316,11 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * @param level
 	 * @param random
 	 * @param blockEntity
-	 * @param lootRarity
 	 */
 	default public void fillChest(final Level level, Random random, final BlockEntity blockEntity, final IRarity rarity, Player player) {
-		if (!(blockEntity instanceof AbstractTreasureChestBlockEntity)) {
+		if (!(blockEntity instanceof AbstractTreasureChestBlockEntity chestBlockEntity)) {
 			return;
 		}
-		AbstractTreasureChestBlockEntity chestBlockEntity = (AbstractTreasureChestBlockEntity)blockEntity;
 
 		ResourceLocation lootTableResourceLocation = chestBlockEntity.getLootTable();
 		Treasure.LOGGER.debug("chest has loot table property of -> {}", lootTableResourceLocation);
@@ -443,6 +440,7 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 		IItemHandler itemHandler = chestBlockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null);
 		if (itemHandler != null) {
 			ItemStackHandler inventory = (ItemStackHandler)itemHandler;
+			int inventorySize = inventory.getSlots();
 
 			// add the treasure items to the chest
 			Collections.shuffle(treasureStacks, random);
@@ -455,6 +453,7 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 			Collections.shuffle(itemStacks, random);		
 			// fill the chest with items
 			fillInventory(inventory, random, itemStacks.stream().limit(lootItemSize).collect(Collectors.toList()));
+			// TODO determine if there are any empty slots still and use all the remainder items to fill the chest completely.
 		}
 	}
 
@@ -612,7 +611,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * 
 	 * @param inventory
 	 * @param random
-	 * @param context
 	 */
 	default public void fillInventory(ItemStackHandler inventory, Random random, List<ItemStack> list) {
 		List<Integer> emptySlots = getEmptySlotsRandomized(inventory, random);
@@ -748,9 +746,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * TODO refactor out into it's own selectable generators
 	 * Wrapper method so that is can be overridden (as used in the Template Pattern)
 	 * 
-	 * @param world
-	 * @param random
-	 * @param coods
 	 */
 	@Deprecated
 	default public void addMarkers(IWorldGenContext context, ICoords coords, final boolean isSurfaceChest) {
@@ -765,8 +760,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 
 	/**
 	 * 
-	 * @param level
-	 * @param random
 	 * @param chest
 	 * @param chestCoords
 	 * @return
@@ -803,8 +796,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 
 	/**
 	 * 
-	 * @param level
-	 * @param random
 	 * @param chestCoords
 	 * @param chest
 	 * @param state

@@ -132,7 +132,7 @@ public class CommonSetup {
 		TreasureApi.registerFeatureType(FeatureType.WELL);
 		
 		/*
-		 *  register the feature generators.
+		 *  register the feature generators. the registered generators are the only allowed generators.
 		 *  a feature generator is a bridge or proxy between the feature object
 		 *  and the generators that add changes to the world.  this allows
 		 *  modders to insert addtional feature generators.
@@ -140,9 +140,9 @@ public class CommonSetup {
 		// TODO make these weighted values in the config with a default.
 //		StringUtils.defaultIfBlank(Config.getValue(), 10);
 		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN,TreasureFeatureGenerators.SIMPLE_SURFACE_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.PIT_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.SURFACE_STRUCTURE_FEATURE_GENERATOR);
-		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_PIT_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_SURFACE_STRUCTURE_FEATURE_GENERATOR);
+		TreasureApi.registerFeatureGeneator(FeatureType.TERRANEAN, TreasureFeatureGenerators.DEFERRED_WITHER_FEATURE_GENERATOR);
 		
 		/*
 		 * register the feature generator selectors.
@@ -164,18 +164,18 @@ public class CommonSetup {
 		TreasureApi.registerFeatureGeneatorSelector(FeatureType.TERRANEAN, SpecialRarity.CAULDRON, TreasureFeatureGenerators.STANDARD_CHEST_FEATURE_GENERATOR_SELECTOR);
 		TreasureApi.registerFeatureGeneatorSelector(FeatureType.TERRANEAN, SpecialRarity.WITHER, TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR_SELECTOR);
 
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.COMMON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.UNCOMMON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.SCARCE, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.RARE, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.EPIC, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.LEGENDARY, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.MYTHICAL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.GOLD_SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CRYSTAL_SKULL, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CAULDRON, TreasureFeatureGenerators.AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
-		
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.COMMON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.UNCOMMON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.SCARCE, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.RARE, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.EPIC, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.LEGENDARY, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, Rarity.MYTHICAL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.GOLD_SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CRYSTAL_SKULL, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+		TreasureApi.registerFeatureGeneatorSelector(FeatureType.AQUATIC, SpecialRarity.CAULDRON, TreasureFeatureGenerators.DEFERRED_AQUATIC_CHEST_FEATURE_GENERATOR_SELECTOR);
+
 		// register structure categories
 		TreasureApi.registerStructureCategory(StructureCategory.SUBAQUATIC);
 		TreasureApi.registerStructureCategory(StructureCategory.SUBTERRANEAN);
@@ -232,7 +232,8 @@ public class CommonSetup {
 		TreasureApi.registerRarityTags(SpecialRarity.GOLD_SKULL, TreasureTags.Blocks.GOLD_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.CRYSTAL_SKULL, TreasureTags.Blocks.CRYSTAL_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.WITHER, TreasureTags.Blocks.WITHER_CHESTS);
-		
+		TreasureApi.registerRarityTags(SpecialRarity.CAULDRON, TreasureTags.Blocks.CAULDRON_CHESTS);
+
 		/*
 		 *  regsiter and map wishable tags to their rarity.
 		 *  these are the allowable rarity grouping of wishable items.
@@ -321,7 +322,8 @@ public class CommonSetup {
 		TreasureApi.registerMimic(TreasureBlocks.CRATE_CHEST.getId(), TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.MOLDY_CRATE_CHEST.getId(), TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.CARDBOARD_BOX.getId(), TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.getId());
-		
+		TreasureApi.registerMimic(TreasureBlocks.MILK_CRATE.getId(), TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.getId());
+
 		/*
 		 *  register wishable handlers
 		 *  NOTE assigning an item to DEFAULT_WISHABLE_HANDLER is redundant an unnecassary
@@ -432,6 +434,7 @@ public class CommonSetup {
 		event.put(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), CrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimic.createAttributes().build());
+		event.put(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimic.createAttributes().build());
 	}
 
 	@SubscribeEvent
@@ -446,6 +449,7 @@ public class CommonSetup {
 		SpawnPlacements.register(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		SpawnPlacements.register(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		SpawnPlacements.register(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
-		
+		SpawnPlacements.register(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
+
 	}
 }

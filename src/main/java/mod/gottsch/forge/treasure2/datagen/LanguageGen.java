@@ -219,7 +219,12 @@ public class LanguageGen extends LanguageProvider {
         
 //        add(TreasureItems.WITHER_STICK_ITEM.get(), "Wither Branch");
 //        add(TreasureItems.WITHER_ROOT_ITEM.get(), "Wither Root");
-        
+
+        // falling blocks
+        add(TreasureBlocks.FALLING_GRASS.get(), "Grass");
+        add(TreasureBlocks.FALLING_SAND.get(), "Sand");
+        add(TreasureBlocks.FALLING_RED_SAND.get(), "Red Sand");
+
         // mobs
         add(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), "Bound Soul");
         add(TreasureEntities.WOOD_CHEST_MIMIC_ENTITY_TYPE.get(), "Wood Chest Mimic");
@@ -229,7 +234,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Crate Chest Mimic");
         add(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Moldy Crate Chest Mimic");
         add(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), "Cardboard Box Mimic");
-        
+        add(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), "Milk Crate Mimic");
+
         // eggs
         add(TreasureItems.BOUND_SOUL_EGG.get(), "Bound Soul Spawn Egg");
         add(TreasureItems.WOOD_CHEST_MIMIC_EGG.get(), "Wood Chest Mimic Spawn Egg");
@@ -239,6 +245,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.CRATE_CHEST_MIMIC_EGG.get(), "Crate Chest Mimic Spawn Egg");
         add(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.get(), "Moldy Crate Chest Mimic Spawn Egg");
         add(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.get(), "Cardboard Box Mimic Spawn Egg");
+        add(TreasureItems.MILK_CRATE_MIMIC_EGG.get(), "Milk Crate Mimic Spawn Egg");
+
         /*
          *  Util.tooltips
          */

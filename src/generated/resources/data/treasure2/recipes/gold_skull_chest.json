@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggt",
+    "gxg",
+    "ggg"
+  ],
+  "key": {
+    "t": {
+      "item": "treasure2:treasure_tool"
+    },
+    "x": {
+      "item": "minecraft:skeleton_skull"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "treasure2:gold_skull_chest"
+  }
+}

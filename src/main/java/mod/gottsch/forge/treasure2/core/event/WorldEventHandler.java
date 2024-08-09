@@ -17,9 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.event;
 
-import java.nio.file.Path;
-import java.util.Optional;
-
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.config.Config;
@@ -27,22 +24,23 @@ import mod.gottsch.forge.treasure2.core.persistence.TreasureSavedData;
 import mod.gottsch.forge.treasure2.core.registry.TreasureLootTableRegistry;
 import mod.gottsch.forge.treasure2.core.registry.TreasureTemplateRegistry;
 import mod.gottsch.forge.treasure2.core.util.ModUtil;
+import mod.gottsch.forge.treasure2.core.util.TreasureDataFixer;
 import mod.gottsch.forge.treasure2.core.world.feature.TreasureConfiguredFeatures;
 import mod.gottsch.forge.treasure2.core.world.feature.gen.TreasureOreGeneration;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+
+import java.nio.file.Path;
+import java.util.Optional;
 
 /**
  * 
@@ -54,6 +52,7 @@ public class WorldEventHandler {
 
 	private static Path worldSavePath;
 	private static boolean isLoaded = false;
+	private static boolean isClientLoaded = false;
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void onWorldLoad(WorldEvent.Load event) {
@@ -76,7 +75,10 @@ public class WorldEventHandler {
 			if (worldSavePath.isPresent()) {
 				if ((!isLoaded && Config.SERVER.integration.dimensionsWhiteList.get().contains(dimension.toString())) ||
 						!worldSavePath.get().equals(WorldEventHandler.worldSavePath)) {
-					
+
+					// fix data
+					TreasureDataFixer.fix();
+
 					// cache the folder
 					WorldEventHandler.worldSavePath = worldSavePath.get();
 					
@@ -84,16 +86,20 @@ public class WorldEventHandler {
 					TreasureLootTableRegistry.onWorldLoad(event, WorldEventHandler.worldSavePath);
 					TreasureTemplateRegistry.onWorldLoad(event, WorldEventHandler.worldSavePath);				
 					TreasureSavedData.get((Level)event.getWorld());
+
 					isLoaded = true;
 				}
 
 			} else {
 				Treasure.LOGGER.warn("unable to locate the world save folder.");
 			}
+		} else {
+			if (!isClientLoaded) {
+				TreasureDataFixer.fix();
+				isClientLoaded = true;
+			}
 		}
 	}
-
-
 
 	@SubscribeEvent
 	public static void onBiomeLoading(final BiomeLoadingEvent event) {
@@ -112,6 +118,14 @@ public class WorldEventHandler {
 		else {
 			event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, TreasureConfiguredFeatures.SUBAQUATIC_CHEST_PLACED.getHolder().get());
 		}
+	}
+
+	public static boolean isServerLoaded() {
+		return isLoaded;
+	}
+
+	public static boolean isClientLoaded() {
+		return isClientLoaded;
 	}
 
 }

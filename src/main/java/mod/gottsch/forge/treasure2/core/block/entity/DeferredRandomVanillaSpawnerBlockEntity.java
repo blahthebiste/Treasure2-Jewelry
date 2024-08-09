@@ -48,9 +48,9 @@ public class DeferredRandomVanillaSpawnerBlockEntity extends BlockEntity {
             getLevel().setBlock(getBlockPos(), Blocks.SPAWNER.defaultBlockState(), 3);
 			SpawnerBlockEntity spawnerBlockEntity = (SpawnerBlockEntity) getLevel().getBlockEntity(getBlockPos());
 			if (spawnerBlockEntity != null) {
-                EntityType<?> entityType = DungeonHooks.getRandomDungeonMob(getLevel().getRandom());
-                spawnerBlockEntity.getSpawner().setEntityId(entityType);
-            }
+                EntityType<?> r = DungeonHooks.getRandomDungeonMob(getLevel().getRandom());
+                spawnerBlockEntity.getSpawner().setEntityId(r);
+			}
             else {
                 Treasure.LOGGER.warn("unable to get spawner block entity at -> {}", getBlockPos());
             }
