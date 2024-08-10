@@ -20,7 +20,7 @@
 package mod.gottsch.forge.treasure2.client.renderer.blockentity;
 
 import mod.gottsch.forge.treasure2.Treasure;
-import mod.gottsch.forge.treasure2.client.model.blockentity.StandardChestModel;
+import mod.gottsch.forge.treasure2.client.model.blockentity.BarrelChestModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;

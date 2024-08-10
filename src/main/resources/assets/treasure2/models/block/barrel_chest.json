@@ -1,11 +1,13 @@
 {
 	"parent": "block/block",
+	"texture_size": [64, 64],
 	"textures": {
-		"0": "barrel_bottom",
-		"1": "barrel_side",
-		"2": "barrel_top",
-		"particle": "barrel_bottom"
+		"0": "minecraft:block/barrel_bottom",
+		"1": "minecraft:block/barrel_side",
+		"2": "minecraft:block/barrel_top",
+		"particle": "minecraft:block/barrel_bottom"
 	},
+	"render_type": "cutout_mipped",
 	"elements": [
 		{
 			"from": [0, 0, 0],

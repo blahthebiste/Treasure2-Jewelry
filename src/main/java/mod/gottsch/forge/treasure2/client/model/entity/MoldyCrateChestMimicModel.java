@@ -36,7 +36,7 @@ import net.minecraft.world.entity.Entity;
  *
  * @param <T>
  */
-public class MoldyCrateChestMimicModel<T extends Entity> extends EntityModel<T> {
+public class MoldyCrateChestMimicModel<T extends Entity> extends MimicModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Treasure.MODID, "moldy_crate_chest_mimic"), "main");
 	
@@ -131,50 +131,73 @@ public class MoldyCrateChestMimicModel<T extends Entity> extends EntityModel<T> 
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
 
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		MoldyCrateChestMimic mimic = (MoldyCrateChestMimic)entity;
-		if (mimic.isActive()) {
-			body.xRot = 0.2618F; // 15 degrees
-			
-			// chomp lid
-			if (mimic.hasTarget()) {
-				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
-			} else {
-				bobMouth(lid, 22.5f, 3f, ageInTicks);
-			}
-			eye1.xRot = -1.003564F;
-			eyeSocket.xRot = -0.174533F;
-			tongue.xRot = -0.174533F; // 10
-			bigTeeth.xRot = 0.174533F; // -10
-			
-			bob(body, bodyY, ageInTicks);
-		} else {
-			if (mimic.getAmount() < 1F) {
-				body.xRot = mimic.getAmount() * 0.2618F;
-				lid.xRot = mimic.getAmount() * -0.7854F;
-				eye1.xRot = mimic.getAmount() * -1.003564F;
-				eyeSocket.xRot = mimic.getAmount() * -0.174533F;
-				tongue.xRot = mimic.getAmount() * -0.174533F;
-				bigTeeth.xRot = mimic.getAmount() * 0.174533F;
-			}
-		}
-	}
+//	@Override
+//	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+//		MoldyCrateChestMimic mimic = (MoldyCrateChestMimic)entity;
+//		if (mimic.isActive()) {
+//			body.xRot = 0.2618F; // 15 degrees
+//
+//			// chomp lid
+//			if (mimic.hasTarget()) {
+//				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
+//			} else {
+//				bobMouth(lid, 22.5f, 3f, ageInTicks);
+//			}
+//			eye1.xRot = -1.003564F;
+//			eyeSocket.xRot = -0.174533F;
+//			tongue.xRot = -0.174533F; // 10
+//			bigTeeth.xRot = 0.174533F; // -10
+//
+//			bob(body, bodyY, ageInTicks);
+//		} else {
+//			if (mimic.getAmount() < 1F) {
+//				body.xRot = mimic.getAmount() * 0.2618F;
+//				lid.xRot = mimic.getAmount() * -0.7854F;
+//				eye1.xRot = mimic.getAmount() * -1.003564F;
+//				eyeSocket.xRot = mimic.getAmount() * -0.174533F;
+//				tongue.xRot = mimic.getAmount() * -0.174533F;
+//				bigTeeth.xRot = mimic.getAmount() * 0.174533F;
+//			}
+//		}
+//	}
 
-	public static void bob(ModelPart part, float originY, float age) {
-		part.y = originY + (Mth.cos(age * 0.25F) * 0.5F + 0.05F);
-	}
-	
-	public static void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * maxRot));
-	}
-	
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
-	
-	protected static float degToRad(float degrees) {
-		return degrees * (float)Math.PI / 180 ;
+
+	@Override
+	public void activeAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.activeAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+		eye1.xRot = -1.003564F;
+		eyeSocket.xRot = -0.174533F;
+		tongue.xRot = -0.174533F; // 10
+		bigTeeth.xRot = 0.174533F; // -10
+	}
+
+	@Override
+	public void openAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float timeSlice) {
+		body.xRot = timeSlice * 0.2618F;
+		lid.xRot = timeSlice * getMaxOpenAngle();
+		eye1.xRot = timeSlice * -1.003564F;
+		eyeSocket.xRot = timeSlice * -0.174533F;
+		tongue.xRot = timeSlice * -0.174533F;
+		bigTeeth.xRot = timeSlice * 0.174533F;
+	}
+
+	@Override
+	public ModelPart getBody() {
+		return body;
+	}
+
+	@Override
+	public float getBodyY() {
+		return bodyY;
+	}
+
+	@Override
+	public ModelPart getLid() {
+		return lid;
 	}
 }

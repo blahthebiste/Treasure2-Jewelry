@@ -170,7 +170,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.VIKING_CHEST.get(), "Viking Chest");
         add(TreasureBlocks.CARDBOARD_BOX.get(), "Cardboard Box");
         add(TreasureBlocks.MILK_CRATE.get(), "Milk Crate");
-        add(TreasureBlocks.MILK_CRATE.get(), "Barrel Chest");
+        add(TreasureBlocks.BARREL_CHEST.get(), "Barrel Chest");
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_BRANCH.get(), "Wither Branch");

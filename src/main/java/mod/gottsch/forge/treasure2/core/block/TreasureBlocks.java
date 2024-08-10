@@ -112,7 +112,7 @@ public class TreasureBlocks {
 			LockLayouts.MILK_CRATE, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildMilkCrate()));
 
 	public static final RegistryObject<Block> BARREL_CHEST = Registration.BLOCKS.register("barrel_chest", () -> new StandardChestBlock(BarrelChestBlockEntity.class,
-			LockLayouts.SIMPLE_FULL, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildFullBlock()));
+			LockLayouts.SINGLE_FULL, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildFullBlock()));
 
 	public static final RegistryObject<Block> WITHER_CHEST = Registration.BLOCKS.register("wither_chest", () -> new WitherChestBlock(WitherChestBlockEntity.class,
 			LockLayouts.ARMOIRE, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)));

@@ -30,9 +30,7 @@ import net.minecraft.world.level.material.MapColor;
 public class StandardChestBlock extends AbstractTreasureChestBlock {
 
 	/**
-	 * 
-	 * @param modID
-	 * @param name
+	 *
 	 * @param blockEntityClass
 	 * @param type
 	 */
@@ -41,12 +39,10 @@ public class StandardChestBlock extends AbstractTreasureChestBlock {
 	}
 
 	/**
-	 * 
-	 * @param modID
-	 * @param name
-	 * @param material
+	 *
 	 * @param blockEntityClass
 	 * @param type
+	 * @param properties
 	 */
 	public StandardChestBlock(Class<? extends AbstractTreasureChestBlockEntity> blockEntityClass, LockLayout type, Properties properties) {
 		super(blockEntityClass, type, properties);

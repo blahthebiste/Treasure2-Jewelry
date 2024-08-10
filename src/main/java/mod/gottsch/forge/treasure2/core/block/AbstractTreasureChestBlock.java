@@ -352,12 +352,13 @@ public class AbstractTreasureChestBlock extends BaseEntityBlock implements ITrea
 	}
 
 	/**
-	 * 
+	 *
 	 * @param level
 	 * @param randomSource
-	 * @param owner
+	 * @param entityType
 	 * @param pos
 	 * @param target
+	 * @param yRot
 	 * @return
 	 */
 	protected Mob spawn(ServerLevel level, RandomSource randomSource, EntityType<?> entityType, BlockPos pos, LivingEntity target, float yRot) {

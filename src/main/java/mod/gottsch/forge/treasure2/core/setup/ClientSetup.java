@@ -18,20 +18,7 @@
 package mod.gottsch.forge.treasure2.core.setup;
 
 import mod.gottsch.forge.treasure2.Treasure;
-import mod.gottsch.forge.treasure2.client.model.blockentity.BandedChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CardboardBoxModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CauldronChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CompressorChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CrateChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.DreadPirateChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.MilkCrateModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SafeModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SkullChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SpiderChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.StandardChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.StrongboxModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.VikingChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.WitherChestModel;
+import mod.gottsch.forge.treasure2.client.model.blockentity.*;
 import mod.gottsch.forge.treasure2.client.model.entity.*;
 import mod.gottsch.forge.treasure2.client.renderer.blockentity.*;
 import mod.gottsch.forge.treasure2.client.renderer.entity.*;
@@ -76,11 +63,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = Treasure.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
-	/**
-	 * Register the {@link IBlockColor} handlers.
-	 *
-	 * @param event The event
-	 */
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -178,7 +160,8 @@ public class ClientSetup {
 		event.registerLayerDefinition(CardboardBoxModel.LAYER_LOCATION, CardboardBoxModel::createBodyLayer);
 		event.registerLayerDefinition(MilkCrateModel.LAYER_LOCATION, MilkCrateModel::createBodyLayer);
 		event.registerLayerDefinition(WitherChestModel.LAYER_LOCATION, WitherChestModel::createBodyLayer);
-		
+		event.registerLayerDefinition(BarrelChestModel.LAYER_LOCATION, BarrelChestModel::createBodyLayer);
+
 		event.registerLayerDefinition(BoundSoulModel.LAYER_LOCATION, BoundSoulModel::createBodyLayer);
 		event.registerLayerDefinition(WoodChestMimicModel.LAYER_LOCATION, WoodChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(PirateChestMimicModel.LAYER_LOCATION, PirateChestMimicModel::createBodyLayer);

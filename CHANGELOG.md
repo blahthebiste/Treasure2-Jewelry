@@ -8,11 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [x.x.x] - 2024-
 
 ### Changed
-- Fixed milk crate entity name
+- Fixed milk crate entity name.
+- Smoothed Mimic activating animation, removing the need to sync angle amount.
+- Refactored Mimic models.
 
 ### Added
 - Barrel Chest
 - Barrel Mimic
+- MimicModel abstract class
 
 ## [3.9.0] - 2024-07-28
 
