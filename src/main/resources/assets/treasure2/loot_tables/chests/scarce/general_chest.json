@@ -38,7 +38,7 @@
 			"entries": [
 	                {
                     "type": "loot_table",
-                    "name": "treasure2:pools/armor/scarce",
+                    "name": "treasure2:pools/combat/scarce",
                     "weight": 1
                 }
 			]

@@ -466,6 +466,37 @@ item.treasure2:painting_blocks_wood.name=Wood by o2xygeno
 
 item.treasure2:eye_patch.name=Eye Patch
 item.treasure2:skull_sword.name=Skull Sword
+item.treasure2:copper_short_sword.name=Copper Short Sword
+item.treasure2:chipped_copper_short_sword.name=Chipped Copper Short Sword
+item.treasure2:iron_short_sword.name=Iron Short Sword
+item.treasure2:chipped_iron_short_sword.name=Chipped Iron Short Sword
+item.treasure2:copper_rapier.name=Copper Rapier
+item.treasure2:steel_sword.name=Steel Sword
+item.treasure2:sword_of_power.name=Sword of Power
+item.treasure2:black_sword.name=Black Sword
+item.treasure2:oathbringer.name=Oathbringer
+item.treasure2:sword_of_omens.name=Sword of Omens
+item.treasure2:callandor.name=Callandor
+item.treasure2:iron_broadsword.name=Iron Broadsword
+item.treasure2:steel_broadsword.name=Steel Broadsword
+item.treasure2:orcus.name=Orcus
+item.treasure2:snake_eyes_katana.name=Snake Eyes' Katana
+item.treasure2:storm_shadows_katana.name=Storm Shadow's Katana
+item.treasure2:steel_machete.name=Steel Machete
+item.treasure2:shadow_machete.name=Shadow Machete
+item.treasure2:iron_falchion.name=Iron Falchion
+item.treasure2:steel_falchion.name=Steel Falchion
+item.treasure2:shadow_falchion.name=Shadow Falchion
+item.treasure2:iron_mace.name=Iron Mace
+item.treasure2:steel_mace.name=Steel Mace
+item.treasure2:mjolnir.name=Mjolnir
+item.treasure2:copper_broad_axe.name=Copper Broad Axe
+item.treasure2:iron_broad_axe.name=Iron Broad Axe
+item.treasure2:steel_broad_axe.name=Steel Broad Axe
+item.treasure2:iron_dwarven_axe.name=Iron Dwarven Axe
+item.treasure2:axe_of_durin.name=Axe of Durin
+item.treasure2:headsmans_axe.name=Headsman's Axe
+
 item.treasure2:spanish_moss.name=Spanish Moss
 item.treasure2:amethyst.name=Amethyst
 item.treasure2:onyx.name=Onyx
@@ -572,7 +603,7 @@ tooltip.charm.type.dirt_walk=Dirt
 tooltip.charm.type.ruin=Ruin
 
 tooltip.charm.level=%s %s
-	
+
 tooltip.charm.rate.aegis=absorbs all damage
 tooltip.charm.rate.cheat_death=prevents death from fatal damage
 tooltip.charm.rate.drain=drains 0.5 hearts/5 sec from all in %s block radius
@@ -596,7 +627,7 @@ tooltip.adornment.type.necklace=Necklace
 tooltip.adornment.type.bracelet=Bracelet
 tooltip.adornment.upgradable=(Upgradable)
 
-// TODO rename to rune.treasure2:...
+# TODO rename to rune.treasure2:...
 # runestone (typically but not necessary the same as the runestone item)
 runestone.treasure2:anvil_rune.name=Rune of the Anvil
 runestone.treasure2:mana_rune.name=Rune of Mana
@@ -679,6 +710,22 @@ tooltip.charming_table.usage1=Place adornment and charm/runestone in first row t
 tooltip.charming_table.usage2=Place treasure tool in any row with charm/rune to remove charm/runes from adornment.
 tooltip.charming_table.usage3=Place valid gem/item in any charm row to recharge gem if allowable.
 tooltip.charming_table.note=You may lose charms if certain runes are removed (ex. Rune of Charm Capacity).
+
+tooltip.treasure2.weapons.axe_of_durin.lore='... And my axe!'
+tooltip.treasure2.weapons.black_sword.lore=Sword of the Avatar. Host of the daemon Arcadion.
+tooltip.treasure2.weapons.callandor.lore=Who wields me wields destiny.~Take me, and begin the final journey.~    -from The Dragon Reborn
+tooltip.treasure2.weapons.headsmans_axe.lore=Let the good times roll.
+tooltip.treasure2.weapons.mjolnir.lore='Whosoever holds this hammer,~if they be worthy, shall possess the power of Thor.'
+tooltip.treasure2.weapons.oathbringer.lore=Life before death,~strength before weakness,~journey before destination.
+tooltip.treasure2.weapons.orcus.lore='Fair lady, throw those costly robes aside,~No longer may you glory in your pride.~Take leave of all sour vain delight~I'm come to summon you away this night'.~    -The Grim Reaper
+
+tooltip.treasure2.weapons.snake_eyes_katana.lore=Move with the wind, and you will never be heard.~    -Snake Eyes
+tooltip.treasure2.weapons.storm_shadows_katana.lore=Most people will tell you that ninjas dont exist.~Thats what the ninjas want you to believe ...~    -Storm Shadow
+tooltip.treasure2.weapons.sword_of_omens.lore='Thunder... Thunder... Thunder... ThunderCats HO!'
+tooltip.treasure2.weapons.sword_of_power.lore='By the power of Grayskull.... I have the power!'
+
+tooltip.treasure2.weapons.power_attack_chance=Power Attack Chance: %s%%
+tooltip.treasure2.weapons.power_attack_damage=Power Attack Damage: +%s
 
 #gui
 display.wood_chest.name=Wood Chest

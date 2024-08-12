@@ -1,0 +1,93 @@
+{
+  "version" : "2.0.0",
+  "type" : "minecraft:chest",
+  "pools" : [ {
+    "name" : "epic_armor",
+    "rolls" : 1,
+    "entries" : [ {
+      "entryName" : "diamond_chestplate",
+      "type" : "item",
+      "name" : "minecraft:diamond_chestplate",
+      "weight" : 10,
+      "functions" : [ {
+        "function" : "minecraft:enchant_with_levels",
+        "levels" : 30,
+        "treasure" : true
+      }, {
+        "function" : "minecraft:enchant_randomly"
+      } ]
+    }, {
+      "entryName" : "diamond_leggings",
+      "type" : "item",
+      "name" : "minecraft:diamond_leggings",
+      "weight" : 10,
+      "functions" : [ {
+        "function" : "minecraft:enchant_with_levels",
+        "levels" : 30,
+        "treasure" : true
+      }, {
+        "function" : "minecraft:enchant_randomly"
+      } ]
+    }, {
+      "entryName" : "diamond_helmet",
+      "type" : "item",
+      "name" : "minecraft:diamond_helmet",
+      "weight" : 10,
+      "functions" : [ {
+        "function" : "minecraft:enchant_with_levels",
+        "levels" : 30,
+        "treasure" : true
+      }, {
+        "function" : "minecraft:enchant_randomly"
+      } ]
+    }, {
+      "entryName" : "diamond_boots",
+      "type" : "item",
+      "name" : "minecraft:diamond_boots",
+      "weight" : 10,
+      "functions" : [ {
+        "function" : "minecraft:enchant_with_levels",
+        "levels" : 30,
+        "treasure" : true
+      }, {
+        "function" : "minecraft:enchant_randomly"
+      } ]
+    } ]
+  }, {
+    "name" : "legendary_weapons",
+    "rolls" : 1,
+    "entries" : [ {
+      "entryName" : "diamond_sword",
+      "type" : "item",
+      "name" : "minecraft:diamond_sword",
+      "weight" : 5,
+      "functions" : [ {
+        "function" : "minecraft:enchant_with_levels",
+        "levels" : 30,
+        "treasure" : true
+      }, {
+        "function" : "minecraft:enchant_randomly"
+      } ]
+    }, {
+      "entryName" : "headsmans_axe",
+      "type" : "item",
+      "name" : "treasure2:headsmans_axe",
+      "weight" : 5
+    }, {
+      "entryName" : "sword_of_omens",
+      "type" : "item",
+      "name" : "treasure2:sword_of_omens",
+      "weight" : 5
+    }, {
+      "entryName" : "orcus",
+      "type" : "item",
+      "name" : "treasure2:orcus",
+      "weight" : 10
+    }, {
+      "entryName" : "axe_of_durin",
+      "type" : "item",
+      "name" : "treasure2:axe_of_durin",
+      "weight" : 10
+    } ]
+  } ]
+}

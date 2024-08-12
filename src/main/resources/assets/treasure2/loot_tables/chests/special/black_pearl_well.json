@@ -1,5 +1,5 @@
 {
-	"version": "1.0",
+	"version": "2.0",
 	"category": "general",
 	"rarity": "epic",
 	"pools": [
@@ -37,7 +37,7 @@
 			"entries": [
 	                {
                     "type": "loot_table",
-                    "name": "treasure2:pools/armor/epic",
+                    "name": "treasure2:pools/combat/epic",
                     "weight": 1
                 }
 			]

@@ -1,6 +1,6 @@
 {
-	"version": "3.0",
-	"since":"mc1.12.2-v2.0.0",	
+	"version": "4.0",
+	"since":"mc1.12.2-v2.3.0",
 	"category": "general",
 	"rarity": "rare",
 	"pools": [
@@ -38,7 +38,7 @@
 			"entries": [
 	                {
                     "type": "loot_table",
-                    "name": "treasure2:pools/armor/rare",
+                    "name": "treasure2:pools/combat/rare",
                     "weight": 1
                 }
 			]

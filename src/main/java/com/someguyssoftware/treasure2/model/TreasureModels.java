@@ -207,6 +207,38 @@ public class TreasureModels {
 
 		// WEAPONS
 		registerItemModel(TreasureItems.SKULL_SWORD);
+		registerItemModel(TreasureItems.COPPER_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_COPPER_SHORT_SWORD);
+		registerItemModel(TreasureItems.IRON_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_IRON_SHORT_SWORD);
+		registerItemModel(TreasureItems.STEEL_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_STEEL_SHORT_SWORD);
+		registerItemModel(TreasureItems.COPPER_RAPIER);
+		registerItemModel(TreasureItems.STEEL_SWORD);
+		registerItemModel(TreasureItems.SWORD_OF_POWER);
+		registerItemModel(TreasureItems.BLACK_SWORD);
+		registerItemModel(TreasureItems.OATHBRINGER);
+		registerItemModel(TreasureItems.SWORD_OF_OMENS);
+		registerItemModel(TreasureItems.CALLANDOR);
+		registerItemModel(TreasureItems.IRON_BROADSWORD);
+		registerItemModel(TreasureItems.STEEL_BROADSWORD);
+		registerItemModel(TreasureItems.ORCUS);
+		registerItemModel(TreasureItems.SNAKES_EYES_KATANA);
+		registerItemModel(TreasureItems.STORM_SHADOWS_KATANA);
+		registerItemModel(TreasureItems.STEEL_MACHETE);
+		registerItemModel(TreasureItems.SHADOW_MACHETE);
+		registerItemModel(TreasureItems.IRON_FALCHION);
+		registerItemModel(TreasureItems.STEEL_FALCHION);
+		registerItemModel(TreasureItems.SHADOW_FALCHION);
+		registerItemModel(TreasureItems.IRON_MACE);
+		registerItemModel(TreasureItems.STEEL_MACE);
+		registerItemModel(TreasureItems.MJOLNIR);
+		registerItemModel(TreasureItems.COPPER_BROAD_AXE);
+		registerItemModel(TreasureItems.IRON_BROAD_AXE);
+		registerItemModel(TreasureItems.STEEL_BROAD_AXE);
+		registerItemModel(TreasureItems.IRON_DWARVEN_AXE);
+		registerItemModel(TreasureItems.AXE_OF_DURIN);
+		registerItemModel(TreasureItems.HEADSMANS_AXE);
 		registerItemModel(TreasureItems.EYE_PATCH);
 
 		// PAINTINGS

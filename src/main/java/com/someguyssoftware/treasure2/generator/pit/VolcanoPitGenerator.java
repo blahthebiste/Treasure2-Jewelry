@@ -12,7 +12,6 @@ import com.someguyssoftware.treasure2.block.TreasureBlocks;
 import com.someguyssoftware.treasure2.generator.ChestGeneratorData;
 import com.someguyssoftware.treasure2.generator.GenUtil;
 import com.someguyssoftware.treasure2.generator.GeneratorResult;
-import com.sun.media.jfxmedia.logging.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
