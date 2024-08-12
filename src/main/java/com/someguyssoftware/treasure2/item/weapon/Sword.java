@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class Sword extends ItemSword implements IWeapon {
 	private String repairUnlocalizedName;
-	private float criticalChance;
+	private double criticalChance;
 	private float criticalDamage;
 	private float speedModifier;
 	
@@ -34,10 +34,10 @@ public class Sword extends ItemSword implements IWeapon {
 	private static final String ATTACK_DAMAGE_SRG_NAME = "field_150934_a";
 
 	public Sword(String id, String name, Item.ToolMaterial material, Item repairItem, float damageModifier, float speedModifier, CreativeTabs tab) {
-		this(id, name, material, repairItem, damageModifier, speedModifier, 0f, 0f, tab);
+		this(id, name, material, repairItem, damageModifier, speedModifier, 0, 0f, tab);
 	}
 
-	public Sword(String id, String name, Item.ToolMaterial material, Item repairItem, float damageModifier, float speedModifier, float criticalChance, float criticalDamage, CreativeTabs tab) {
+	public Sword(String id, String name, Item.ToolMaterial material, Item repairItem, float damageModifier, float speedModifier, double criticalChance, float criticalDamage, CreativeTabs tab) {
 		super(material);
 		this.setItemName(id, name);
 		this.criticalChance = criticalChance;
@@ -102,11 +102,11 @@ public class Sword extends ItemSword implements IWeapon {
 		this.repairUnlocalizedName = repairUnlocalizedName;
 	}
 
-	public float getCriticalChance() {
+	public double getCriticalChance() {
 		return criticalChance;
 	}
 
-	public void setCriticalChance(float criticalChance) {
+	public void setCriticalChance(double criticalChance) {
 		this.criticalChance = criticalChance;
 	}
 

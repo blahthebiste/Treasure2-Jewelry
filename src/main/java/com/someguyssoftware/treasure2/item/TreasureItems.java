@@ -75,6 +75,7 @@ import com.someguyssoftware.treasure2.enums.Category;
 import com.someguyssoftware.treasure2.enums.Rarity;
 import com.someguyssoftware.treasure2.integration.baubles.BaublesIntegration;
 import com.someguyssoftware.treasure2.item.weapon.Sword;
+import com.someguyssoftware.treasure2.item.weapon.UniqueSword;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableMaster2.SpecialLootTables;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableRegistry;
 import com.someguyssoftware.treasure2.material.CharmableMaterial;
@@ -219,7 +220,7 @@ public class TreasureItems {
 	public static Item WITHER_ROOT_ITEM;
 
 	/*
-	 * swords
+	 * weapons
 	 */
 	// short swords
 	public static Item COPPER_SHORT_SWORD;
@@ -235,6 +236,36 @@ public class TreasureItems {
 	public static Item SKULL_SWORD;
 	// large sword
 	public static Item SWORD_OF_POWER;
+	public static Item BLACK_SWORD;
+	public static Item OATHBRINGER;
+	public static Item SWORD_OF_OMENS;
+	public static Item CALLANDOR;
+	// broad swords
+	public static Item IRON_BROADSWORD;
+	public static Item STEEL_BROADSWORD;
+	// scythes
+	public static Item ORCUS;
+	// katanas
+	public static Item SNAKES_EYES_KATANA;
+	public static Item STORM_SHADOWS_KATANA;
+	// machetes
+	public static Item STEEL_MACHETE;
+	public static Item SHADOW_MACHETE;
+	// flachions
+	public static Item IRON_FALCHION;
+	public static Item STEEL_FALCHION;
+	public static Item SHADOW_FALCHION;
+	// hammer
+	public static Item IRON_MACE;
+	public static Item STEEL_MACE;
+	public static Item MJOLNIR;
+	// axes
+	public static Item COPPER_BROAD_AXE;
+	public static Item IRON_BROAD_AXE;
+	public static Item STEEL_BROAD_AXE;
+	public static Item IRON_DWARVEN_AXE;
+	public static Item AXE_OF_DURIN;
+	public static Item HEADSMANS_AXE;
 
 	// armor
 	public static Item EYE_PATCH;
@@ -268,9 +299,14 @@ public class TreasureItems {
 	public static final ToolMaterial SKULL_TOOL_MATERIAL = EnumHelper.addToolMaterial("SKULL", 2, 1800, 9.0F, 4.0F, 25);
 	public static final ToolMaterial COPPER_TOOL_MATERIAL = EnumHelper.addToolMaterial("COPPER", 1, 200, 5F, 1F, 10);
 	public static final ToolMaterial STEEL_TOOL_MATERIAL = EnumHelper.addToolMaterial("STEEL", 2, 600, 6.5F, 2.5F, 15);
+	public static final ToolMaterial SHADOW_TOOL_MATERIAL = EnumHelper.addToolMaterial("SHADOW", 3, 1600, 9F, 4F, 15);
 
 	// special materials
+	public static final ToolMaterial RARE_TOOL_MATERIAL = EnumHelper.addToolMaterial("RARE", 4, 1700, 9.5F, 3F, 18);
+	public static final ToolMaterial EPIC_TOOL_MATERIAL = EnumHelper.addToolMaterial("EPIC", 4, 1800, 9.5F, 4.5F, 18);
+	public static final ToolMaterial LEGENDARY_TOOL_MATERIAL = EnumHelper.addToolMaterial("LEGENDARY", 5, 2200, 10F, 5F, 20);
 	public static final ToolMaterial MYTHICAL_TOOL_MATERIAL = EnumHelper.addToolMaterial("MYTHICAL", 6, 2400, 11F, 6F, 22);
+
 	// key map
 	public static Multimap<Rarity, KeyItem> keys;
 
@@ -1285,27 +1321,109 @@ public class TreasureItems {
 			CHIPPED_STEEL_SHORT_SWORD = new Sword(Treasure.MODID, "chipped_steel_short_sword", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 2.4F, -2F, Treasure.TREASURE_TAB);
 
 			// rapiers
+			COPPER_RAPIER = new Sword(Treasure.MODID, "copper_rapier", COPPER_TOOL_MATERIAL, Items.IRON_INGOT, 2.6F, -2F, Treasure.TREASURE_TAB);
 
 			// longswords
+			STEEL_SWORD = new Sword(Treasure.MODID, "steel_sword", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 3F, -2.4F, Treasure.TREASURE_TAB);
 
 			// large swords
-			SWORD_OF_POWER = new Sword(Treasure.MODID, "sword_of_power", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F, Treasure.TREASURE_TAB) {
+			SWORD_OF_POWER = new UniqueSword(Treasure.MODID, "sword_of_power", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F, Treasure.TREASURE_TAB) {
 				@Override
 				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
 					tooltip.add(LangUtil.NEWLINE);
 					tooltip.add(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.ITALIC + LangUtil.INDENT4 +
 							I18n.translateToLocal(LangUtil.tooltip("weapons.sword_of_power.lore")));
-					tooltip.add(LangUtil.NEWLINE));
-				}
-				@Override
-				public boolean isUnique() {
-					return true;
-				}
-				@Override
-				public boolean getIsRepairable(ItemStack itemStack, ItemStack repairStack) {
-					return false;
+					tooltip.add(LangUtil.NEWLINE);
 				}
 			};
+
+			BLACK_SWORD = new UniqueSword(Treasure.MODID, "black_sword", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					tooltip.add(TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 +
+							I18n.translateToLocal(LangUtil.tooltip("weapons.black_sword.lore")));
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			OATHBRINGER = new UniqueSword(Treasure.MODID, "oathbringer", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2F,50, 7F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.black_sword.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			SWORD_OF_OMENS = new UniqueSword(Treasure.MODID, "sword_of_omens", EPIC_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F, 35, 5F, Treasure.TREASURE_TAB) {
+//				@Override
+//				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+//					tooltip.add(LangUtil.NEWLINE);
+//					tooltip.add(TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 +
+//							I18n.translateToLocal(LangUtil.tooltip("weapons.sword_of_omens.lore")));
+//					tooltip.add(LangUtil.NEWLINE);
+//				}
+			};
+
+			CALLANDOR = new UniqueSword(Treasure.MODID, "callandor", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2F,75, 9F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.callandor.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			// broadswords
+			IRON_BROADSWORD = new Sword(Treasure.MODID, "iron_broadsword", ToolMaterial.IRON, Items.IRON_INGOT, 3.5F, -2.8F, Treasure.TREASURE_TAB);
+			STEEL_BROADSWORD = new Sword(Treasure.MODID, "steel_broadsword", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 3.5F, -2.8F, Treasure.TREASURE_TAB);
+
+			// scythes
+			ORCUS = new UniqueSword(Treasure.MODID, "orcus", LEGENDARY_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F,40, 5F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.orcus.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			// katanas
+			SNAKES_EYES_KATANA = new UniqueSword(Treasure.MODID, "snake_eyes_katana", RARE_TOOL_MATERIAL, Items.DIAMOND, 3F, -1.5F,25, 5F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.snake_eyes_katana.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			STORM_SHADOWS_KATANA = new UniqueSword(Treasure.MODID, "storm_shadows_katana", RARE_TOOL_MATERIAL, Items.DIAMOND, 3F, -1.5F,25, 5F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.storm_shadows_katana.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			// machetes
 
 			// NOTE if going to add lots of different armor, tools and swords then use a List<Pair<>> or "props" object. See MetalsItems.java
 			ModArmorBuilder armorBuilder = new ModArmorBuilder();
@@ -1429,6 +1547,14 @@ public class TreasureItems {
 					//					MASTERS_POUCH,
 					SKULL_SWORD,
 					COPPER_SHORT_SWORD,
+					CHIPPED_COPPER_SHORT_SWORD,
+					IRON_SHORT_SWORD,
+					CHIPPED_IRON_SHORT_SWORD,
+					STEEL_SHORT_SWORD,
+					CHIPPED_STEEL_SHORT_SWORD,
+					COPPER_RAPIER,
+					STEEL_SWORD,
+					SWORD_OF_POWER,
 					EYE_PATCH,
 					WITHER_STICK_ITEM,
 					WITHER_ROOT_ITEM,

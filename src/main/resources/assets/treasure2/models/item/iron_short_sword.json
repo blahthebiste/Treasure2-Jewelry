@@ -1,0 +1,6 @@
+{
+  "parent": "treasure2:item/short_sword",
+  "textures": {
+    "layer0": "treasure2:items/weapon/iron_short_sword"
+  }
+}

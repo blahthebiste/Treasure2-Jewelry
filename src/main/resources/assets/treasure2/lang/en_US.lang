@@ -466,6 +466,12 @@ item.treasure2:painting_blocks_wood.name=Wood by o2xygeno
 
 item.treasure2:eye_patch.name=Eye Patch
 item.treasure2:skull_sword.name=Skull Sword
+item.treasure2:copper_short_sword.name=Copper Short Sword
+item.treasure2:chipped_copper_short_sword.name=Chipped Copper Short Sword
+item.treasure2:copper_rapier.name=Copper Rapier
+item.treasure2:steel_sword.name=Steel Sword
+item.treasure2:sword_of_power.name=Sword of Power
+
 item.treasure2:spanish_moss.name=Spanish Moss
 item.treasure2:amethyst.name=Amethyst
 item.treasure2:onyx.name=Onyx
@@ -572,7 +578,7 @@ tooltip.charm.type.dirt_walk=Dirt
 tooltip.charm.type.ruin=Ruin
 
 tooltip.charm.level=%s %s
-	
+
 tooltip.charm.rate.aegis=absorbs all damage
 tooltip.charm.rate.cheat_death=prevents death from fatal damage
 tooltip.charm.rate.drain=drains 0.5 hearts/5 sec from all in %s block radius
@@ -596,7 +602,7 @@ tooltip.adornment.type.necklace=Necklace
 tooltip.adornment.type.bracelet=Bracelet
 tooltip.adornment.upgradable=(Upgradable)
 
-// TODO rename to rune.treasure2:...
+# TODO rename to rune.treasure2:...
 # runestone (typically but not necessary the same as the runestone item)
 runestone.treasure2:anvil_rune.name=Rune of the Anvil
 runestone.treasure2:mana_rune.name=Rune of Mana
@@ -679,6 +685,8 @@ tooltip.charming_table.usage1=Place adornment and charm/runestone in first row t
 tooltip.charming_table.usage2=Place treasure tool in any row with charm/rune to remove charm/runes from adornment.
 tooltip.charming_table.usage3=Place valid gem/item in any charm row to recharge gem if allowable.
 tooltip.charming_table.note=You may lose charms if certain runes are removed (ex. Rune of Charm Capacity).
+
+tooltip.treasure2.weapons.sword_of_power.lore='By the power of Grayskull.... I have the power!'
 
 #gui
 display.wood_chest.name=Wood Chest

@@ -72,9 +72,9 @@ public interface IWeapon {
 		// TODO add tooltip info for critical percentage and damage
 	}
 
-	float getCriticalChance();
+	double getCriticalChance();
 
-	void setCriticalChance(float criticalChance);
+	void setCriticalChance(double criticalChance);
 
 	float getCriticalDamage();
 

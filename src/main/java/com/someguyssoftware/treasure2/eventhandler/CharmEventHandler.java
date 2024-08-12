@@ -26,6 +26,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.someguyssoftware.gottschcore.positional.Coords;
+import com.someguyssoftware.gottschcore.random.RandomHelper;
 import com.someguyssoftware.gottschcore.world.WorldInfo;
 import com.someguyssoftware.treasure2.Treasure;
 import com.someguyssoftware.treasure2.capability.ICharmableCapability;
@@ -35,6 +36,7 @@ import com.someguyssoftware.treasure2.capability.TreasureCapabilities;
 import com.someguyssoftware.treasure2.charm.CharmContext;
 import com.someguyssoftware.treasure2.charm.ICharm;
 import com.someguyssoftware.treasure2.charm.ICharmEntity;
+import com.someguyssoftware.treasure2.item.weapon.IWeapon;
 import com.someguyssoftware.treasure2.network.CharmMessageToClient;
 
 import net.minecraft.block.Block;
@@ -118,6 +120,18 @@ public class CharmEventHandler {
 		EntityPlayerMP player = null;
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			player = (EntityPlayerMP) event.getSource().getTrueSource();
+
+			// weapon buffs processing
+			ItemStack heldStack = player.getHeldItem(EnumHand.MAIN_HAND);
+			if (heldStack != null & heldStack.getItem() instanceof IWeapon) {
+				IWeapon weapon = (IWeapon) heldStack.getItem();
+				Treasure.LOGGER.debug("original damage -> {}", event.getAmount());
+				// TODO this is wrong - don't multiple by 100 or set the critical change in the item to 0-1. and also make it a double, not a float.
+				if (RandomHelper.checkProbability(new Random(), weapon.getCriticalChance())) {
+					event.setAmount(event.getAmount() + (weapon.getCriticalDamage() * event.getAmount()));
+					Treasure.LOGGER.debug("new + critical damage -> {}", event.getAmount());
+				}
+			}
 		}
 		else if (event.getEntityLiving() instanceof  EntityPlayer) {
 			player = (EntityPlayerMP) event.getEntityLiving();

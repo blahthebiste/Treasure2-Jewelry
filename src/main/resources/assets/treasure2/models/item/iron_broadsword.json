@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "treasure2:items/weapon/iron_broadsword"
+  }
+}

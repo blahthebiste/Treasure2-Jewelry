@@ -208,6 +208,14 @@ public class TreasureModels {
 		// WEAPONS
 		registerItemModel(TreasureItems.SKULL_SWORD);
 		registerItemModel(TreasureItems.COPPER_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_COPPER_SHORT_SWORD);
+		registerItemModel(TreasureItems.IRON_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_IRON_SHORT_SWORD);
+		registerItemModel(TreasureItems.STEEL_SHORT_SWORD);
+		registerItemModel(TreasureItems.CHIPPED_STEEL_SHORT_SWORD);
+		registerItemModel(TreasureItems.COPPER_RAPIER);
+		registerItemModel(TreasureItems.STEEL_SWORD);
+		registerItemModel(TreasureItems.SWORD_OF_POWER);
 		registerItemModel(TreasureItems.EYE_PATCH);
 
 		// PAINTINGS
