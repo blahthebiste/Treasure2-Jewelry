@@ -1,8 +1,17 @@
 {
-	"version": "1.0",
+	"version": "2.0",
 	"category":"general",
 	"rarity": "scarce",
 	"pools": [
+		{
+			"name" : "combat",
+			"rolls" : 2,
+			"entries" : [ {
+				"type" : "minecraft:loot_table",
+				"name" : "treasure2:pools/combat/scarce",
+				"weight" : 20
+			} ]
+		},
 		{
 			"name": "bones",
 			"rolls": 1,
@@ -132,7 +141,7 @@
 			"entries": [
                 {
                     "type": "loot_table",
-                    "name": "treasure2:pools/treasure/scarce",
+                    "name": "treasure2:pools/treasure/scarce_all",
                     "weight": 30
                 }
 			]

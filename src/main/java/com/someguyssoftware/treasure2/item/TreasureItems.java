@@ -74,8 +74,7 @@ import com.someguyssoftware.treasure2.enums.AdornmentType;
 import com.someguyssoftware.treasure2.enums.Category;
 import com.someguyssoftware.treasure2.enums.Rarity;
 import com.someguyssoftware.treasure2.integration.baubles.BaublesIntegration;
-import com.someguyssoftware.treasure2.item.weapon.Sword;
-import com.someguyssoftware.treasure2.item.weapon.UniqueSword;
+import com.someguyssoftware.treasure2.item.weapon.*;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableMaster2.SpecialLootTables;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableRegistry;
 import com.someguyssoftware.treasure2.material.CharmableMaterial;
@@ -251,7 +250,7 @@ public class TreasureItems {
 	// machetes
 	public static Item STEEL_MACHETE;
 	public static Item SHADOW_MACHETE;
-	// flachions
+	// falchions
 	public static Item IRON_FALCHION;
 	public static Item STEEL_FALCHION;
 	public static Item SHADOW_FALCHION;
@@ -1424,6 +1423,66 @@ public class TreasureItems {
 			};
 
 			// machetes
+			STEEL_MACHETE = new Sword(Treasure.MODID, "steel_machete", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 2.7F, -2.6F, Treasure.TREASURE_TAB);
+			SHADOW_MACHETE = new Sword(Treasure.MODID, "shadow_machete", SHADOW_TOOL_MATERIAL, Items.IRON_INGOT, 2.7F, -2.6F, Treasure.TREASURE_TAB);
+
+			// falchions (steel, shadow)
+			IRON_FALCHION = new Sword(Treasure.MODID, "iron_falchion", ToolMaterial.IRON, Items.IRON_INGOT, 2.8F, -2.4F, Treasure.TREASURE_TAB);
+			STEEL_FALCHION = new Sword(Treasure.MODID, "steel_falchion", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 2.8F, -2.4F, Treasure.TREASURE_TAB);
+			SHADOW_FALCHION = new Sword(Treasure.MODID, "shadow_falchion", SHADOW_TOOL_MATERIAL, Items.IRON_INGOT, 2.8F, -2.4F, Treasure.TREASURE_TAB);
+
+			// hammers / maces / mauls
+			IRON_MACE = new Sword(Treasure.MODID, "iron_mace", ToolMaterial.IRON, Items.IRON_INGOT, 2.8F, -2.4F, Treasure.TREASURE_TAB);
+			STEEL_MACE = new Sword(Treasure.MODID, "steel_mace", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 8F, -3.6F, Treasure.TREASURE_TAB);
+
+			MJOLNIR = new UniqueSword(Treasure.MODID, "mjolnir", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 8F, -3.6F + 0.7f,75, 9F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.mjolnir.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			// axes
+			COPPER_BROAD_AXE = new Axe(Treasure.MODID, "copper_broad_axe",
+					COPPER_TOOL_MATERIAL, Items.IRON_INGOT, TreasureWeapons.AXE_BASE_DAMAGE - 1F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, Treasure.TREASURE_TAB);
+			IRON_BROAD_AXE = new Axe(Treasure.MODID, "iron_broad_axe",
+					ToolMaterial.IRON, Items.IRON_INGOT, TreasureWeapons.AXE_BASE_DAMAGE - 1F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, Treasure.TREASURE_TAB);
+			STEEL_BROAD_AXE = new Axe(Treasure.MODID, "steel_broad_axe",
+					STEEL_TOOL_MATERIAL, Items.IRON_INGOT, TreasureWeapons.AXE_BASE_DAMAGE - 1F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, Treasure.TREASURE_TAB);
+
+			IRON_DWARVEN_AXE = new Axe(Treasure.MODID, "iron_dwarven_axe",
+					ToolMaterial.IRON, Items.IRON_INGOT, TreasureWeapons.AXE_BASE_DAMAGE + 0.5F, TreasureWeapons.AXE_BASE_SPEED + 0.1f, Treasure.TREASURE_TAB);
+
+			AXE_OF_DURIN = new UniqueAxe(Treasure.MODID, "axe_of_durin", LEGENDARY_TOOL_MATERIAL, Items.DIAMOND,
+					TreasureWeapons.AXE_BASE_DAMAGE, TreasureWeapons.AXE_BASE_SPEED + 0.5f, 65, 7F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.axe_of_durin.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
+
+			HEADSMANS_AXE = new UniqueAxe(Treasure.MODID, "headsmans_axe", EPIC_TOOL_MATERIAL, Items.DIAMOND,
+					TreasureWeapons.AXE_BASE_DAMAGE, TreasureWeapons.AXE_BASE_SPEED + 0.3f, 55, 6F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					String lore = I18n.translateToLocal(LangUtil.tooltip("weapons.headsmans_axe.lore"));
+					for (String s : lore.split("~")) {
+						tooltip.add(LangUtil.INDENT4 + TextFormatting.LIGHT_PURPLE.toString() + TextFormatting.ITALIC + LangUtil.INDENT4 + s);
+					}
+					tooltip.add(LangUtil.NEWLINE);
+				}
+			};
 
 			// NOTE if going to add lots of different armor, tools and swords then use a List<Pair<>> or "props" object. See MetalsItems.java
 			ModArmorBuilder armorBuilder = new ModArmorBuilder();
@@ -1555,6 +1614,29 @@ public class TreasureItems {
 					COPPER_RAPIER,
 					STEEL_SWORD,
 					SWORD_OF_POWER,
+					BLACK_SWORD,
+					OATHBRINGER,
+					SWORD_OF_OMENS,
+					CALLANDOR,
+					IRON_BROADSWORD,
+					STEEL_BROADSWORD,
+					ORCUS,
+					SNAKES_EYES_KATANA,
+					STORM_SHADOWS_KATANA,
+					STEEL_MACHETE,
+					SHADOW_MACHETE,
+					IRON_FALCHION,
+					STEEL_FALCHION,
+					SHADOW_FALCHION,
+					IRON_MACE,
+					STEEL_MACE,
+					MJOLNIR,
+					COPPER_BROAD_AXE,
+					IRON_BROAD_AXE,
+					STEEL_BROAD_AXE,
+					IRON_DWARVEN_AXE,
+					AXE_OF_DURIN,
+					HEADSMANS_AXE,
 					EYE_PATCH,
 					WITHER_STICK_ITEM,
 					WITHER_ROOT_ITEM,
