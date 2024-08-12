@@ -74,6 +74,7 @@ import com.someguyssoftware.treasure2.enums.AdornmentType;
 import com.someguyssoftware.treasure2.enums.Category;
 import com.someguyssoftware.treasure2.enums.Rarity;
 import com.someguyssoftware.treasure2.integration.baubles.BaublesIntegration;
+import com.someguyssoftware.treasure2.item.weapon.Sword;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableMaster2.SpecialLootTables;
 import com.someguyssoftware.treasure2.loot.TreasureLootTableRegistry;
 import com.someguyssoftware.treasure2.material.CharmableMaterial;
@@ -83,8 +84,10 @@ import com.someguyssoftware.treasure2.rune.DoubleChargeRune;
 import com.someguyssoftware.treasure2.rune.GreaterManaRune;
 import com.someguyssoftware.treasure2.rune.IRuneEntity;
 import com.someguyssoftware.treasure2.rune.TreasureRunes;
+import com.someguyssoftware.treasure2.util.LangUtil;
 import com.someguyssoftware.treasure2.util.ResourceLocationUtil;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
@@ -99,6 +102,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
@@ -212,8 +218,23 @@ public class TreasureItems {
 	public static Item WITHER_STICK_ITEM;
 	public static Item WITHER_ROOT_ITEM;
 
-	// swords
+	/*
+	 * swords
+	 */
+	// short swords
+	public static Item COPPER_SHORT_SWORD;
+	public static Item CHIPPED_COPPER_SHORT_SWORD;
+	public static Item IRON_SHORT_SWORD;
+	public static Item CHIPPED_IRON_SHORT_SWORD;
+	public static Item STEEL_SHORT_SWORD;
+	public static Item CHIPPED_STEEL_SHORT_SWORD;
+	// rapiers
+	public static Item COPPER_RAPIER;
+	// long swords
+	public static Item STEEL_SWORD;
 	public static Item SKULL_SWORD;
+	// large sword
+	public static Item SWORD_OF_POWER;
 
 	// armor
 	public static Item EYE_PATCH;
@@ -245,7 +266,11 @@ public class TreasureItems {
 	 */
 	// SKULL //
 	public static final ToolMaterial SKULL_TOOL_MATERIAL = EnumHelper.addToolMaterial("SKULL", 2, 1800, 9.0F, 4.0F, 25);
+	public static final ToolMaterial COPPER_TOOL_MATERIAL = EnumHelper.addToolMaterial("COPPER", 1, 200, 5F, 1F, 10);
+	public static final ToolMaterial STEEL_TOOL_MATERIAL = EnumHelper.addToolMaterial("STEEL", 2, 600, 6.5F, 2.5F, 15);
 
+	// special materials
+	public static final ToolMaterial MYTHICAL_TOOL_MATERIAL = EnumHelper.addToolMaterial("MYTHICAL", 6, 2400, 11F, 6F, 22);
 	// key map
 	public static Multimap<Rarity, KeyItem> keys;
 
@@ -1251,6 +1276,37 @@ public class TreasureItems {
 					.withCreativeTab(Treasure.TREASURE_TAB)
 					.build();
 
+			// short swords
+			COPPER_SHORT_SWORD = new Sword(Treasure.MODID, "copper_short_sword", COPPER_TOOL_MATERIAL, Items.IRON_INGOT, 2.5F, -2F, Treasure.TREASURE_TAB);
+			CHIPPED_COPPER_SHORT_SWORD = new Sword(Treasure.MODID, "chipped_copper_short_sword", COPPER_TOOL_MATERIAL, Items.IRON_INGOT, 2.4F, -2F, Treasure.TREASURE_TAB);
+			IRON_SHORT_SWORD = new Sword(Treasure.MODID, "iron_short_sword", ToolMaterial.IRON, Items.IRON_INGOT, 2.5F, -2F, Treasure.TREASURE_TAB);
+			CHIPPED_IRON_SHORT_SWORD = new Sword(Treasure.MODID, "chipped_iron_short_sword", ToolMaterial.IRON, Items.IRON_INGOT, 2.4F, -2F, Treasure.TREASURE_TAB);
+			STEEL_SHORT_SWORD = new Sword(Treasure.MODID, "steel_short_sword", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 2.5F, -2F, Treasure.TREASURE_TAB);
+			CHIPPED_STEEL_SHORT_SWORD = new Sword(Treasure.MODID, "chipped_steel_short_sword", STEEL_TOOL_MATERIAL, Items.IRON_INGOT, 2.4F, -2F, Treasure.TREASURE_TAB);
+
+			// rapiers
+
+			// longswords
+
+			// large swords
+			SWORD_OF_POWER = new Sword(Treasure.MODID, "sword_of_power", MYTHICAL_TOOL_MATERIAL, Items.DIAMOND, 3F, -2.4F, Treasure.TREASURE_TAB) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World level, List<String> tooltip, ITooltipFlag flag) {
+					tooltip.add(LangUtil.NEWLINE);
+					tooltip.add(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.ITALIC + LangUtil.INDENT4 +
+							I18n.translateToLocal(LangUtil.tooltip("weapons.sword_of_power.lore")));
+					tooltip.add(LangUtil.NEWLINE));
+				}
+				@Override
+				public boolean isUnique() {
+					return true;
+				}
+				@Override
+				public boolean getIsRepairable(ItemStack itemStack, ItemStack repairStack) {
+					return false;
+				}
+			};
+
 			// NOTE if going to add lots of different armor, tools and swords then use a List<Pair<>> or "props" object. See MetalsItems.java
 			ModArmorBuilder armorBuilder = new ModArmorBuilder();
 			EYE_PATCH = armorBuilder
@@ -1372,6 +1428,7 @@ public class TreasureItems {
 					//					APPRENTICES_POUCH,
 					//					MASTERS_POUCH,
 					SKULL_SWORD,
+					COPPER_SHORT_SWORD,
 					EYE_PATCH,
 					WITHER_STICK_ITEM,
 					WITHER_ROOT_ITEM,
@@ -1566,15 +1623,6 @@ public class TreasureItems {
 			return adornments;
 		}
 
-		/**
-		 * 
-		 * @param name
-		 * @param type
-		 * @param material
-		 * @param size
-		 * @param source
-		 * @return
-		 */
 		private Adornment createAdornment(AdornmentType type, CharmableMaterial material,	AdornmentSize size, ResourceLocation source) {
 			String name = (size == TreasureAdornmentRegistry.STANDARD ? "" : size.getName() + "_") + (source == Items.AIR.getRegistryName() ? "" :  source.getResourcePath() + "_") + material.getName().getResourcePath() + "_" + type.toString();
 			Adornment a = new Adornment(Treasure.MODID, name, type, size) {
@@ -1667,12 +1715,6 @@ public class TreasureItems {
 		return resultItem;
 	}
 	
-	/**
-	 * 
-	 * @param name
-	 * @param level
-	 * @return
-	 */
 	public static Optional<ItemStack> getCharm(String charmName, int level, int itemType) {
 		Item charmItem = null;
 		if (itemType == 1) {

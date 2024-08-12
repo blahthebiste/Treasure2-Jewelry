@@ -207,6 +207,7 @@ public class TreasureModels {
 
 		// WEAPONS
 		registerItemModel(TreasureItems.SKULL_SWORD);
+		registerItemModel(TreasureItems.COPPER_SHORT_SWORD);
 		registerItemModel(TreasureItems.EYE_PATCH);
 
 		// PAINTINGS
