@@ -30,6 +30,12 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.function.Supplier;
 
+import mod.gottsch.forge.treasure2.core.item.weapon.*;
+import mod.gottsch.forge.treasure2.core.util.LangUtil;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.*;
+import net.minecraft.util.text.*;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -97,13 +103,6 @@ import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeableArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -133,6 +132,9 @@ public class TreasureItems {
 	// tabs
 	public static RegistryObject<Item> TREASURE_TAB = ITEMS.register("treasure_tab", () -> new ModItem(new Item.Properties()));
 	public static RegistryObject<Item> ADORNMENTS_TAB = ITEMS.register("adornments_tab", () -> new ModItem(new Item.Properties()));
+
+	// property supplier
+	public static final Supplier<Item.Properties> TREASURE_PROPS_SUPPLIER = () -> new Item.Properties().tab(TreasureItemGroups.TREASURE_ITEM_GROUP);
 
 	// keys
 	public static RegistryObject<KeyItem> WOOD_KEY = ITEMS.register(KeyID.WOOD_KEY_ID, () -> new KeyItem(new Item.Properties().durability(TreasureConfig.KEYS_LOCKS.woodKeyMaxUses.get()))
@@ -571,10 +573,169 @@ public class TreasureItems {
 	
 	public static RegistryObject<WitherRootItem> WITHER_ROOT_ITEM = ITEMS.register(TreasureConfig.ItemID.WITHER_ROOT_ITEM_ID, () -> new WitherRootItem(TreasureBlocks.WITHER_ROOT, new Item.Properties()));
 
-	// other
+	/*
+	 * weapons
+	 */
+	// short swords
+	public static final RegistryObject<SwordItem> COPPER_SHORT_SWORD = ITEMS.register("copper_short_sword",
+			() -> new Sword(TreasureItemTier.COPPER, 2.5f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> CHIPPED_COPPER_SHORT_SWORD = ITEMS.register("chipped_copper_short_sword",
+			() -> new Sword(TreasureItemTier.COPPER, 2.4f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> IRON_SHORT_SWORD = ITEMS.register("iron_short_sword",
+			() -> new Sword(ItemTier.IRON, 2.5f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> CHIPPED_IRON_SHORT_SWORD = ITEMS.register("chipped_iron_short_sword",
+			() -> new Sword(ItemTier.IRON, 2.4f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> STEEL_SHORT_SWORD = ITEMS.register("steel_short_sword",
+			() -> new Sword(TreasureItemTier.STEEL, 2.5f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> CHIPPED_STEEL_SHORT_SWORD = ITEMS.register("chipped_steel_short_sword",
+			() -> new Sword(TreasureItemTier.STEEL, 2.4f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// rapier
+	public static final RegistryObject<Item> COPPER_RAPIER = ITEMS.register("copper_rapier",
+			() -> new Sword(TreasureItemTier.COPPER, 2.6f, -2.0F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// longswords (steel, skull, shadow, +)
+	public static final RegistryObject<Item> STEEL_SWORD = ITEMS.register("steel_sword",
+			() -> new SwordItem(TreasureItemTier.STEEL, 3, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+
 	public static final RegistryObject<SwordItem> SKULL_SWORD = ITEMS.register(TreasureConfig.ItemID.SKULL_SWORD_ID, 
-			() -> new SwordItem(TreasureItemTier.SKULL, 3, -2.4F, new Item.Properties().tab(TreasureItemGroups.TREASURE_ITEM_GROUP)));
-	
+			() -> new Sword(TreasureItemTier.SKULL, 3, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// large sword
+	public static final RegistryObject<Item> SWORD_POWER = ITEMS.register("sword_of_power",
+			() -> new UniqueSword(TreasureItemTier.MYTHICAL, 3, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> BLACK_SWORD = ITEMS.register("black_sword",
+			() -> new UniqueSword(TreasureItemTier.MYTHICAL, 3, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> OATHBRINGER = ITEMS.register("oathbringer",
+			() -> new UniqueSword(TreasureItemTier.MYTHICAL, 3, -2.0F, 50, 7F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	public static final RegistryObject<Item> SWORD_OMENS = ITEMS.register("sword_of_omens",
+			() -> new UniqueSword(TreasureItemTier.EPIC, 3, -2.4F, 35, 5F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	public static final RegistryObject<Item> CALLANDOR = ITEMS.register("callandor",
+			() -> new UniqueSword(TreasureItemTier.MYTHICAL, 3, -2.0F, 75, 9F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	// broad/bastard swords (steel, black)
+	public static final RegistryObject<Item> IRON_BROADSWORD = ITEMS.register("iron_broadsword",
+			() -> new Sword(ItemTier.IRON, 3.5f, -2.8F, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> STEEL_BROADSWORD = ITEMS.register("steel_broadsword",
+			() -> new Sword(TreasureItemTier.STEEL, 3.5f, -2.8F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// scythes
+	public static final RegistryObject<Item> ORCUS = ITEMS.register("orcus",
+			() -> new UniqueSword(TreasureItemTier.LEGENDARY, 3, -2.4F, 40, 5F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	// katanas (steel, shadow + )
+	public static final RegistryObject<Item> SNAKE_EYES_KATANA = ITEMS.register("snake_eyes_katana",
+			() -> new UniqueSword(TreasureItemTier.RARE, 3, -1.5F, 25, 5f, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	public static final RegistryObject<Item> STORM_SHADOWS_KATANA = ITEMS.register("storm_shadows_katana",
+			() -> new UniqueSword(TreasureItemTier.RARE, 3, -1.5f, 25, 5f, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	// machetes (steel, shadow)
+	public static final RegistryObject<Item> STEEL_MACHETE = ITEMS.register("steel_machete",
+			() -> new Sword(TreasureItemTier.STEEL, 2.7F, -2.6F, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> SHADOW_MACHETE = ITEMS.register("shadow_machete",
+			() -> new Sword(TreasureItemTier.SHADOW, 2.7F, -2.6F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// flachions (steel, shadow)
+	public static final RegistryObject<Item> IRON_FALCHION = ITEMS.register("iron_falchion",
+			() -> new Sword(ItemTier.IRON, 2.8F, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> STEEL_FALCHION = ITEMS.register("steel_falchion",
+			() -> new Sword(TreasureItemTier.STEEL, 2.8F, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> SHADOW_FALCHION = ITEMS.register("shadow_falchion",
+			() -> new Sword(TreasureItemTier.SHADOW, 2.8F, -2.4F, TREASURE_PROPS_SUPPLIER.get()));
+
+	// hammers / maces / mauls
+	public static final RegistryObject<Item> IRON_MACE = ITEMS.register("iron_mace",
+			() -> new Sword(ItemTier.IRON, TreasureWeapons.HAMMER_BASE_DAMAGE, TreasureWeapons.HAMMER_BASE_SPEED, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> STEEL_MACE = ITEMS.register("steel_mace",
+			() -> new Sword(TreasureItemTier.STEEL, TreasureWeapons.HAMMER_BASE_DAMAGE, TreasureWeapons.HAMMER_BASE_SPEED, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> MJOLNIR = ITEMS.register("mjolnir",
+			() -> new UniqueSword(TreasureItemTier.MYTHICAL,
+					TreasureWeapons.HAMMER_BASE_DAMAGE, TreasureWeapons.HAMMER_BASE_SPEED + 0.7f,
+					75, 9F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	// axes
+	//	WOODEN_AXE = new AxeItem(Tiers.WOOD, 6.0F, -3.2F
+	//	STONE_AXE = new AxeItem(Tiers.STONE, 7.0F, -3.2F
+	//	IRON_AXE = new AxeItem(Tiers.IRON, 6.0F, -3.1F  // USE AS DEFAULT STATS FOR AXES
+	//	DIAMOND_AXE = new AxeItem(Tiers.DIAMOND, 5.0F, -3.0F
+	//	NETHERITE_AXE = new AxeItem(Tiers.NETHERITE, 5.0F, -3.0F
+	public static final RegistryObject<Item> COPPER_BROAD_AXE = ITEMS.register("copper_broad_axe",
+			() -> new Axe(TreasureItemTier.COPPER, TreasureWeapons.AXE_BASE_DAMAGE - 1.0F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> IRON_BROAD_AXE = ITEMS.register("iron_broad_axe",
+			() -> new Axe(ItemTier.IRON, TreasureWeapons.AXE_BASE_DAMAGE - 1.0F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> STEEL_BROAD_AXE = ITEMS.register("steel_broad_axe",
+			() -> new Axe(TreasureItemTier.STEEL, TreasureWeapons.AXE_BASE_DAMAGE - 1.0F, TreasureWeapons.AXE_BASE_SPEED + 0.2f, TREASURE_PROPS_SUPPLIER.get()));
+
+	public static final RegistryObject<Item> IRON_DWARVEN_AXE = ITEMS.register("iron_dwarven_axe",
+			() -> new Axe(ItemTier.IRON, TreasureWeapons.AXE_BASE_DAMAGE + 0.5F, TreasureWeapons.AXE_BASE_SPEED + 0.1f, TREASURE_PROPS_SUPPLIER.get()));
+
+
+	public static final RegistryObject<Item> AXE_DURIN = ITEMS.register("axe_of_durin",
+			() -> new UniqueAxe(TreasureItemTier.LEGENDARY, TreasureWeapons.AXE_BASE_DAMAGE, TreasureWeapons.AXE_BASE_SPEED + 0.5f,
+					65, 7F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	public static final RegistryObject<Item> HEADSMANS_AXE = ITEMS.register("headsmans_axe",
+			() -> new UniqueAxe(TreasureItemTier.EPIC, TreasureWeapons.AXE_BASE_DAMAGE, TreasureWeapons.AXE_BASE_SPEED + 0.3f,
+					55, 6F, TREASURE_PROPS_SUPPLIER.get()) {
+				@Override
+				public  void appendHoverExtras(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+					appendHoverExtrasMultiline(stack, world, tooltip,flag);
+				}
+			});
+
+	// other
 	public static final RegistryObject<Item> EYE_PATCH = ITEMS.register(TreasureConfig.ItemID.EYE_PATCH_ID, 
 			() ->  new DyeableArmorItem(TreasureArmorMaterial.PATCH, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TreasureItemGroups.TREASURE_ITEM_GROUP)));
 
@@ -1312,7 +1473,6 @@ public class TreasureItems {
 		 * ie. NOT DeferredRegistry
 		 * This allows previously deferred items to be registered and used within
 		 * the adornment creation.
-		 * @param name
 		 * @param type
 		 * @param material
 		 * @param size
@@ -1509,7 +1669,7 @@ public class TreasureItems {
 
 	/**
 	 * 
-	 * @param name
+	 * @param charmName
 	 * @param level
 	 * @return
 	 */

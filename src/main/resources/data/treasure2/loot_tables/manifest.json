@@ -1,10 +1,10 @@
 {
 	"supportingResources": [
-		"pools/armor/common",
-		"pools/armor/uncommon",
-		"pools/armor/scarce",
-		"pools/armor/rare",
-		"pools/armor/epic",
+		"pools/combat/common",
+		"pools/combat/uncommon",
+		"pools/combat/scarce",
+		"pools/combat/rare",
+		"pools/combat/epic",
 		"pools/food/common",
 		"pools/food/uncommon",
 		"pools/food/scarce",

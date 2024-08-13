@@ -38,7 +38,7 @@
 			"entries": [
 	                {
                     "type": "loot_table",
-                    "name": "treasure2:pools/armor/epic",
+                    "name": "treasure2:pools/combat/mythical",
                     "weight": 1
                 }
 			]
@@ -106,7 +106,7 @@
 			"entries": [
 	                {
                     "type": "loot_table",
-                    "name": "treasure2:pools/armor/rare",
+                    "name": "treasure2:pools/combat/rare",
                     "weight": 1
                 }
 			]

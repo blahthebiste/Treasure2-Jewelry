@@ -135,6 +135,8 @@ dependencies {
 	// local published gottschcore
 	compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.16.5-f36.2.34-v1.8.0")
 
+
+
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -161,6 +163,7 @@ jar.finalizedBy('reobfJar')
 publishing {
     publications {
         mavenJava(MavenPublication) {
+        artifactId project.archivesBaseName
             artifact jar
         }
     }

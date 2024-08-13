@@ -319,6 +319,7 @@ public class CardboardBoxMimicModel<T extends Entity> extends EntityModel<T> {
 			}
 			eye1.xRot = -1.003564F;
 			tongue.xRot = -0.174533F; // 10
+			// TODO need to add the lids
 			
 			bob(body, bodyY, ageInTicks);
 		} else {
