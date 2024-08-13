@@ -48,13 +48,11 @@ public class Sword extends SwordItem implements IWeapon {
 	private float criticalDamage;
 	
 	/*
-		MC 1.18.2: net/minecraft/world/item/SwordItem.defaultModifiers
-		Name: b => f_43267_ => defaultModifiers
+		MC 1.16.5: net/minecraft/world/item/SwordItem.defaultModifiers
+		Name: b => field_234810_b__ => defaultModifiers
 		Side: BOTH
-		AT: public net.minecraft.world.item.SwordItem f_43267_ # defaultModifiers
-		Type: com/google/common/collect/Multimap
 	 */
-	private static final String DEFAULT_MODIFIERS_SRG_NAME = "f_43267_";
+	private static final String DEFAULT_MODIFIERS_SRG_NAME = "field_234810_b_";
 
 	/**
 	 * 
@@ -64,7 +62,7 @@ public class Sword extends SwordItem implements IWeapon {
 	 * @param properties
 	 */
 	public Sword(IItemTier tier, float damageModifier, float speedModifier, Item.Properties properties) {
-		this(tier, damageModifier, speedModifier, 0f, 0f, properties);
+		this(tier, damageModifier, speedModifier, 0, 0f, properties);
 	}
 	
 	/**
@@ -76,7 +74,7 @@ public class Sword extends SwordItem implements IWeapon {
 	 * @param criticalDamage
 	 * @param properties
 	 */
-	public Sword(IItemTier tier, float damageModifier, float speedModifier, float criticalChance, float criticalDamage, Item.Properties properties) {
+	public Sword(IItemTier tier, float damageModifier, float speedModifier, double criticalChance, float criticalDamage, Item.Properties properties) {
 		super(tier, (int)Math.floor(damageModifier), speedModifier, properties);
 
 		this.criticalChance = criticalChance;
@@ -85,7 +83,7 @@ public class Sword extends SwordItem implements IWeapon {
 		// override the parent class modifiers		
 		Object reflectDefaultModifiers = ObfuscationReflectionHelper.getPrivateValue(SwordItem.class, this, DEFAULT_MODIFIERS_SRG_NAME);
 		if (reflectDefaultModifiers instanceof Multimap) {
-			float attackDamage =damageModifier + tier.getAttackDamageBonus();
+			float attackDamage = damageModifier + tier.getAttackDamageBonus();
 			Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 			builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)attackDamage, AttributeModifier.Operation.ADDITION));
 			builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)speedModifier, AttributeModifier.Operation.ADDITION));

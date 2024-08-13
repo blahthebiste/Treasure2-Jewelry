@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.someguyssoftware.gottschcore.random.RandomHelper;
 import com.someguyssoftware.gottschcore.spatial.Coords;
 import com.someguyssoftware.gottschcore.world.WorldInfo;
 
@@ -36,6 +37,7 @@ import mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities;
 import mod.gottsch.forge.treasure2.core.charm.CharmContext;
 import mod.gottsch.forge.treasure2.core.charm.ICharm;
 import mod.gottsch.forge.treasure2.core.charm.ICharmEntity;
+import mod.gottsch.forge.treasure2.core.item.weapon.IWeapon;
 import mod.gottsch.forge.treasure2.core.network.CharmMessageToClient;
 import mod.gottsch.forge.treasure2.core.network.TreasureNetworking;
 import net.minecraft.entity.player.PlayerEntity;
@@ -127,6 +129,17 @@ public class CharmEventHandler {
 		}
 		else if (event.getSource().getEntity() instanceof PlayerEntity) {
 			player = (ServerPlayerEntity) event.getSource().getEntity();
+
+			// weapon buffs processing
+			ItemStack heldStack = player.getItemInHand(Hand.MAIN_HAND);
+			if (heldStack != null & heldStack.getItem() instanceof IWeapon) {
+				IWeapon weapon = (IWeapon) heldStack.getItem();
+				Treasure.LOGGER.debug("original damage -> {}", event.getAmount());
+				if (RandomHelper.checkProbability(new Random(), weapon.getCriticalChance())) {
+					event.setAmount(event.getAmount() + (weapon.getCriticalDamage() * event.getAmount()));
+					Treasure.LOGGER.debug("new + critical damage -> {}", event.getAmount());
+				}
+			}
 		}
 		
 		if (player != null) {
