@@ -160,7 +160,6 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 				}
 			}
 
-			// TODO test the other gens before tinkering with this
 			// find the entrance block
 			ICoords entranceCoords = TreasureTemplateRegistry.getOffsetFrom(context.random(), template.get(), StructureMarkers.ENTRANCE);
 			if (entranceCoords == null) {
@@ -169,8 +168,6 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			}
 			Treasure.LOGGER.debug("entrance coords -> {}", entranceCoords.toShortString());
 
-			// TODO determine if the size of the structure on x-z axis will exceed the max generation size (ie 3x3 chunk size).
-			
 			// select a random rotation
 			Rotation rotation = Rotation.values()[context.random().nextInt(Rotation.values().length)];
 			BlockPos rotatedSize = template.get().getSize(rotation);
@@ -181,21 +178,15 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			placement.setRotation(rotation).setRandom(context.random());
 			
 			// NOTE these values are still relative to origin (spawnCoords);
-//			ICoords newEntrance = new Coords(GottschTemplate.transformedVec3d(placement, entranceCoords.toVec3()));
 			ICoords newEntrance = GeometryUtil.mcRotate(entranceCoords, rotation);
 			if (entranceCoords.equals(new Coords(0, 0, 0))) {
 				newEntrance = entranceCoords;
 			}
 			Treasure.LOGGER.debug("new entrance coords -> {}", newEntrance.toShortString());
 
-
 			/*
 			 *  adjust spawn coords to line up room entrance and the pit
 			 */
-//			BlockPos transformedSize = template.get().getSize(rotation);
-//			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance, transformedSize, placement);
-//			ICoords roomCoords = alignToPit(spawnCoords, newEntrance, transformedSize, placement);
-
 			ICoords roomCoords = ITemplateGenerator.alignEntranceToCoords(spawnCoords, newEntrance);
 			Treasure.LOGGER.debug("aligned spawn coords -> {}", spawnCoords.toShortString());
 
@@ -213,6 +204,7 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			}
 			Treasure.LOGGER.debug("template result -> {}", genResult);
 			result.getData().setSpawnCoords(genResult.getData().getSpawnCoords());
+
 			// interrogate info for spawners and any other special block processing (except chests that are handler by caller
 			List<BlockInfoContext> bossChestContexts =
 					(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.BOSS_CHEST));
@@ -266,9 +258,9 @@ public class StructurePitGenerator extends AbstractPitGenerator implements IStru
 			 * Need to replace any vanilla spawners with DeferredRandomVanillaSpawnerBlocks at this point.
 			 * This is a hacky work-around to the fact that the spawners are causing the game to hang during
 			 * generation. Remove/update when the reason is discovered and fixed.
- 			 */
+			 * TODO this shouldn't be necessary anymore as the entire structure is now deferred.
+			 */
 
-			// TODO move to own method
 			// populate vanilla spawners
 			GeneratorUtil.buildVanillaSpawners(context, spawnerContexts);
 

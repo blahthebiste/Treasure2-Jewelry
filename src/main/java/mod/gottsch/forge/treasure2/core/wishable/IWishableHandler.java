@@ -49,15 +49,21 @@ public interface IWishableHandler {
 		int count = 0;
 		// check if in water
 		if (itemEntity.level().getBlockState(itemEntity.blockPosition()).is(Blocks.WATER)) {
-			// NOTE use vanilla classes as this scan will be performed frequentlly and don't need the overhead.
+			// NOTE use vanilla classes as this scan will be performed frequently and don't need the overhead.
 			int scanRadius = Config.SERVER.wells.scanForWellRadius.get();
 			BlockPos pos = itemEntity.blockPosition().offset(-scanRadius, 0, -scanRadius);
 			for (int z = 0; z < (scanRadius * 2) + 1; z++) {
 				for (int x = 0; x < (scanRadius * 2) + 1; x++) {
-					Block block = itemEntity.level().getBlockState(pos).getBlock();
+					Block block = itemEntity.level().getBlockState(pos.offset(x, 0, z)).getBlock();
 					if (block instanceof IWishingWellBlock) {
 						count++;
-					}					
+					}
+					if (itemEntity.blockPosition().below().getY() > itemEntity.level().getMinBuildHeight()) {
+						block = itemEntity.level().getBlockState(pos.offset(x, -1, z)).getBlock();
+						if (block instanceof IWishingWellBlock) {
+							count++;
+						}
+					}
 					if (count >= Config.SERVER.wells.scanMinBlockCount.get()) {
 						return true;
 					}

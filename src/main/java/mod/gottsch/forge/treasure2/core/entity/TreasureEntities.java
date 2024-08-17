@@ -40,6 +40,7 @@ public class TreasureEntities {
 	public static final String CARDBOARD_BOX_MIMIC = "cardboard_box_mimic";
 	public static final String MILK_CRATE_MIMIC = "milk_crate_mimic";
 	public static final String BARREL_MIMIC = "barrel_mimic";
+	public static final String VANILLA_CHEST_MIMIC = "vanilla_chest_mimic";
 
 	public static final RegistryObject<EntityType<BoundSoul>> BOUND_SOUL_ENTITY_TYPE = Registration.ENTITIES.register(BOUND_SOUL, () -> EntityType.Builder.of(BoundSoul::new, MobCategory.MONSTER)
 			.sized(0.6F, 1.95F)
@@ -98,7 +99,7 @@ public class TreasureEntities {
 			.build(CARDBOARD_BOX_MIMIC));
 
 	public static final RegistryObject<EntityType<MilkCrateMimic>> MILK_CRATE_MIMIC_ENTITY_TYPE = Registration.ENTITIES.register(MILK_CRATE_MIMIC, () -> EntityType.Builder.of(MilkCrateMimic::new, MobCategory.MONSTER)
-			.sized(1F, 1.25F)
+			.sized(0.875F, 0.875F)
 			.clientTrackingRange(12)
 			.setTrackingRange(80)
 			.setShouldReceiveVelocityUpdates(true)
@@ -110,6 +111,13 @@ public class TreasureEntities {
 			.setTrackingRange(80)
 			.setShouldReceiveVelocityUpdates(true)
 			.build(BARREL_MIMIC));
+
+	public static final RegistryObject<EntityType<VanillaChestMimic>> VANILLA_CHEST_MIMIC_ENTITY_TYPE = Registration.ENTITIES.register(VANILLA_CHEST_MIMIC, () -> EntityType.Builder.of(VanillaChestMimic::new, MobCategory.MONSTER)
+			.sized(1F, 1F)
+			.clientTrackingRange(12)
+			.setTrackingRange(80)
+			.setShouldReceiveVelocityUpdates(true)
+			.build(VANILLA_CHEST_MIMIC));
 
 	public static void register(IEventBus bus) {
 		// cycle through all block and create items

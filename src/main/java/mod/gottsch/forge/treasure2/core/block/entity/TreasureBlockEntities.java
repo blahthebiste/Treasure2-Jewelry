@@ -104,6 +104,10 @@ public class TreasureBlockEntities {
 			Registration.BLOCK_ENTITIES.register("barrel_chest_block_entity",
 					() -> BlockEntityType.Builder.of(BarrelChestBlockEntity::new, TreasureBlocks.BARREL_CHEST.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<VanillaChestBlockEntity>> VANILLA_CHEST_BLOCK_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("vanilla_chest_block_entity",
+					() -> BlockEntityType.Builder.of(VanillaChestBlockEntity::new, TreasureBlocks.VANILLA_CHEST.get()).build(null));
+
 	public static final RegistryObject<BlockEntityType<WitherChestBlockEntity>> WITHER_CHEST_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("wither_chest_block_entity", 
 					() -> BlockEntityType.Builder.of(WitherChestBlockEntity::new, TreasureBlocks.WITHER_CHEST.get()).build(null));
@@ -114,6 +118,18 @@ public class TreasureBlockEntities {
 			() -> BlockEntityType.Builder.of(TreasureProximitySpawnerBlockEntity::new, 
 					TreasureBlocks.PROXIMITY_SPAWNER.get()
 				).build(null));
+
+	public static final RegistryObject<BlockEntityType<TreasureProximityMultiSpawnerBlockEntity>> TREASURE_PROXIMITY_MULTI_SPAWNER_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("treasure_proximity_multi_spawner",
+					() -> BlockEntityType.Builder.of(TreasureProximityMultiSpawnerBlockEntity::new,
+							TreasureBlocks.PROXIMITY_MULTI_SPAWNER.get()
+					).build(null));
+
+	public static final RegistryObject<BlockEntityType<ProximityMobSetSpawnerBlockEntity>> PROXIMITY_MOBSET_SPAWNER_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("proximity_mobset_spawner",
+					() -> BlockEntityType.Builder.of(ProximityMobSetSpawnerBlockEntity::new,
+							TreasureBlocks.PROXIMITY_MOBSET_SPAWNER.get()
+					).build(null));
 	
 	public static final RegistryObject<BlockEntityType<GravestoneProximitySpawnerBlockEntity>> GRAVESTONE_PROXIMITY_SPAWNER_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("gravestone_proximity_spawner", 

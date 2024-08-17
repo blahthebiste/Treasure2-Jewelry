@@ -18,6 +18,7 @@
 package mod.gottsch.forge.treasure2.core.generator;
 
 import java.util.List;
+import java.util.Optional;
 
 import mod.gottsch.forge.gottschcore.block.BlockContext;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
@@ -34,20 +35,31 @@ import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.block.AbstractTreasureChestBlock;
 import mod.gottsch.forge.treasure2.core.block.SkeletonBlock;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
-import mod.gottsch.forge.treasure2.core.block.entity.AbstractTreasureChestBlockEntity;
-import mod.gottsch.forge.treasure2.core.block.entity.TreasureProximitySpawnerBlockEntity;
+import mod.gottsch.forge.treasure2.core.block.entity.*;
+import mod.gottsch.forge.treasure2.core.config.Config;
+import mod.gottsch.forge.treasure2.core.config.MobSetConfiguration;
+import mod.gottsch.forge.treasure2.core.config.StructureConfiguration;
+import mod.gottsch.forge.treasure2.core.generator.template.TemplatePoiInspector;
+import mod.gottsch.forge.treasure2.core.registry.MimicRegistry;
 import mod.gottsch.forge.treasure2.core.registry.TreasureTemplateRegistry;
+import mod.gottsch.forge.treasure2.core.size.IntegerRange;
+import mod.gottsch.forge.treasure2.core.util.ModUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraftforge.common.DungeonHooks;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -105,8 +117,6 @@ public class GeneratorUtil {
 
 	/**
 	 * 
-	 * @param world
-	 * @param random
 	 * @param chest
 	 * @param coords
 	 * @return
@@ -126,8 +136,6 @@ public class GeneratorUtil {
 
 	/**
 	 * 
-	 * @param world
-	 * @param random
 	 * @param coords
 	 * @param chest
 	 * @param state
@@ -196,8 +204,6 @@ public class GeneratorUtil {
 
 	/**
 	 * 
-	 * @param world
-	 * @param random
 	 * @param coords
 	 */
 	public static void placeSkeleton(IWorldGenContext context, ICoords coords) {
@@ -308,6 +314,92 @@ public class GeneratorUtil {
 	}
 
 	/**
+	 * select a single chest from all boss and vanilla chests.
+	 * @param inspector
+	 * @return
+	 */
+	public static Optional<BlockInfoContext> selectTreasureChest(IWorldGenContext context, TemplatePoiInspector inspector) {
+		// check if there is a boss chest(s)
+		BlockInfoContext chestContext = null;
+		if (!inspector.getBossChests().isEmpty()) {
+			Treasure.LOGGER.debug("selecting a boss chest. size -> {}", inspector.getBossChests().size());
+			chestContext = inspector.getBossChests().get(context.random().nextInt(inspector.getBossChests().size()));
+			Treasure.LOGGER.debug("boss chest context -> {}", chestContext.getCoords());
+		} else {
+			Treasure.LOGGER.debug("boss chests are empty");
+			if (!inspector.getChests().isEmpty()) {
+				chestContext = inspector.getChests().get(context.random().nextInt(inspector.getChests().size()));
+				// remove the chest from the list of available chests
+				inspector.getChests().remove(chestContext);
+			}
+		}
+		Treasure.LOGGER.debug("chest context -> {}", chestContext);
+		return Optional.ofNullable(chestContext);
+	}
+
+	/**
+	 *
+	 * @param context
+	 * @param inspector
+	 * @param meta
+	 * @return
+	 */
+	public static Optional<MobSetConfiguration.MobSet> selectMobSet(IWorldGenContext context, TemplatePoiInspector inspector, StructureConfiguration.StructMeta meta) {
+		MobSetConfiguration.MobSet mobSet = null;
+		if(StringUtils.isNotBlank(meta.getMobSet()) || !meta.getMobSets().isEmpty()) {
+
+			// first try and select a mobSet from the mobSets
+			ResourceLocation mobSetName = null;
+			if (!meta.getMobSets().isEmpty()) {
+				mobSetName = ModUtil.asLocation(meta.getMobSets().get(context.random().nextInt(meta.getMobSets().size())));
+			} else {
+				mobSetName = ModUtil.asLocation(meta.getMobSet());
+			}
+
+			Treasure.LOGGER.debug("meta has a mob set -> {}", mobSetName);
+
+			if (Config.mobSetMap.containsKey(mobSetName)) {
+				mobSet = Config.mobSetMap.get(mobSetName);
+				return Optional.ofNullable(mobSet);
+			}
+		}
+		return Optional.empty();
+	}
+
+	/**
+	 * TODO need to pass in the loot table
+	 * @param context
+	 * @param placement
+	 * @param inspector
+	 */
+	public static void buildVanillaChests(IWorldGenContext context, PlacementSettings placement, TemplatePoiInspector inspector, ResourceLocation lootTable) {
+		for (BlockInfoContext c : inspector.getChests()) {
+			Treasure.LOGGER.debug("placing vanilla chest at -> {}", c.getCoords().toShortString());
+
+			// add mimic if any
+			if (Config.SERVER.mobs.enableMimics.get() && RandomHelper.checkProbability(context.random(), Config.SERVER.mobs.mimicProbability.get())) {
+				Optional<ResourceLocation> mimicName = MimicRegistry.getMimic(ModUtil.getName(TreasureBlocks.VANILLA_CHEST.get()));
+				if (mimicName.isPresent()) {
+					// place vanilla treasure chest
+					context.level().setBlock(c.getCoords().toPos(),
+							TreasureBlocks.VANILLA_CHEST.get().rotate(TreasureBlocks.VANILLA_CHEST.get().defaultBlockState(), context.level(), c.getCoords().toPos(), placement.getRotation()),
+							3);
+					// set the mimic name in the block entity
+					ITreasureChestBlockEntity blockEntity = (ITreasureChestBlockEntity) context.level().getBlockEntity(c.getCoords().toPos());
+					blockEntity.setMimic(mimicName.get());
+					blockEntity.setLootTable(lootTable);
+				}
+			} else {
+				// TODO use SAFE PLACEMENT - see RandomizedContainerBlockEntity
+				context.level().setBlock(c.getCoords().toPos(),
+						Blocks.CHEST.rotate(Blocks.CHEST.defaultBlockState(), context.level(), c.getCoords().toPos(), placement.getRotation()),3);
+				RandomizableContainerBlockEntity.setLootTable(context.level(), context.random(), c.getCoords().toPos(), lootTable);
+
+			}
+		}
+	}
+
+	/**
 	 *
 	 * @param context
 	 * @param spawnerContexts
@@ -316,6 +408,7 @@ public class GeneratorUtil {
 		for (BlockInfoContext spawnerContext : spawnerContexts) {
 			try {
 				Treasure.LOGGER.debug("placing vanilla spawner at -> {}", spawnerContext.getCoords().toShortString());
+				// TODO no longer need deferred spawners - use regular ones.
 				context.level().setBlock(spawnerContext.getCoords().toPos(), TreasureBlocks.DEFERRED_RANDOM_VANILLA_SPAWNER.get().defaultBlockState(), 3);
 			} catch(Exception e) {
 				Treasure.LOGGER.error("error placing vanilla spawner", e);
@@ -324,10 +417,10 @@ public class GeneratorUtil {
 	}
 
 	/**
-	 *
+	 * Adds a proximity spawner of one type of mob.
 	 * @param context
 	 * @param proximityContexts
-	 * @param quantity
+	 * @param range
 	 * @param proximity
 	 */
 	public static void buildOneTimeSpawners(IWorldGenContext context, List<BlockInfoContext> proximityContexts, DoubleRange range, double proximity) {
@@ -344,6 +437,47 @@ public class GeneratorUtil {
 				te.setMobName(EntityType.getKey(r));
 				te.setMobNum(range);
 				te.setProximity(proximity);
+			}
+			else {
+				Treasure.LOGGER.debug("unable to generate proximity spawner at -> {}", c.getCoords().toShortString());
+			}
+		}
+	}
+
+	/**
+	 * Adds a proximity spawner of a list mobs to select from.
+	 * @param context
+	 * @param proximityContexts
+	 * @param mobNames
+	 * @param range
+	 * @param proximity
+	 */
+	public static void buildOneTimeSpawners(IWorldGenContext context, List<BlockInfoContext> proximityContexts, List<ResourceLocation> mobNames, IntegerRange range, double proximity) {
+		for (BlockInfoContext c : proximityContexts) {
+			Treasure.LOGGER.debug("placing proximity spawner at -> {}", c.getCoords().toShortString());
+			context.level().setBlock(c.getCoords().toPos(), TreasureBlocks.PROXIMITY_MULTI_SPAWNER.get().defaultBlockState(), 3);
+			TreasureProximityMultiSpawnerBlockEntity blockEntity = (TreasureProximityMultiSpawnerBlockEntity) context.level().getBlockEntity(c.getCoords().toPos());
+			if (blockEntity != null) {
+				blockEntity.setMobNames(mobNames);
+				blockEntity.setMobSizeRange(new IntegerRange(range.getMin(), range.getMax()));
+				blockEntity.setProximity(proximity);
+			}
+			else {
+				Treasure.LOGGER.debug("unable to generate proximity spawner at -> {}", c.getCoords().toShortString());
+			}
+		}
+	}
+
+	public static void buildOneTimeSpawners(IWorldGenContext context, List<BlockInfoContext> proximityContexts, MobSetConfiguration.MobSet mobSet, IntegerRange range, double proximity) {
+		for (BlockInfoContext c : proximityContexts) {
+			Treasure.LOGGER.debug("placing mobset proximity spawner at -> {}", c.getCoords().toShortString());
+			context.level().setBlock(c.getCoords().toPos(), TreasureBlocks.PROXIMITY_MOBSET_SPAWNER.get().defaultBlockState(), 3);
+			ProximityMobSetSpawnerBlockEntity blockEntity = (ProximityMobSetSpawnerBlockEntity) context.level().getBlockEntity(c.getCoords().toPos());
+			if (blockEntity != null) {
+				blockEntity.setMobSetName(ModUtil.asLocation(mobSet.getName()));
+				// TODO if range is provided, should it override
+				blockEntity.setMobSizeRange(new IntegerRange(mobSet.getCount().getMin(), mobSet.getCount().getMax()));
+				blockEntity.setProximity(proximity);
 			}
 			else {
 				Treasure.LOGGER.debug("unable to generate proximity spawner at -> {}", c.getCoords().toShortString());

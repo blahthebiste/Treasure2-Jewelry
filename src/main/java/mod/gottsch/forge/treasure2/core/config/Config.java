@@ -645,6 +645,19 @@ public class Config extends AbstractConfig {
 		STRUCTURE_CONFIG_SPEC = structSpecPair.getRight();
 	}
 
+	/*
+	 * Mobs Configuration
+	 */
+	public static final ForgeConfigSpec MOBS_CONFIG_SPEC;
+	public static MobSetConfiguration mobSetConfiguration;
+	public static  Map<ResourceLocation, MobSetConfiguration.MobSet> mobSetMap;
+
+	static {
+		final Pair<InternalMobSetConfiguration, ForgeConfigSpec	> mobSpecPair = new ForgeConfigSpec.Builder()
+				.configure(InternalMobSetConfiguration::new);
+		MOBS_CONFIG_SPEC = mobSpecPair.getRight();
+	}
+
 	private static class ChestConfig {
 		public ChestConfig(ForgeConfigSpec.Builder builder) {
 			builder.comment("####", " rarities = common, uncommon, scarce, rare, epic, legendary, mythical", "####").define("chestConfigs", new ArrayList<>());
@@ -682,6 +695,17 @@ public class Config extends AbstractConfig {
 		}
 	}
 
+	/*
+	 *
+	 */
+	private static class InternalMobSetConfiguration {
+		public InternalMobSetConfiguration(ForgeConfigSpec.Builder builder) {
+			// NOTE this define() name must match the wrapper property in the toml file.
+			builder.define("mobSetConfiguration", new ArrayList<>());
+			builder.build();
+		}
+	}
+
 	/**
 	 * 
 	 * @param configData
@@ -706,6 +730,28 @@ public class Config extends AbstractConfig {
 	}
 
 	/**
+	 *
+	 * @param configData
+	 * @return
+	 */
+	public static Optional<MobSetConfiguration> transformMobSetConfiguration(CommentedConfig configData) {
+		Treasure.LOGGER.info("transforming mob set config...");
+		MobSetConfigurationHolder holder = new ObjectConverter().toObject(configData, MobSetConfigurationHolder::new);
+		if (holder == null || holder.mobSetConfiguration == null || holder.mobSetConfiguration.isEmpty()) {
+			Treasure.LOGGER.info("mob set holder is null.");
+			return Optional.empty();
+		} else {
+			mobSetConfiguration = holder.mobSetConfiguration.get(0);
+			mobSetMap = new HashMap<>();
+			mobSetConfiguration.mobSets.forEach(mobSet -> {
+				Treasure.LOGGER.info("adding mobset to map -> {}", mobSet);
+				mobSetMap.put(ModUtil.asLocation(mobSet.getName()), mobSet);
+			});
+		}
+		return Optional.ofNullable(holder.mobSetConfiguration.get(0));
+	}
+
+	/**
 	 * A temporary holder classes.
 	 *
 	 */
@@ -716,6 +762,12 @@ public class Config extends AbstractConfig {
 	private static class StructureConfigurationHolder {
 		public List<StructureConfiguration> structureConfigs;
 	}
+
+	private static class MobSetConfigurationHolder {
+		// NOTE this field name MUST match the defined name in InternalMobSetConfiguration.
+		public List<MobSetConfiguration> mobSetConfiguration;
+	}
 }
+
 
 

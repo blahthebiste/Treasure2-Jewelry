@@ -105,6 +105,9 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.POUCH.get(), "Pouch");
         add(TreasureBlocks.SPANISH_MOSS.get(), "Spanish Moss");
         add(TreasureBlocks.WISHING_WELL.get(), "Wishing Well Stone");
+        add(TreasureBlocks.WISHING_WELL_COBBLESTONE.get(), "Wishing Well Cobblestone");
+        add(TreasureBlocks.WISHING_WELL_STONE_BRICKS.get(), "Wishing Well Stone Bricks");
+        add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get(), "Wishing Well Mossy Stone Bricks");
         add(TreasureBlocks.DESERT_WISHING_WELL.get(), "Desert Wishing Well Stone");
         add(TreasureItems.EYE_PATCH.get(), "Eye Patch");
         
@@ -170,7 +173,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.VIKING_CHEST.get(), "Viking Chest");
         add(TreasureBlocks.CARDBOARD_BOX.get(), "Cardboard Box");
         add(TreasureBlocks.MILK_CRATE.get(), "Milk Crate");
-        add(TreasureBlocks.BARREL_CHEST.get(), "Barrel Chest");
+        add(TreasureBlocks.BARREL_CHEST.get(), "Treasure Barrel");
+        add(TreasureBlocks.VANILLA_CHEST.get(), "Treasure Chest");
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_BRANCH.get(), "Wither Branch");
@@ -232,7 +236,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), "Cardboard Box Mimic");
         add(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), "Milk Crate Mimic");
         add(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), "Barrel Mimic");
-
+        add(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), "Chest Mimic");
         // eggs
         add(TreasureItems.BOUND_SOUL_EGG.get(), "Bound Soul Spawn Egg");
         add(TreasureItems.WOOD_CHEST_MIMIC_EGG.get(), "Wood Chest Mimic Spawn Egg");
@@ -244,6 +248,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.get(), "Cardboard Box Mimic Spawn Egg");
         add(TreasureItems.MILK_CRATE_MIMIC_EGG.get(), "Milk Crate Mimic Spawn Egg");
         add(TreasureItems.BARREL_MIMIC_EGG.get(), "Barrel Mimic Spawn Egg");
+        add(TreasureItems.VANILLA_CHEST_MIMIC_EGG.get(), "Chest Mimic Spawn Egg");
 
         /*
          *  Util.tooltips
@@ -342,6 +347,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.screen("spider_chest.name"), "Spider Chest");
         add(LangUtil.screen("cardboard_box.name"), "Cardboard Box");
         add(LangUtil.screen("milk_crate.name"), "Milk Crate");
+        add(LangUtil.screen("barrel_chest.name"), "Treasure Barrel");
+        add(LangUtil.screen("vanilla_chest.name"), "Treasure Chest");
         add(LangUtil.screen("wither_chest.name"), "Wither Chest");
 
         add(LangUtil.screen("treasure_map.uncommon"), "Uncommon Treasure Map");

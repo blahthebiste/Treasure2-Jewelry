@@ -23,17 +23,26 @@ import java.util.Optional;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.spatial.Coords;
+import mod.gottsch.forge.gottschcore.spatial.ICoords;
+import mod.gottsch.forge.gottschcore.world.IWorldGenContext;
 import mod.gottsch.forge.gottschcore.world.WorldGenContext;
 import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.api.TreasureApi;
+import mod.gottsch.forge.treasure2.core.generator.ChestGeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorResult;
+import mod.gottsch.forge.treasure2.core.generator.chest.IChestGenerator;
 import mod.gottsch.forge.treasure2.core.generator.well.IWellGenerator;
-import mod.gottsch.forge.treasure2.core.registry.TreasureTemplateRegistry;
-import mod.gottsch.forge.treasure2.core.registry.WellGeneratorRegistry;
+import mod.gottsch.forge.treasure2.core.registry.*;
+import mod.gottsch.forge.treasure2.core.registry.support.GeneratedChestContext;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
 import mod.gottsch.forge.treasure2.core.structure.StructureType;
 import mod.gottsch.forge.treasure2.core.structure.TemplateHolder;
+import mod.gottsch.forge.treasure2.core.world.feature.FeatureGenContext;
+import mod.gottsch.forge.treasure2.core.world.feature.FeatureType;
+import mod.gottsch.forge.treasure2.core.world.feature.IFeatureGenContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
@@ -43,6 +52,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
 
 
 /**
@@ -101,9 +111,33 @@ public class SpawnWellCommand {
 			// get the template
 			Optional<TemplateHolder> template = TreasureTemplateRegistry.getTemplate(name);
 			if (template.isPresent()) {
-				List<IWellGenerator<GeneratorResult<GeneratorData>>> generators =  WellGeneratorRegistry.get(StructureCategory.TERRANEAN);
-				IWellGenerator<GeneratorResult<GeneratorData>> generator = generators.get(random.nextInt(generators.size()));
-				Optional<GeneratorResult<GeneratorData>> result = generator.generate(new WorldGenContext(world, world.getChunkSource().getGenerator(), random), new Coords(pos), template.get());
+				List<IWellGenerator<GeneratorResult<? extends GeneratorData>>> generators =  WellGeneratorRegistry.get(StructureCategory.TERRANEAN);
+				IWellGenerator<GeneratorResult<? extends GeneratorData>> generator = generators.get(random.nextInt(generators.size()));
+				IFeatureGenContext context = new FeatureGenContext (world, world.getChunkSource().getGenerator(), random, FeatureType.TERRANEAN);
+				Optional<GeneratorResult<? extends GeneratorData>> result = generator.generate(context, new Coords(pos), template.get());
+
+				Treasure.LOGGER.debug("well result -> {}", result.toString());
+				// if a treasure chest was generated
+				if (result.get().getData() instanceof ChestGeneratorData) {
+					Treasure.LOGGER.debug("getting well chest data...");
+					ChestGeneratorData chestGenData = (ChestGeneratorData) result.get().getData();
+						ICoords chestCoords = chestGenData.getCoords();
+					Treasure.LOGGER.debug("chest coords -> {}", chestCoords);
+					// if chest is generated
+					if (chestCoords != null) {
+						BlockState chestState = chestGenData.getState();
+						// wells aren't tied to any rarity, so randomly select one
+						IRarity rarity = TreasureApi.getRarities().get(random.nextInt(TreasureApi.getRarities().size()));
+						Treasure.LOGGER.debug("rarity -> {}", rarity);
+						// get the chest generator
+						IChestGenerator chestGenerator = RarityLevelWeightedChestGeneratorRegistry.getNextGenerator(rarity, FeatureType.TERRANEAN);
+						Treasure.LOGGER.debug("chest generator -> {}", chestGenerator);
+						if (chestGenerator != null) {
+							GeneratorResult<ChestGeneratorData> chestGenerationResult = chestGenerator.generate(context, chestCoords, rarity, chestState);
+						}
+					}
+				}
+
 			}
 			else {
 				Treasure.LOGGER.debug("unable to locate well template -> {}", name);

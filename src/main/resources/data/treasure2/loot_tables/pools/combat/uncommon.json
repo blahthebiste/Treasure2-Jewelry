@@ -107,14 +107,14 @@
       "name" : "treasure2:iron_short_sword",
       "weight" : 5
     }, {
-      "entryName" : "copper_short_sword",
+      "entryName" : "chipped_copper_short_sword",
       "type" : "minecraft:item",
-      "name" : "treasure2:copper_short_sword",
+      "name" : "treasure2:chipped_copper_short_sword",
       "weight" : 5
     }, {
-      "entryName" : "iron_short_sword",
+      "entryName" : "chipped_iron_short_sword",
       "type" : "minecraft:item",
-      "name" : "treasure2:iron_short_sword",
+      "name" : "treasure2:chipped_iron_short_sword",
       "weight" : 5
     }, {
       "entryName" : "copper_broad_axe",

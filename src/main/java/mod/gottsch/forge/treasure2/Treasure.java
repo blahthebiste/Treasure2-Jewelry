@@ -4,6 +4,7 @@ import com.electronwill.nightconfig.core.CommentedConfig;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.block.entity.TreasureBlockEntities;
 import mod.gottsch.forge.treasure2.core.config.Config;
+import mod.gottsch.forge.treasure2.core.config.MobSetConfiguration;
 import mod.gottsch.forge.treasure2.core.config.StructureConfiguration;
 import mod.gottsch.forge.treasure2.core.entity.TreasureEntities;
 import mod.gottsch.forge.treasure2.core.inventory.TreasureContainers;
@@ -49,7 +50,8 @@ public class Treasure {
 	public static final String MODID = "treasure2";
 
 	private static final String CHESTS_CONFIG_VERSION = "1.20.1-v3";
-	private static final String STRUCTURES_CONFIG_VERSION = "1.20.1-v2";
+	private static final String STRUCTURES_CONFIG_VERSION = "1.20.1-v3";
+	private static final String MOBS_CONFIG_VERSION = "1.20.1-v1";
 	
 	public static Treasure instance;
 
@@ -62,7 +64,8 @@ public class Treasure {
 		// create the default configs
 		createServerConfig(Config.CHESTS_CONFIG_SPEC, "chests", CHESTS_CONFIG_VERSION);
 		createServerConfig(Config.STRUCTURE_CONFIG_SPEC, "structures", STRUCTURES_CONFIG_VERSION);
-		
+		createServerConfig(Config.MOBS_CONFIG_SPEC, "mobs", MOBS_CONFIG_VERSION);
+
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		
 		// register the deferred registries
@@ -141,6 +144,9 @@ public class Treasure {
 				} 
 				else if (spec == Config.STRUCTURE_CONFIG_SPEC) {
 					Optional<StructureConfiguration> structConfig = Config.transformStructureConfiguration(commentedConfig);
+				}
+				else if (spec == Config.MOBS_CONFIG_SPEC) {
+					Optional<MobSetConfiguration> structConfig = Config.transformMobSetConfiguration(commentedConfig);
 				}
 				else if (spec == Config.SERVER_SPEC) {
 //					FeatureCaches.initialize();

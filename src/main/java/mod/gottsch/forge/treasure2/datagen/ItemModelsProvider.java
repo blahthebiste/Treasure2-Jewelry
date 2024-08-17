@@ -312,6 +312,9 @@ public class ItemModelsProvider extends ItemModelProvider {
 		withExistingParent(TreasureItems.DEEPSLATE_SAPPHIRE_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_sapphire_ore"));
 		
 		withExistingParent(TreasureItems.WISHING_WELL_ITEM.getId().getPath(), modLoc("block/wishing_well_block"));
+		withExistingParent(TreasureItems.WISHING_WELL_COBBLESTONE_ITEM.getId().getPath(), modLoc("block/wishing_well_cobblestone_block"));
+		withExistingParent(TreasureItems.WISHING_WELL_STONE_BRICKS_ITEM.getId().getPath(), modLoc("block/wishing_well_stone_bricks_block"));
+		withExistingParent(TreasureItems.WISHING_WELL_MOSSY_STONE_BRICKS_ITEM.getId().getPath(), modLoc("block/wishing_well_mossy_stone_bricks_block"));
 		withExistingParent(TreasureItems.DESERT_WISHING_WELL_ITEM.getId().getPath(), modLoc("block/desert_wishing_well_block"));
 		
 		TreasureBlocks.CHESTS.forEach(g -> {
@@ -337,5 +340,7 @@ public class ItemModelsProvider extends ItemModelProvider {
 		withExistingParent(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.MILK_CRATE_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.BARREL_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.VANILLA_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
 	}
 }

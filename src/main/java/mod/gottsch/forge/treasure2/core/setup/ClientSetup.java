@@ -46,6 +46,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -91,7 +92,13 @@ public class ClientSetup {
             MenuScreens.register(TreasureContainers.POUCH_CONTAINER.get(), PouchScreen::new);           
             
             TreasureBlocks.CHESTS.forEach(chest -> {
-            	ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.cutoutMipped());
+//				if
+//				(chest.get() instanceof BarrelBlock) {
+//					ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.solid());
+//				} else
+//				{
+					ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.cutoutMipped());
+//				}
             });
 
             ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.SPANISH_MOSS.get(), RenderType.cutout());
@@ -126,6 +133,7 @@ public class ClientSetup {
 		event.registerBlockEntityRenderer(TreasureBlockEntities.CARDBOARD_BOX_BLOCK_ENTITY_TYPE.get(), CardboardBoxRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.MILK_CRATE_BLOCK_ENTITY_TYPE.get(), MilkCrateRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.BARREL_CHEST_BLOCK_ENTITY_TYPE.get(), BarrelChestRenderer::new);
+		event.registerBlockEntityRenderer(TreasureBlockEntities.VANILLA_CHEST_BLOCK_ENTITY_TYPE.get(), VanillaChestRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.WITHER_CHEST_BLOCK_ENTITY_TYPE.get(), WitherChestRenderer::new);
 		
 		event.registerEntityRenderer(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), BoundSoulRenderer::new);
@@ -138,6 +146,7 @@ public class ClientSetup {
 		event.registerEntityRenderer(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), BarrelMimicRenderer::new);
+		event.registerEntityRenderer(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), VanillaChestMimicRenderer::new);
 	}
 	
 	/**
@@ -161,6 +170,7 @@ public class ClientSetup {
 		event.registerLayerDefinition(MilkCrateModel.LAYER_LOCATION, MilkCrateModel::createBodyLayer);
 		event.registerLayerDefinition(WitherChestModel.LAYER_LOCATION, WitherChestModel::createBodyLayer);
 		event.registerLayerDefinition(BarrelChestModel.LAYER_LOCATION, BarrelChestModel::createBodyLayer);
+		event.registerLayerDefinition(VanillaChestModel.LAYER_LOCATION, VanillaChestModel::createBodyLayer);
 
 		event.registerLayerDefinition(BoundSoulModel.LAYER_LOCATION, BoundSoulModel::createBodyLayer);
 		event.registerLayerDefinition(WoodChestMimicModel.LAYER_LOCATION, WoodChestMimicModel::createBodyLayer);
@@ -172,6 +182,7 @@ public class ClientSetup {
 		event.registerLayerDefinition(CardboardBoxMimicModel.LAYER_LOCATION, CardboardBoxMimicModel::createBodyLayer);
 		event.registerLayerDefinition(MilkCrateMimicModel.LAYER_LOCATION, MilkCrateMimicModel::createBodyLayer);
 		event.registerLayerDefinition(BarrelMimicModel.LAYER_LOCATION, BarrelMimicModel::createBodyLayer);
+		event.registerLayerDefinition(VanillaChestMimicModel.LAYER_LOCATION, VanillaChestMimicModel::createBodyLayer);
 	}
 
 

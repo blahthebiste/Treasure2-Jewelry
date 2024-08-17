@@ -11,11 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed milk crate entity name.
 - Smoothed Mimic activating animation, removing the need to sync angle amount.
 - Refactored Mimic models.
+- Fixed duplicate copper and iron short sword entries in pools/combat/uncommon pool json file.
+- Fixed Wishables scan for validate location. Checks entire scan radius.
+- Updated Desert Wishing Well Block to use correct sandstone textures.
+- Update treasure2_structures-xxx-vx toml config file.
+- Wishing Wells can spawn mobs
+- Mob one-time spawners can be configured via the MobSet Configuration file.
+- Improved the Wishing Well decorations placements.
 
 ### Added
 - Barrel Chest
 - Barrel Mimic
 - MimicModel abstract class
+- 3+ Well designs
+- MobSet Configuration
 
 ## [3.9.0] - 2024-07-28
 

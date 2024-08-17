@@ -48,7 +48,8 @@ public class BarrelChestModel extends AbstractTreasureChestModel {
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition base = partdefinition.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
-		PartDefinition lid = partdefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 33).addBox(-14.0F, -7.0F, -0.01F, 14.0F, 14.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(7.0F, 16.0F, -8.0F));
+
+		PartDefinition lid = partdefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 33).addBox(0.0F, -7.0F, -0.01F, 14.0F, 14.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-7.0F, 16.0F, -8.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -59,7 +60,8 @@ public class BarrelChestModel extends AbstractTreasureChestModel {
 		float lidRotation = blockEntity.prevLidAngle + (blockEntity.lidAngle - blockEntity.prevLidAngle) * partialTicks;
 		lidRotation = 1.0F - lidRotation;
 		lidRotation = 1.0F - lidRotation * lidRotation * lidRotation;
-		getLid().yRot = -(lidRotation * (float)Math.PI / getAngleModifier());
+		// NOTE door swings in the opposite of Safe
+		getLid().yRot = (lidRotation * (float)Math.PI / getAngleModifier());
 	}
 
 
@@ -67,7 +69,7 @@ public class BarrelChestModel extends AbstractTreasureChestModel {
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay,
 							   float red, float green, float blue, float alpha, AbstractTreasureChestBlockEntity blockEntity) {
 		base.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-//		lid.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		lid.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	@Override
