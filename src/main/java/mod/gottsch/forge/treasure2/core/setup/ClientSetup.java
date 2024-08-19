@@ -103,7 +103,8 @@ public class ClientSetup {
 
             ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.SPANISH_MOSS.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.SKELETON.get(), RenderType.cutout());
-        });
+			ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.CLOVER.get(), RenderType.cutout());
+		});
     }
 
     

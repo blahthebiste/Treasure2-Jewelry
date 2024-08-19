@@ -108,6 +108,11 @@ public class TreasureTags {
 		public static final TagKey<Block> WITHER_CHESTS = mod(Treasure.MODID, "chests/rarity/special/wither");
 		public static final TagKey<Block> CAULDRON_CHESTS = mod(Treasure.MODID, "chests/rarity/special/cauldron");
 
+		// wishing well candidates
+		public static final TagKey<Block> WISHING_WELL_CANDIDATES = mod(Treasure.MODID, "wells/candidates");
+		// wishing well blocks
+		public static final TagKey<Block> WISHING_WELLS = mod(Treasure.MODID, "wells/wishing_wells");
+
 		public static TagKey<Block> mod(String domain, String path) {
 			return BlockTags.create(new ResourceLocation(domain, path));
 		}

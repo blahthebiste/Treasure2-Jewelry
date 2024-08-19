@@ -110,6 +110,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get(), "Wishing Well Mossy Stone Bricks");
         add(TreasureBlocks.DESERT_WISHING_WELL.get(), "Desert Wishing Well Stone");
         add(TreasureItems.EYE_PATCH.get(), "Eye Patch");
+        add(TreasureItems.CLOVER_ITEM.get(), "Four Leaf Clover");
         
         // swords
         add(TreasureItems.COPPER_SHORT_SWORD.get(), "Copper Short Sword");
@@ -216,6 +217,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.GRAVESTONE3_SMOOTH_QUARTZ.get(), "Quartz Gravestone");
         add(TreasureBlocks.SKULL_CROSSBONES.get(), "Skull and Crossbones");
         add(TreasureBlocks.SKELETON.get(), "Skeleton");
+        add(TreasureBlocks.CLOVER.get(), "Four Leaf Clover");
         
         add(TreasureBlocks.GRAVESTONE1_SPAWNER_STONE.get(), "Stone Gravestone Spawner");
         add(TreasureBlocks.GRAVESTONE2_SPAWNER_COBBLESTONE.get(), "Cobblestone Gravestone Spawner");
@@ -260,7 +262,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("treasure_tool"), "Required for most Treasure2 recipes");
         add(LangUtil.tooltip("pouch"), "Holds small valuables - coins, gems, charms, etc.");
         add(LangUtil.tooltip("wishable"), "Can be thrown into Wishing Wells for loot");
-        
+        add(LangUtil.tooltip("clover"), "Can use on certain blocks, like Mossy Cobblestone, to transform them into Wishing Well blocks.~All adjacent block with in a 4 block radius will be transformed.");
+
         // keys and locks
         add(LangUtil.tooltip("key_lock.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("key_lock.category"), "Category: %s");

@@ -20,10 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved the Wishing Well decorations placements.
 
 ### Added
+- Four leaf Clover item - can use this item to transform blocks into Wishing Wells.
+- Four leaf Clover block - rare plant that appears around Wishing Wells.
+- 4+ Well designs
 - Barrel Chest
 - Barrel Mimic
 - MimicModel abstract class
-- 3+ Well designs
 - MobSet Configuration
 
 ## [3.9.0] - 2024-07-28

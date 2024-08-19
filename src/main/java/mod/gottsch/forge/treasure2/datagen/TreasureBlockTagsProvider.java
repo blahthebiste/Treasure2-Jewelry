@@ -24,6 +24,7 @@ import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -64,6 +65,19 @@ public class TreasureBlockTagsProvider extends BlockTagsProvider {
     	tag(TreasureTags.Blocks.GOLD_SKULL_CHESTS).add(TreasureBlocks.GOLD_SKULL_CHEST.get());
     	tag(TreasureTags.Blocks.CRYSTAL_SKULL_CHESTS).add(TreasureBlocks.CRYSTAL_SKULL_CHEST.get());
     	tag(TreasureTags.Blocks.WITHER_CHESTS).add(TreasureBlocks.WITHER_CHEST.get());
+
+		// wishing well candidates
+		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.COBBLESTONE);
+		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.MOSSY_COBBLESTONE);
+		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.STONE_BRICKS);
+		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.MOSSY_STONE_BRICKS);
+
+		// wishing well blocks
+		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL.get());
+		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_COBBLESTONE.get());
+		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_STONE_BRICKS.get());
+		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get());
+
     }
 
 }

@@ -238,6 +238,8 @@ public class TreasureBlocks {
 			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
 
 
+	public static final RegistryObject<Block> CLOVER = Registration.BLOCKS.register("clover_block", () -> new Block(Properties.copy(Blocks.TALL_GRASS)));
+
 	// collections
 	public static final List<RegistryObject<Block>> CHESTS = new ArrayList<>(25);
 	public static final List<RegistryObject<Block>> GRAVESTONES = new ArrayList<>(25);

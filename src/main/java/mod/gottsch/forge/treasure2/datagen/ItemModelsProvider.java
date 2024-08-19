@@ -188,7 +188,9 @@ public class ItemModelsProvider extends ItemModelProvider {
 				mcLoc("item/generated"), "layer0", modLoc("item/skeleton_item"));
 		singleTexture(TreasureItems.EYE_PATCH.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/eye_patch"));
-		
+		singleTexture(TreasureItems.CLOVER_ITEM.getId().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/clover"));
+
 		// short swords
 		singleTexture(TreasureItems.COPPER_SHORT_SWORD.getId().getPath(),
 				modLoc("item/short_sword"), "layer0", modLoc("item/weapon/copper_short_sword"));

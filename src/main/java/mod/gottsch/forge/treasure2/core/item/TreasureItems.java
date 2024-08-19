@@ -344,6 +344,7 @@ public class TreasureItems {
 	public static final RegistryObject<Item> DESERT_WISHING_WELL_ITEM = fromBlock(TreasureBlocks.DESERT_WISHING_WELL, TREASURE_PROPS_SUPPLIER);
 
 	public static final RegistryObject<Item> SKELETON_ITEM = Registration.ITEMS.register("skeleton", () -> new SkeletonItem(TreasureBlocks.SKELETON.get(), TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> CLOVER_ITEM = Registration.ITEMS.register("clover", () -> new CloverItem(TreasureBlocks.CLOVER.get(), TREASURE_PROPS_SUPPLIER.get()));
 
 	// vanity items
 	public static final RegistryObject<Item> EYE_PATCH = Registration.ITEMS.register("eye_patch",

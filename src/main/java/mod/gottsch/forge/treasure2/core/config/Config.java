@@ -19,6 +19,7 @@ package mod.gottsch.forge.treasure2.core.config;
 
 import java.util.*;
 
+import mod.gottsch.forge.treasure2.core.enums.MarkerType;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.electronwill.nightconfig.core.CommentedConfig;
@@ -475,6 +476,7 @@ public class Config extends AbstractConfig {
 			public ConfigValue<Integer> scanForItemRadius;
 			public ConfigValue<Integer> scanForWellRadius;
 			public ConfigValue<Integer> scanMinBlockCount;
+			public ConfigValue<Integer> cloverProbability;
 
 			public Wells(final ForgeConfigSpec.Builder builder)	 {
 				builder.comment(CATEGORY_DIV, " Wells properties", CATEGORY_DIV)
@@ -495,7 +497,7 @@ public class Config extends AbstractConfig {
 
 				this.probability = builder
 						.comment(" The probability that a well will generate at selected spawn location.",
-								" Including a non-100 value increases the randomization of well placement.")
+								" Setting a non-100.0 value increases the randomization of well placement.")
 						.defineInRange("probability", 85.0, 0.0, 100.0);
 
 				this.minBlockDistance = builder
@@ -527,6 +529,10 @@ public class Config extends AbstractConfig {
 						.comment(" The number of blocks in radius around a wishable item (hortizontally) that are scanned to discover a well.",
 								"  Ex. if item is at (0, 0, 0), then scan range would be (-1, 0, -1) -> (1, 0, 1).")
 						.defineInRange("scanMinBlockCount", 2, 1, 8);
+
+				this.probability = builder
+						.comment(" The probability that a well will generate a Clover.")
+						.defineInRange("probability", 15.0, 0.0, 100.0);
 
 				builder.pop();
 			}

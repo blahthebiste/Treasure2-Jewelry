@@ -41,6 +41,7 @@ import mod.gottsch.forge.treasure2.core.config.StructureConfiguration.StructMeta
 import mod.gottsch.forge.treasure2.core.generator.*;
 import mod.gottsch.forge.treasure2.core.generator.template.TemplatePoiInspector;
 import mod.gottsch.forge.treasure2.core.generator.template.TemplateGenerator;
+import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.registry.MimicRegistry;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
 import mod.gottsch.forge.treasure2.core.structure.StructureType;
@@ -255,9 +256,14 @@ public class WellGenerator implements IWellGenerator<GeneratorResult<? extends G
 		Treasure.LOGGER.debug("marker block -> {} at -> {}", markerContext.getState(), markerContext.getCoords().toShortString());
 
 		if (markerContext.equalsBlock(Blocks.GRASS_BLOCK) || markerContext.equalsBlock(Blocks.DIRT)) {
-			blockState = context.random().nextInt(4) == 0
-			? TALL_PLANTS.get(context.random().nextInt(TALL_PLANTS.size())).defaultBlockState()
-			: FLOWERS.get(context.random().nextInt(FLOWERS.size())).defaultBlockState();
+
+			if (RandomHelper.checkProbability(context.random(), Config.SERVER.wells.cloverProbability.get())) {
+				blockState = TreasureBlocks.CLOVER.get().defaultBlockState();
+			} else {
+				blockState = context.random().nextInt(4) == 0
+						? TALL_PLANTS.get(context.random().nextInt(TALL_PLANTS.size())).defaultBlockState()
+						: FLOWERS.get(context.random().nextInt(FLOWERS.size())).defaultBlockState();
+			}
 		}
 		else if (markerContext.equalsBlock(Blocks.COARSE_DIRT)) {
 			blockState = Blocks.TALL_GRASS.defaultBlockState();
