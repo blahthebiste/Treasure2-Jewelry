@@ -25,6 +25,20 @@
     },
     {
       "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/moldy_crate_chest_mimic_patchouli.png"],
+      "title": "Moldy Crate Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/cardboard_box_mimic_patchouli.png"],
+      "title": "Cardboard Box Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
       "images": ["treasure2:textures/gui/entries/viking_chest_mimic_patchouli.png"],
       "title": "Viking Chest Mimic",
       "text": "",
@@ -48,6 +62,20 @@
       "type": "patchouli:image",
       "images": ["treasure2:textures/gui/entries/cauldron_mimic_patchouli.png"],
       "title": "Cauldron Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/vanilla_chest_mimic_patchouli.png"],
+      "title": "Chest Mimic",
+      "text": "",
+      "border": true
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/barrel_mimic_patchouli.png"],
+      "title": "Barrel Mimic",
       "text": "",
       "border": true
     },

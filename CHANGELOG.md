@@ -1,4 +1,4 @@
-**# Changelog for Treasure2 1.20.1
+# Changelog for Treasure2 1.20.1
 
 All notable changes to this project will be documented in this file.
 
@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved the Wishing Well decorations placements.
 - Better align hitbox for Ironbound chest
 - Removed shadow on Chest inventory label
-- ** TODO - see 1.18.2 KeyItem: Fixed the breaking of a merged key taking too much damage.
+- Fixed the breaking of a merged key taking too much damage.
 
 ### Added
 - Four leaf Clover item - can use this item to transform blocks into Wishing Wells.

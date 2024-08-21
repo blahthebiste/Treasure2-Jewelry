@@ -361,8 +361,13 @@ public class KeyItem extends Item implements IKeyEffects {
 						// it is only 'breaking' 1 key's worth of damage
 						// ex k1(1/10d) + k2(0/10d) = k3(1/20d), only apply 9 damage
 						// so k3 = (10/20d) ie 1 key's worth damage was applied.
-						int durability = cap.durability(heldItemStack.getItem());
-						int damage = heldItemStack.getDamageValue() + (durability - (heldItemStack.getDamageValue() % /*heldItemStack.getMaxDamage()*/durability));
+//						8/20/2024:
+//						int durability = cap.durability(heldItemStack.getItem());
+
+						// get the default durability of of the item
+						int durability = getDurability();
+						int damage = heldItemStack.getDamageValue() + (durability - (heldItemStack.getDamageValue() % durability));
+
 						heldItemStack.setDamageValue(damage);
 						Treasure.LOGGER.debug("damaging key -> {}", heldItemStack.getDamageValue());
 						if (heldItemStack.getDamageValue() >= cap.durability(heldItemStack.getItem())) {
