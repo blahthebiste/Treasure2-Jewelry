@@ -105,6 +105,7 @@ public class WorldEventHandler {
 		}
 	}
 
+
 	public static boolean isServerLoaded() {
 		return isLoaded;
 	}

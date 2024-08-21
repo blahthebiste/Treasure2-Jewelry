@@ -44,10 +44,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.DungeonHooks;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ProximityMobSetSpawnerBlockEntity extends AbstractProximityBlockEntity {
     private static final String MOBSET_NAME = "mobSetName";
@@ -148,11 +145,15 @@ public class ProximityMobSetSpawnerBlockEntity extends AbstractProximityBlockEnt
             if (weightedMobs.isPresent()) {
                 // for the number of mobs
                 for (int x = 0; x < numberOfMobs; ++x) {
-                    ResourceLocation mobName = weightedMobs.get().next();
+                    ResourceLocation mobName = DEFAULT_MOB;
+                    if (!weightedMobs.get().isEmpty()) {
+                        mobName = weightedMobs.get().next();
+                    }
 
                     Optional<EntityType<?>> entityType = EntityType.byString(mobName.toString());
                     if (entityType.isEmpty()) {
                         Treasure.LOGGER.debug("unable to get entityType -> {}", mobName);
+                        weightedMobs.get().remove(mobName);
                         continue;
                     }
                     Entity mob = ((EntityType<?>) entityType.get()).create(level);

@@ -21,11 +21,18 @@ package mod.gottsch.forge.treasure2.core.event;
 
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.core.entity.item.ExplosionProofItemEntity;
+import mod.gottsch.forge.treasure2.core.item.TreasureChestBlockItem;
 import mod.gottsch.forge.treasure2.core.item.WealthItem;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
+import net.minecraft.client.telemetry.events.WorldLoadEvent;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -77,4 +84,35 @@ public class ItemEventHandler {
 //		}
 //		lastTossed = item;
 //	}
+
+
+	/**
+	 * wrap Treasure Chest BlockItems in a explosion proof ItemEntity on join.
+	 * @param event
+	 */
+	@SubscribeEvent
+	public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
+		if(!event.getLevel().isClientSide() && event.getEntity() instanceof ItemEntity && !(event.getEntity() instanceof ExplosionProofItemEntity)) {
+			ItemEntity itemEntity = (ItemEntity) event.getEntity();
+
+			if (itemEntity.getItem().getItem() instanceof TreasureChestBlockItem) {
+				ExplosionProofItemEntity newItemEntity = new ExplosionProofItemEntity(event.getLevel(), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), itemEntity.getItem());
+				newItemEntity.setDeltaMovement(itemEntity.getDeltaMovement());
+				newItemEntity.setDefaultPickUpDelay();
+				event.getLevel().addFreshEntity(newItemEntity);
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	/**
+	 * prevent Treasure Chest BlockItems that have been tossed into Wishing Wells from taking Lightning damage.
+	 * @param event
+	 */
+	@SubscribeEvent
+	public static void onLightningStrike(EntityStruckByLightningEvent event) {
+		if(event.getEntity() instanceof ExplosionProofItemEntity) {
+			event.setCanceled(true);
+		}
+	}
 }

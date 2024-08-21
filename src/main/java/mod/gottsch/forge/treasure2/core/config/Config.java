@@ -476,7 +476,7 @@ public class Config extends AbstractConfig {
 			public ConfigValue<Integer> scanForItemRadius;
 			public ConfigValue<Integer> scanForWellRadius;
 			public ConfigValue<Integer> scanMinBlockCount;
-			public ConfigValue<Integer> cloverProbability;
+			public ConfigValue<Double> cloverProbability;
 
 			public Wells(final ForgeConfigSpec.Builder builder)	 {
 				builder.comment(CATEGORY_DIV, " Wells properties", CATEGORY_DIV)
@@ -530,9 +530,9 @@ public class Config extends AbstractConfig {
 								"  Ex. if item is at (0, 0, 0), then scan range would be (-1, 0, -1) -> (1, 0, 1).")
 						.defineInRange("scanMinBlockCount", 2, 1, 8);
 
-				this.probability = builder
+				this.cloverProbability = builder
 						.comment(" The probability that a well will generate a Clover.")
-						.defineInRange("probability", 15.0, 0.0, 100.0);
+						.defineInRange("probability", 5.0, 0.0, 100.0);
 
 				builder.pop();
 			}

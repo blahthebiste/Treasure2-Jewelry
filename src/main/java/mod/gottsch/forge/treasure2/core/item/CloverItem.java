@@ -109,7 +109,21 @@ public class CloverItem extends Item {
 				} else {
 					context.getLevel().setBlockAndUpdate(activePos, TreasureBlocks.WISHING_WELL.get().defaultBlockState());
 				}
-				// NOTE can't control Server particles properly. they go all crazy directions.
+
+				RandomSource random = context.getLevel().getRandom();
+				int coinIndex = random.nextInt(3);
+				SimpleParticleType coinParticle = switch(coinIndex) {
+					case 0 -> TreasureParticles.COPPER_COIN_PARTICLE.get();
+					case 1 -> TreasureParticles.SILVER_COIN_PARTICLE.get();
+					default -> TreasureParticles.GOLD_COIN_PARTICLE.get();
+				};
+				((ServerLevel)context.getLevel()).sendParticles(coinParticle,
+						(double)activePos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1),
+						(double)activePos.getY() + random.nextDouble() + random.nextDouble(),
+						(double)activePos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1),
+						0,
+						0.0D, 0.07D, 0.0D, 0.3);
+
 
 				// check all adjacent neighbors
 				checkAndAdd(context.getLevel(), pos, activePos.north(), active, visited);

@@ -285,6 +285,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("key_lock.key_ring"), "Container for keys");
         
         // chests
+        add(LangUtil.tooltip("chest.locked"), "Locked!");
+        add(LangUtil.tooltip("chest.usage"), "Can be thrown into Wishing Well to remove all locks... for a price.");
         add(LangUtil.tooltip("chest.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("chest.max_locks"), "Max Locks: %s");
         add(LangUtil.tooltip("chest.container_size"), "Inventory Size: %s");

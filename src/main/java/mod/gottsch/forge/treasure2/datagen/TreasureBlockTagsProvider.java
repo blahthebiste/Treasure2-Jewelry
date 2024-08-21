@@ -72,12 +72,6 @@ public class TreasureBlockTagsProvider extends BlockTagsProvider {
 		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.STONE_BRICKS);
 		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.MOSSY_STONE_BRICKS);
 
-		// wishing well blocks
-		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL.get());
-		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_COBBLESTONE.get());
-		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_STONE_BRICKS.get());
-		tag(TreasureTags.Blocks.WISHING_WELLS).add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get());
-
     }
 
 }

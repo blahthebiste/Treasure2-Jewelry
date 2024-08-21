@@ -115,7 +115,6 @@ public class WellGenerator implements IWellGenerator<GeneratorResult<? extends G
 		 * Environment Checks
 		 */
 		// 1. determine y-coord of land surface for the actual spawn coords
-		//		actualSpawnCoords = WorldInfo.getDryLandSurfaceCoords(world, new Coords(actualSpawnCoords.getX(), 255, actualSpawnCoords.getZ()));
 		actualSpawnCoords = WorldInfo.getDryLandSurfaceCoords(context.level(), context.chunkGenerator(), actualSpawnCoords);
 
 		if (actualSpawnCoords == null || actualSpawnCoords == Coords.EMPTY) {
