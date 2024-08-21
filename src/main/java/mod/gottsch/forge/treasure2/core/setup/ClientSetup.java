@@ -18,37 +18,9 @@
 package mod.gottsch.forge.treasure2.core.setup;
 
 import mod.gottsch.forge.treasure2.Treasure;
-import mod.gottsch.forge.treasure2.client.model.blockentity.BandedChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CardboardBoxModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CauldronChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CompressorChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.CrateChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.DreadPirateChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.MilkCrateModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SafeModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SkullChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.SpiderChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.StandardChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.StrongboxModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.VikingChestModel;
-import mod.gottsch.forge.treasure2.client.model.blockentity.WitherChestModel;
+import mod.gottsch.forge.treasure2.client.model.blockentity.*;
 import mod.gottsch.forge.treasure2.client.model.entity.*;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.CardboardBoxRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.CauldronChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.CompressorChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.CrateChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.DreadPirateChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.IronboundChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.MilkCrateRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.MoldyCrateChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.PirateChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.SafeRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.SkullChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.SpiderChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.StrongboxRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.VikingChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.WitherChestRenderer;
-import mod.gottsch.forge.treasure2.client.renderer.blockentity.WoodChestRenderer;
+import mod.gottsch.forge.treasure2.client.renderer.blockentity.*;
 import mod.gottsch.forge.treasure2.client.renderer.entity.*;
 import mod.gottsch.forge.treasure2.client.screen.CompressorChestScreen;
 import mod.gottsch.forge.treasure2.client.screen.KeyRingScreen;
@@ -74,6 +46,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -91,11 +64,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = Treasure.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
-	/**
-	 * Register the {@link IBlockColor} handlers.
-	 *
-	 * @param event The event
-	 */
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -124,12 +92,19 @@ public class ClientSetup {
             MenuScreens.register(TreasureContainers.POUCH_CONTAINER.get(), PouchScreen::new);           
             
             TreasureBlocks.CHESTS.forEach(chest -> {
-            	ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.cutoutMipped());
+//				if
+//				(chest.get() instanceof BarrelBlock) {
+//					ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.solid());
+//				} else
+//				{
+					ItemBlockRenderTypes.setRenderLayer(chest.get(), RenderType.cutoutMipped());
+//				}
             });
 
             ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.SPANISH_MOSS.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.SKELETON.get(), RenderType.cutout());
-        });
+			ItemBlockRenderTypes.setRenderLayer(TreasureBlocks.CLOVER.get(), RenderType.cutout());
+		});
     }
 
     
@@ -158,6 +133,8 @@ public class ClientSetup {
 		event.registerBlockEntityRenderer(TreasureBlockEntities.VIKING_CHEST_BLOCK_ENTITY_TYPE.get(), VikingChestRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.CARDBOARD_BOX_BLOCK_ENTITY_TYPE.get(), CardboardBoxRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.MILK_CRATE_BLOCK_ENTITY_TYPE.get(), MilkCrateRenderer::new);
+		event.registerBlockEntityRenderer(TreasureBlockEntities.BARREL_CHEST_BLOCK_ENTITY_TYPE.get(), BarrelChestRenderer::new);
+		event.registerBlockEntityRenderer(TreasureBlockEntities.VANILLA_CHEST_BLOCK_ENTITY_TYPE.get(), VanillaChestRenderer::new);
 		event.registerBlockEntityRenderer(TreasureBlockEntities.WITHER_CHEST_BLOCK_ENTITY_TYPE.get(), WitherChestRenderer::new);
 		
 		event.registerEntityRenderer(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), BoundSoulRenderer::new);
@@ -169,7 +146,8 @@ public class ClientSetup {
 		event.registerEntityRenderer(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimicRenderer::new);
-
+		event.registerEntityRenderer(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), BarrelMimicRenderer::new);
+		event.registerEntityRenderer(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), VanillaChestMimicRenderer::new);
 	}
 	
 	/**
@@ -192,7 +170,9 @@ public class ClientSetup {
 		event.registerLayerDefinition(CardboardBoxModel.LAYER_LOCATION, CardboardBoxModel::createBodyLayer);
 		event.registerLayerDefinition(MilkCrateModel.LAYER_LOCATION, MilkCrateModel::createBodyLayer);
 		event.registerLayerDefinition(WitherChestModel.LAYER_LOCATION, WitherChestModel::createBodyLayer);
-		
+		event.registerLayerDefinition(BarrelChestModel.LAYER_LOCATION, BarrelChestModel::createBodyLayer);
+		event.registerLayerDefinition(VanillaChestModel.LAYER_LOCATION, VanillaChestModel::createBodyLayer);
+
 		event.registerLayerDefinition(BoundSoulModel.LAYER_LOCATION, BoundSoulModel::createBodyLayer);
 		event.registerLayerDefinition(WoodChestMimicModel.LAYER_LOCATION, WoodChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(PirateChestMimicModel.LAYER_LOCATION, PirateChestMimicModel::createBodyLayer);
@@ -202,7 +182,8 @@ public class ClientSetup {
 		event.registerLayerDefinition(MoldyCrateChestMimicModel.LAYER_LOCATION, MoldyCrateChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(CardboardBoxMimicModel.LAYER_LOCATION, CardboardBoxMimicModel::createBodyLayer);
 		event.registerLayerDefinition(MilkCrateMimicModel.LAYER_LOCATION, MilkCrateMimicModel::createBodyLayer);
-
+		event.registerLayerDefinition(BarrelMimicModel.LAYER_LOCATION, BarrelMimicModel::createBodyLayer);
+		event.registerLayerDefinition(VanillaChestMimicModel.LAYER_LOCATION, VanillaChestMimicModel::createBodyLayer);
 	}
 
 

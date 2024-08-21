@@ -36,24 +36,24 @@ import mod.gottsch.forge.treasure2.core.structure.IStructureCategory;
  *
  */
 public class WellGeneratorRegistry {
-	private static final Multimap<IStructureCategory, IWellGenerator<GeneratorResult<GeneratorData>>> REGISTRY = ArrayListMultimap.create();
+	private static final Multimap<IStructureCategory, IWellGenerator<GeneratorResult<? extends GeneratorData>>> REGISTRY = ArrayListMultimap.create();
 	
 	private WellGeneratorRegistry() {}
 	
-	public static void register(IStructureCategory category, IWellGenerator<GeneratorResult<GeneratorData>> generator) {
+	public static void register(IStructureCategory category, IWellGenerator<GeneratorResult<? extends GeneratorData>> generator) {
 		if (category != null) {
 			REGISTRY.put(category, generator);
 		}
 	}
 	
-	public static List<IWellGenerator<GeneratorResult<GeneratorData>>> get(IStructureCategory category) {
+	public static List<IWellGenerator<GeneratorResult<? extends GeneratorData>>> get(IStructureCategory category) {
 		if (REGISTRY.containsKey(category)) {
 			return new ArrayList<>(REGISTRY.get(category));
 		}
 		return new ArrayList<>();
 	}
 	
-	public static List<IWellGenerator<GeneratorResult<GeneratorData>>> getValues() {
+	public static List<IWellGenerator<GeneratorResult<? extends GeneratorData>>> getValues() {
 		return new ArrayList<>(REGISTRY.values());
 	}
 }

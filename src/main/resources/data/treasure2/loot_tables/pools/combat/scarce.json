@@ -44,6 +44,7 @@
       "weight" : 10
     }, {
       "entryName" : "leather_chestplate",
+
       "type" : "minecraft:item",
       "name" : "minecraft:leather_chestplate",
       "weight" : 15,

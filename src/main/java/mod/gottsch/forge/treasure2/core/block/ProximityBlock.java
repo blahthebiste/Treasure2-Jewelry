@@ -33,9 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class ProximityBlock extends AbstractProximityBlock implements ITreasureBlock {
 
 	/**
-	 * 
-	 * @param modID
-	 * @param name
+	 *
 	 * @param properties
 	 */
 	public ProximityBlock(Block.Properties properties) {

@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.MagmaBlock;
  *
  * @param <T>
  */
-public class CardboardBoxMimicModel<T extends Entity> extends EntityModel<T> {
+public class CardboardBoxMimicModel<T extends Entity> extends MimicModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Treasure.MODID, "cardboard_box_mimic"), "main");
 
@@ -51,7 +51,7 @@ public class CardboardBoxMimicModel<T extends Entity> extends EntityModel<T> {
 	private final ModelPart eye1;
 
 	private float bodyY;
-	private float lidXRot;
+//	private float lidXRot;
 
 	/**
 	 *
@@ -65,10 +65,9 @@ public class CardboardBoxMimicModel<T extends Entity> extends EntityModel<T> {
 		this.rightFlap = lid.getChild("rightFlap");
 		this.leftFlap = lid.getChild("leftFlap");
 		this.tongue = base.getChild("tongue");
-
 		
 		bodyY = body.y;
-		lidXRot = lid.xRot;
+//		lidXRot = lid.xRot;
 	}
 
 	/**
@@ -131,57 +130,73 @@ public class CardboardBoxMimicModel<T extends Entity> extends EntityModel<T> {
 	/**
 	 * 
 	 */
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		CardboardBoxMimic mimic = (CardboardBoxMimic)entity;
-		if (mimic.isActive()) {
-			body.xRot = 0.2618F; // 15 degrees
-
-			// chomp lid
-			if (mimic.hasTarget()) {
-				bobMouth(lid,22.5f, 22.5f, ageInTicks);
-			} else {
-				bobMouth(lid, 22.5f, 3f, ageInTicks);
-			}
-			eye1.xRot = -1.003564F;
-			tongue.xRot = -0.174533F; // 10
-			leftFlap.zRot = -0.305F;
-			rightFlap.zRot = 0.305F;
-
-			bob(body, bodyY, ageInTicks);
-		} else {
-			if (mimic.getAmount() < 1F) {
-				body.xRot = mimic.getAmount() * 0.2618F;
-				lid.xRot = mimic.getAmount() * -0.7854F;
-				eye1.xRot = mimic.getAmount() * -1.003564F;
-				tongue.xRot = mimic.getAmount() * -0.174533F;
-				leftFlap.zRot = mimic.getAmount() * -0.305F;
-				rightFlap.zRot = mimic.getAmount() * 0.305F;
-			}
-		}
-	}
-
-	public void bob(ModelPart part, float originY, float age) {
-		part.y = originY + (Mth.cos(age * 0.25F) * 0.5F + 0.05F);
-	}
-
-	/**
-	 *
-	 * @param mouth
-	 * @param originRot original rotation in degrees
-	 * @param maxRot maximum rotation in degrees
-	 * @param age
-	 */
-	public void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * maxRot));
-	}
+//	@Override
+//	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+//		CardboardBoxMimic mimic = (CardboardBoxMimic)entity;
+//		if (mimic.isActive()) {
+//			body.xRot = 0.2618F; // 15 degrees
+//
+//			// chomp lid
+//			if (mimic.hasTarget()) {
+//				bobMouth(lid,22.5f, 22.5f, ageInTicks);
+//			} else {
+//				bobMouth(lid, 22.5f, 3f, ageInTicks);
+//			}
+//			eye1.xRot = -1.003564F;
+//			tongue.xRot = -0.174533F; // 10
+//			leftFlap.zRot = -0.305F;
+//			rightFlap.zRot = 0.305F;
+//
+//			bob(body, bodyY, ageInTicks);
+//		} else {
+//			if (mimic.getAmount() < 1F) {
+//				body.xRot = mimic.getAmount() * 0.2618F;
+//				lid.xRot = mimic.getAmount() * -0.7854F;
+//				eye1.xRot = mimic.getAmount() * -1.003564F;
+//				tongue.xRot = mimic.getAmount() * -0.174533F;
+//				leftFlap.zRot = mimic.getAmount() * -0.305F;
+//				rightFlap.zRot = mimic.getAmount() * 0.305F;
+//			}
+//		}
+//	}
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
-	
-	protected static float degToRad(float degrees) {
-		return degrees * (float)Math.PI / 180 ;
+
+	@Override
+	public void activeAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.activeAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+		eye1.xRot = -1.003564F;
+		tongue.xRot = -0.174533F; // 10
+		leftFlap.zRot = -0.305F;
+		rightFlap.zRot = 0.305F;
+	}
+
+	@Override
+	public void openAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float timeSlice) {
+		body.xRot = timeSlice * 0.2618F;
+		lid.xRot = timeSlice * getMaxOpenAngle();
+		eye1.xRot = timeSlice * -1.003564F;
+		tongue.xRot = timeSlice * -0.174533F;
+		leftFlap.zRot = timeSlice * -0.305F;
+		rightFlap.zRot = timeSlice * 0.305F;
+	}
+
+	@Override
+	public ModelPart getBody() {
+		return body;
+	}
+
+	@Override
+	public float getBodyY() {
+		return bodyY;
+	}
+
+	@Override
+	public ModelPart getLid() {
+		return lid;
 	}
 }

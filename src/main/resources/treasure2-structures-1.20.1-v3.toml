@@ -8,15 +8,63 @@
 	### WELLS ###
 	[[structureConfigs.structMetas]]
 		name = "treasure2:terranean/well/canopy_wishing_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
 		biomeWhitelist = []
 		biomeBlacklist = ["minecraft:desert"]
 		[structureConfigs.structMetas.offset]
 		x = 0
 		y = -6
 		z = 0
-		
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/canopy_wishing_well2"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = []
+		biomeBlacklist = ["minecraft:desert"]
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -3
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/canopy_wishing_well3"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = []
+		biomeBlacklist = ["minecraft:desert"]
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -4
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/canopy_wishing_well4"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = []
+		biomeBlacklist = ["minecraft:desert"]
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -4
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/canopy_wishing_well5"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = []
+		biomeBlacklist = ["minecraft:desert"]
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -3
+		z = 0
+
 	[[structureConfigs.structMetas]]
 		name = "treasure2:terranean/well/simple_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
 		biomeWhitelist = []
 		biomeBlacklist = ["minecraft:desert"]
 		[structureConfigs.structMetas.offset]
@@ -26,6 +74,8 @@
 
 	[[structureConfigs.structMetas]]
 		name = "treasure2:terranean/well/wood_draw_wishing_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
 		biomeWhitelist = []
 		biomeBlacklist = ["minecraft:desert"]
 		[structureConfigs.structMetas.offset]
@@ -35,6 +85,8 @@
 		
 	[[structureConfigs.structMetas]]
 		name = "treasure2:terranean/well/desert_wishing_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
 		biomeWhitelist = ["minecraft:desert"]
 		biomeBlacklist = []
 		[structureConfigs.structMetas.offset]
@@ -44,11 +96,46 @@
 		
 	[[structureConfigs.structMetas]]
 		name = "treasure2:terranean/well/desert_wishing_well2"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
 		biomeWhitelist = ["minecraft:desert"]
 		biomeBlacklist = []
 		[structureConfigs.structMetas.offset]
 		x = 0
 		y = -6
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/forest_wishing_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = ["minecraft:forest", "minecraft:birch_forest", "minecraft:old_growth_birch_forest", "minecraft:dark_forest", "minecraft:grove"]
+		biomeBlacklist = []
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -3
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/jungle_wishing_well1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = ["minecraft:bamboo_jungle", "minecraft:jungle", "minecraft:sparse_jungle"]
+		biomeBlacklist = []
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -4
+		z = 0
+
+	[[structureConfigs.structMetas]]
+		name = "treasure2:terranean/well/fountain1"
+		mobSet = "treasure2:wishing_well_group"
+		mobSets = []
+		biomeWhitelist = []
+		biomeBlacklist = ["minecraft:desert"]
+		[structureConfigs.structMetas.offset]
+		x = 0
+		y = -1
 		z = 0
 		
 	### MARKER ###

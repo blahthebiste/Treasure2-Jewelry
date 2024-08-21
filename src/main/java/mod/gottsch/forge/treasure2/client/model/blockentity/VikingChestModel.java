@@ -95,8 +95,6 @@ public class VikingChestModel extends AbstractTreasureChestModel {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-
-	
 	@Override
 	public ModelPart getLid() {
 		return lid;

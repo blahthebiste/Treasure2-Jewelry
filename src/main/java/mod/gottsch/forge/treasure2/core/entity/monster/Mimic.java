@@ -18,6 +18,7 @@
 package mod.gottsch.forge.treasure2.core.entity.monster;
 
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
+import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.sound.TreasureSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -91,33 +92,33 @@ public abstract class Mimic extends Monster {
 	@Override
 	public void aiStep() {
 		if (!WorldInfo.isClientSide(level())) {
-			if (!isActive() && amount < 1F) {
-				amount += 0.05;
-				setAmount(amount);
-				
-				if (amount > 1F) {
-					amount = 1F;
-					setActive(true);
-				}
-			}
-			else {
-				if (amount <= 0F) {
-					amount = 0F;
-					isOpening = true;
-				}
-				if (amount >=1F) {
-					amount = 1F;
-					isOpening = false;
-				}
-				
-				if (isOpening) {
-					amount += 0.1F;
-				}
-				else {
-					amount -= 0.1F;
-				}
-				setAmount(amount);
-			}
+//			if (!isActive() && amount < 1F) {
+//				amount += 0.05;
+//				setAmount(amount);
+//
+//				if (amount > 1F) {
+//					amount = 1F;
+////					setActive(true);
+//				}
+//			}
+//			else {
+//				if (amount <= 0F) {
+//					amount = 0F;
+//					isOpening = true;
+//				}
+//				if (amount >=1F) {
+//					amount = 1F;
+//					isOpening = false;
+//				}
+//
+//				if (isOpening) {
+//					amount += 0.1F;
+//				}
+//				else {
+//					amount -= 0.1F;
+//				}
+//				setAmount(amount);
+//			}
 			
 			if (this.getTarget() != null) {
 				setHasTarget(true);

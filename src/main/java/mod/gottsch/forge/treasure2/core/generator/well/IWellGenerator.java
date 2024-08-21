@@ -51,24 +51,20 @@ public interface IWellGenerator<RESULT extends IGeneratorResult<?>> {
 			Blocks.WHITE_TULIP, Blocks.PINK_TULIP, Blocks.OXEYE_DAISY, Blocks.CORNFLOWER, Blocks.LILY_OF_THE_VALLEY});
 	public static final List<Block> MUSHROOMS = Arrays.asList(new Block[] {Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM});
 	public static final List<Block> TALL_PLANTS = Arrays.asList(new Block[] {Blocks.TALL_GRASS, Blocks.LARGE_FERN});
-	
+
 	/**
-	 * 
-	 * @param world
-	 * @param random
+	 *
+	 * @param context
 	 * @param spawnCoords
-	 * @param config
 	 * @return
 	 */
 	public abstract Optional<RESULT> generate(IWorldGenContext context, ICoords spawnCoords);
-	
+
 	/**
-	 * 
-	 * @param world
-	 * @param random
+	 *
+	 * @param context
 	 * @param originalSpawnCoords
 	 * @param templateHolder
-	 * @param config
 	 * @return
 	 */
 	public abstract Optional<RESULT> generate(IWorldGenContext context, ICoords originalSpawnCoords,TemplateHolder templateHolder);
@@ -97,8 +93,7 @@ public interface IWellGenerator<RESULT extends IGeneratorResult<?>> {
 	
 	/**
 	 * Default implementation based on a 3x3 well structure.
-	 * @param world
-	 * @param random
+	 * @param context
 	 * @param coords
 	 */
 	public default void addDecoration(IWorldGenContext context, ICoords coords) {

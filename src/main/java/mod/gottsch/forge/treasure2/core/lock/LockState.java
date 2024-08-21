@@ -123,6 +123,13 @@ public class LockState {
 		this.lockItem = lockItem;
 	}
 
+	/**
+	 * convenience method to set lock to null.
+	 */
+	public void removeLock() {
+		setLock(null);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

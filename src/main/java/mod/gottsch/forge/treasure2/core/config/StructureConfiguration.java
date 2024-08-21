@@ -36,6 +36,8 @@ public class StructureConfiguration {
 	 */
 	public static class StructMeta {
 		private String name;
+		private String mobSet;
+		private List<String> mobSets;
 		private List<String> biomeWhitelist;
 		private List<String> biomeBlacklist;
 		private Position offset;
@@ -73,11 +75,36 @@ public class StructureConfiguration {
 		public void setOffset(Position offset) {
 			this.offset = offset;
 		}
-		
+
+		public String getMobSet() {
+			return mobSet;
+		}
+
+		public void setMobSet(String mobSet) {
+			this.mobSet = mobSet;
+		}
+
+		public List<String> getMobSets() {
+			if (mobSets == null)	{
+				mobSets = new ArrayList<>();
+			}
+			return mobSets;
+		}
+
+		public void setMobSets(List<String> mobSets) {
+			this.mobSets = mobSets;
+		}
+
 		@Override
 		public String toString() {
-			return "StructMeta [name=" + name + ", biomeWhitelist=" + biomeWhitelist + ", biomeBlacklist="
-					+ biomeBlacklist + ", offset=" + offset + "]";
+			return "StructMeta{" +
+					"name='" + name + '\'' +
+					", mobSet='" + mobSet + '\'' +
+					", mobSets=" + mobSets +
+					", biomeWhitelist=" + biomeWhitelist +
+					", biomeBlacklist=" + biomeBlacklist +
+					", offset=" + offset +
+					'}';
 		}
 	}
 

@@ -148,7 +148,7 @@ public class TreasureShapeBuilder {
 	}
 
 	public static VoxelShape[] buildFullBlock() {
-		VoxelShape block = Block.box(0, 0, 0, 16, 16, 16);
+		VoxelShape block = Block.box(0, 0.01, 0, 16, 16, 16);
 		return new VoxelShape[] {
 				 block,  block,  block,  block
 		};

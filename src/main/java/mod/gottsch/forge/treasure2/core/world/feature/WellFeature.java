@@ -22,6 +22,7 @@ import java.util.Optional;
 
 import com.mojang.serialization.Codec;
 
+import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.gottschcore.spatial.Coords;
 import mod.gottsch.forge.gottschcore.spatial.ICoords;
@@ -29,21 +30,29 @@ import mod.gottsch.forge.gottschcore.world.IWorldGenContext;
 import mod.gottsch.forge.gottschcore.world.WorldGenContext;
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.api.TreasureApi;
 import mod.gottsch.forge.treasure2.core.cache.FeatureCaches;
 import mod.gottsch.forge.treasure2.core.cache.SimpleDistanceCache;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.enums.Rarity;
+import mod.gottsch.forge.treasure2.core.generator.ChestGeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorResult;
+import mod.gottsch.forge.treasure2.core.generator.chest.IChestGenerator;
 import mod.gottsch.forge.treasure2.core.generator.well.IWellGenerator;
 import mod.gottsch.forge.treasure2.core.persistence.TreasureSavedData;
+import mod.gottsch.forge.treasure2.core.registry.DimensionalGeneratedCache;
+import mod.gottsch.forge.treasure2.core.registry.GeneratedCache;
+import mod.gottsch.forge.treasure2.core.registry.RarityLevelWeightedChestGeneratorRegistry;
 import mod.gottsch.forge.treasure2.core.registry.WellGeneratorRegistry;
+import mod.gottsch.forge.treasure2.core.registry.support.GeneratedChestContext;
 import mod.gottsch.forge.treasure2.core.registry.support.GeneratedContext;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -53,7 +62,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
  * @author Mark Gottschling
  *
  */
-public class WellFeature extends Feature<NoneFeatureConfiguration> implements ITreasureFeature {
+public class WellFeature extends Feature<NoneFeatureConfiguration> implements IChestFeature {
 
 	private int waitChunksCount = 0;
 
@@ -116,18 +125,49 @@ public class WellFeature extends Feature<NoneFeatureConfiguration> implements IT
 
 		// select a well generator
 		IWorldGenContext worldContext = new WorldGenContext(context);
-		IWellGenerator<GeneratorResult<GeneratorData>> wellGenerator = selectGenerator(worldContext, spawnCoords);
+		IWellGenerator<GeneratorResult<? extends GeneratorData>> wellGenerator = selectGenerator(worldContext, spawnCoords);
 		
 		// generate structure
-		Optional<GeneratorResult<GeneratorData>> wellResult = wellGenerator.generate(worldContext, spawnCoords);
-		if (!wellResult.isPresent()) {
+		Optional<GeneratorResult<? extends GeneratorData>> wellGenerationResult = wellGenerator.generate(worldContext, spawnCoords);
+		if (wellGenerationResult.isEmpty()) {
+			Treasure.LOGGER.debug("well result is empty?!");
 			return false;
 		}
-		Treasure.LOGGER.debug("well result -> {}", wellResult.toString());
-		
+		Treasure.LOGGER.debug("well result -> {}", wellGenerationResult.toString());
+
+		// if a treasure chest was generated
+		if (wellGenerationResult.get().getData() instanceof ChestGeneratorData) {
+			Treasure.LOGGER.debug("getting well chest data...");
+			ChestGeneratorData chestGenData = (ChestGeneratorData) wellGenerationResult.get().getData();
+			// TODO GeneratorResult(s) need to be revamped with Optional
+			ICoords chestCoords = chestGenData.getCoords();
+			Treasure.LOGGER.debug("chest coords -> {}", chestCoords);
+			// if chest is generated
+			if (chestCoords != null) {
+				BlockState chestState = chestGenData.getState();
+				// wells aren't tied to any rarity, so randomly select one
+				IRarity rarity = TreasureApi.getRarities().get(context.random().nextInt(TreasureApi.getRarities().size()));
+				// get the chest generator
+				IChestGenerator chestGenerator = RarityLevelWeightedChestGeneratorRegistry.getNextGenerator(rarity, FeatureType.TERRANEAN);
+				GeneratorResult<ChestGeneratorData> chestGenerationResult = chestGenerator.generate(new FeatureGenContext(context, FeatureType.TERRANEAN), chestCoords, rarity, chestState);
+				if (chestGenerationResult.isSuccess()) {
+					Treasure.LOGGER.debug("generating chest is success");
+					// NOTE don't require the registry in order to create the chest for a well - it'd be nice to register the chest though
+					// get the chest registry
+					GeneratedCache<GeneratedChestContext> chestCache = DimensionalGeneratedCache.getChestGeneratedCache(dimension, FeatureType.TERRANEAN);
+					if (chestCache != null) {
+						chestGenerationResult.getData().setPit(false);
+						chestGenerationResult.getData().setRarity(rarity);
+						cacheGeneratedChest(context.level(), rarity, FeatureType.TERRANEAN, chestCache, chestGenerationResult);
+						updateChestGeneratorRegistry(dimension, rarity, FeatureType.TERRANEAN);
+					}
+				}
+			}
+		}
+
 		// update cache and mark dirty
 		GeneratedContext genContext = new GeneratedContext();
-		genContext.setCoords(wellResult.get().getData().getSpawnCoords());
+		genContext.setCoords(wellGenerationResult.get().getData().getSpawnCoords());
 		genContext.setRarity(Rarity.NONE);
 		cache.cache(spawnCoords, genContext);
 
@@ -139,7 +179,7 @@ public class WellFeature extends Feature<NoneFeatureConfiguration> implements IT
 		
 		return true;
 	}
-	
+
 	/**
 	 * @param world
 	 * @param cache
@@ -219,9 +259,9 @@ public class WellFeature extends Feature<NoneFeatureConfiguration> implements IT
 	 * @param coords
 	 * @return
 	 */
-	public IWellGenerator<GeneratorResult<GeneratorData>> selectGenerator(IWorldGenContext context, ICoords coords) {
-		List<IWellGenerator<GeneratorResult<GeneratorData>>> generators = WellGeneratorRegistry.get(StructureCategory.TERRANEAN);
-		IWellGenerator<GeneratorResult<GeneratorData>> generator = generators.get(context.random().nextInt(generators.size()));
+	public IWellGenerator<GeneratorResult<? extends GeneratorData>> selectGenerator(IWorldGenContext context, ICoords coords) {
+		List<IWellGenerator<GeneratorResult<? extends GeneratorData>>> generators = WellGeneratorRegistry.get(StructureCategory.TERRANEAN);
+		IWellGenerator<GeneratorResult<? extends GeneratorData>> generator = generators.get(context.random().nextInt(generators.size()));
 		return generator;
 	}
 }

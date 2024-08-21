@@ -111,6 +111,12 @@ public class TreasureBlocks {
 	public static final RegistryObject<Block> MILK_CRATE = Registration.BLOCKS.register("milk_crate", () -> new StandardChestBlock(MilkCrateBlockEntity.class,
 			LockLayouts.MILK_CRATE, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildMilkCrate()));
 
+	public static final RegistryObject<Block> BARREL_CHEST = Registration.BLOCKS.register("barrel_chest", () -> new StandardChestBlock(BarrelChestBlockEntity.class,
+			LockLayouts.SINGLE_FULL, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)).setBounds(TreasureShapeBuilder.buildFullBlock()));
+
+	public static final RegistryObject<Block> VANILLA_CHEST = Registration.BLOCKS.register("vanilla_chest", () -> new StandardChestBlock(VanillaChestBlockEntity.class,
+			LockLayouts.SINGLE_STANDARD, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)));
+
 	public static final RegistryObject<Block> WITHER_CHEST = Registration.BLOCKS.register("wither_chest", () -> new WitherChestBlock(WitherChestBlockEntity.class,
 			LockLayouts.ARMOIRE, Properties.of().mapColor(MapColor.WOOD).strength(2.5F).lightLevel(light)));
 
@@ -180,6 +186,9 @@ public class TreasureBlocks {
 
 	// proximity spawners
 	public static final RegistryObject<Block> PROXIMITY_SPAWNER = Registration.BLOCKS.register("proximity_spawner", () -> new ProximityBlock(Block.Properties.of().replaceable().noCollission().noLootTable().air()));
+	public static final RegistryObject<Block> PROXIMITY_MULTI_SPAWNER = Registration.BLOCKS.register("proximity_multi_spawner", () -> new ProximityMultiSpawnerBlock(Block.Properties.of().replaceable().noCollission().noLootTable().air()));
+	public static final RegistryObject<Block> PROXIMITY_MOBSET_SPAWNER = Registration.BLOCKS.register("proximity_mobset_spawner", () -> new ProximityMobSetSpawnerBlock(Block.Properties.of().replaceable().noCollission().noLootTable().air()));
+
 	// gravestone spawners
 	public static final RegistryObject<Block> GRAVESTONE1_SPAWNER_STONE = Registration.BLOCKS.register("gravestone1_spawner_stone", () -> new GravestoneSpawnerBlock(Block.Properties.of().mapColor(MapColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)).setBounds(TreasureShapeBuilder.buildGravestone1()));
@@ -218,9 +227,18 @@ public class TreasureBlocks {
 	public static final RegistryObject<Block> SPANISH_MOSS = Registration.BLOCKS.register("spanish_moss", () -> new SpanishMossBlock(Properties.of().mapColor(MapColor.WOOD)));
 	public static final RegistryObject<Block> WISHING_WELL = Registration.BLOCKS.register("wishing_well_block", () -> new WishingWellBlock(
 			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> WISHING_WELL_COBBLESTONE = Registration.BLOCKS.register("wishing_well_cobblestone_block", () -> new WishingWellBlock(
+			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> WISHING_WELL_STONE_BRICKS = Registration.BLOCKS.register("wishing_well_stone_bricks_block", () -> new WishingWellBlock(
+			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> WISHING_WELL_MOSSY_STONE_BRICKS = Registration.BLOCKS.register("wishing_well_mossy_stone_bricks_block", () -> new WishingWellBlock(
+			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
+
 	public static final RegistryObject<Block> DESERT_WISHING_WELL = Registration.BLOCKS.register("desert_wishing_well_block", () -> new WishingWellBlock(
 			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
 
+
+	public static final RegistryObject<Block> CLOVER = Registration.BLOCKS.register("clover_block", () -> new Block(Properties.copy(Blocks.TALL_GRASS)));
 
 	// collections
 	public static final List<RegistryObject<Block>> CHESTS = new ArrayList<>(25);
@@ -247,6 +265,8 @@ public class TreasureBlocks {
 		CHESTS.add(CARDBOARD_BOX);
 		CHESTS.add(MILK_CRATE);
 		CHESTS.add(WITHER_CHEST);
+		CHESTS.add(BARREL_CHEST);
+		CHESTS.add(VANILLA_CHEST);
 
 		GRAVESTONES.add(GRAVESTONE1_STONE);
 		GRAVESTONES.add(GRAVESTONE1_COBBLESTONE);
