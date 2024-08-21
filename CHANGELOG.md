@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [x.x.x] - 2024-
 
 ### Changed
@@ -18,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Wishing Wells can spawn mobs
 - Mob one-time spawners can be configured via the MobSet Configuration file.
 - Improved the Wishing Well decorations placements.
+- Better align hitbox for Ironbound chest
+- Removed shadow on Chest inventory label
+- ** TODO - see 1.18.2 KeyItem: Fixed the breaking of a merged key taking too much damage.
 
 ### Added
 - Four leaf Clover item - can use this item to transform blocks into Wishing Wells.
@@ -27,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Barrel Mimic
 - MimicModel abstract class
 - MobSet Configuration
+- Mobs patchouli entry.
 
 ## [3.9.0] - 2024-07-28
 

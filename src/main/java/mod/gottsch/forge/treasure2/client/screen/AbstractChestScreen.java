@@ -85,7 +85,7 @@ public abstract class AbstractChestScreen<T extends AbstractTreasureContainerMen
     }
     
     protected void drawShadowLabel(GuiGraphics guiGraphics, Component title, int xpos, int ypos, int color, int shadow) {
-    	guiGraphics.drawString(this.font, title, xpos+1, ypos+1, shadow);
+//    	guiGraphics.drawString(this.font, title, xpos+1, ypos+1, shadow);
     	guiGraphics.drawString(this.font, title, xpos, ypos, color);
     }
     
