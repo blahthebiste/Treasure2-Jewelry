@@ -1,0 +1,7 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "treasure2:block/clover_grass"
+	},
+	"render_type": "cutout"
+}

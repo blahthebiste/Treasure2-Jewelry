@@ -37,7 +37,8 @@ import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 public class TreasureWorldGenProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 
-    		// TODO this line will not compile!
+    		// NOTE this line will not compile!
+            // NOTE 8/16/24 this does compile now.... test out.
 //            .add(Registries.CONFIGURED_FEATURE, TreasureConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, TreasurePlacedFeatures::bootstrap);
 

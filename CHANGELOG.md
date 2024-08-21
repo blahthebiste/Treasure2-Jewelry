@@ -1,9 +1,37 @@
-**# Changelog for Treasure2 1.20.1
+# Changelog for Treasure2 1.20.1
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## [3.10.0] - 2024-08-21
+
+### Changed
+- Fixed milk crate entity name.
+- Smoothed Mimic activating animation, removing the need to sync angle amount.
+- Refactored Mimic models.
+- Fixed duplicate copper and iron short sword entries in pools/combat/uncommon pool json file.
+- Fixed Wishables scan for validate location. Checks entire scan radius.
+- Updated Desert Wishing Well Block to use correct sandstone textures.
+- Update treasure2_structures-xxx-vx toml config file.
+- Wishing Wells can spawn mobs
+- Mob one-time spawners can be configured via the MobSet Configuration file.
+- Improved the Wishing Well decorations placements.
+- Better align hitbox for Ironbound chest
+- Removed shadow on Chest inventory label
+- Fixed the breaking of a merged key taking too much damage.
+
+### Added
+- Four leaf Clover item - can use this item to transform blocks into Wishing Wells.
+- Four leaf Clover block - rare plant that appears around Wishing Wells.
+- 4+ Well designs
+- Barrel Chest
+- Barrel Mimic
+- MimicModel abstract class
+- MobSet Configuration
+- Mobs patchouli entry.
 
 ## [3.9.0] - 2024-07-28
 

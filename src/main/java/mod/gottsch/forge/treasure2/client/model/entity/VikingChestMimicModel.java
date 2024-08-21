@@ -37,7 +37,7 @@ import net.minecraft.world.entity.Entity;
  *
  * @param <T>
  */
-public class VikingChestMimicModel<T extends Entity> extends EntityModel<T> {
+public class VikingChestMimicModel<T extends Entity> extends MimicModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Treasure.MODID, "viking_chest_mimic"), "main");
 
@@ -141,50 +141,73 @@ public class VikingChestMimicModel<T extends Entity> extends EntityModel<T> {
 	/**
 	 * 
 	 */
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		VikingChestMimic mimic = (VikingChestMimic)entity;
-		if (mimic.isActive()) {
-			body.xRot = 0.2618F; // 15 degrees
+//	@Override
+//	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+//		VikingChestMimic mimic = (VikingChestMimic)entity;
+//		if (mimic.isActive()) {
+//			body.xRot = 0.2618F; // 15 degrees
+//
+//			// chomp lid
+//			if (mimic.hasTarget()) {
+//				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
+//			} else {
+//				bobMouth(lid, 22.5f, 3f, ageInTicks);
+//			}
+//			topLatch.xRot = -0.2618F;
+//			eye1.xRot = -1.003564F;
+//			tongue.xRot = -0.174533F; // 10
+//			frontLatch.xRot = 3.14159F;
+//
+//			bob(body, bodyY, ageInTicks);
+//		} else {
+//			if (timeSlice < 1F) {
+//				body.xRot = timeSlice * 0.2618F;
+//				lid.xRot = timeSlice * -0.7854F;
+//				topLatch.xRot = timeSlice * -0.2618F;
+//				frontLatch.xRot = timeSlice * 3.14159F;
+//				eye1.xRot = timeSlice * -1.003564F;
+//				tongue.xRot = timeSlice * -0.174533F;
+//			}
+//		}
+//	}
 
-			// chomp lid
-			if (mimic.hasTarget()) {
-				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
-			} else {
-				bobMouth(lid, 22.5f, 3f, ageInTicks);
-			}
-			topLatch.xRot = -0.2618F;
-			eye1.xRot = -1.003564F;
-			tongue.xRot = -0.174533F; // 10
-			frontLatch.xRot = 3.14159F;
-
-			bob(body, bodyY, ageInTicks);
-		} else {
-			if (mimic.getAmount() < 1F) {
-				body.xRot = mimic.getAmount() * 0.2618F;
-				lid.xRot = mimic.getAmount() * -0.7854F;
-				topLatch.xRot = mimic.getAmount() * -0.2618F;
-				frontLatch.xRot = mimic.getAmount() * 3.14159F;
-				eye1.xRot = mimic.getAmount() * -1.003564F;
-				tongue.xRot = mimic.getAmount() * -0.174533F;
-			}
-		}
-	}
-
-	public static void bob(ModelPart part, float originY, float age) {
-		part.y = originY + (Mth.cos(age * 0.25F) * 0.5F + 0.05F);
-	}
-
-	public static void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * 3f));
-	}
-	
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
-	protected static float degToRad(float degrees) {
-		return degrees * (float)Math.PI / 180 ;
+	@Override
+	public void activeAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.activeAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		
+		topLatch.xRot = -0.2618F;
+		eye1.xRot = -1.003564F;
+		tongue.xRot = -0.174533F; // 10
+		frontLatch.xRot = 3.14159F;
+	}
+
+	@Override
+	public void openAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float timeSlice) {
+		body.xRot = timeSlice * 0.2618F;
+		lid.xRot = timeSlice * getMaxOpenAngle();
+		topLatch.xRot = timeSlice * -0.2618F;
+		frontLatch.xRot = timeSlice * 3.14159F;
+		eye1.xRot = timeSlice * -1.003564F;
+		tongue.xRot = timeSlice * -0.174533F;
+	}
+
+	@Override
+	public ModelPart getBody() {
+		return body;
+	}
+
+	@Override
+	public float getBodyY() {
+		return bodyY;
+	}
+
+	@Override
+	public ModelPart getLid() {
+		return lid;
 	}
 }

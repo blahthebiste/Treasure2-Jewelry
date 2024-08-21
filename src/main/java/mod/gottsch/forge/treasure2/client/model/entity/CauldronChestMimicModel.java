@@ -19,10 +19,8 @@ package mod.gottsch.forge.treasure2.client.model.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.entity.monster.CauldronChestMimic;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -41,7 +39,7 @@ import net.minecraft.world.entity.Entity;
  *
  * @param <T>
  */
-public class CauldronChestMimicModel<T extends Entity> extends EntityModel<T> {
+public class CauldronChestMimicModel<T extends Entity> extends MimicModel<T> {
 
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Treasure.MODID, "cauldron_chest_mimic"), "main");
 	
@@ -169,84 +167,111 @@ public class CauldronChestMimicModel<T extends Entity> extends EntityModel<T> {
 	/**
 	 * 
 	 */
-	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		CauldronChestMimic mimic = (CauldronChestMimic)entity;
-		if (mimic.isActive()) {
-			body.xRot = 0.2618F; // 15 degrees
-			frontLeg1.xRot = body.xRot;
-			frontLeg2.xRot = body.xRot;
-			backLeg1.xRot = body.xRot;
-			backLeg2.xRot = body.xRot;
-			
-			// chomp lid
-			if (mimic.hasTarget()) {
-				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
-			}
-			else {
-				bobMouth(lid, 22.5f, 3f, ageInTicks);
-			}
-			rightLid.zRot = -2.26893F; //130
-			leftLid.zRot = -rightLid.zRot;
-			spike1.xRot =  1.13446F; // 65
-			spike2.xRot =  0.959931F; //
-			spike3.xRot = 0.7854F; // 45
-			
-			eye1.xRot = -1.003564F;
-			eye2.xRot = eye1.xRot;
-			eye3.xRot = eye1.xRot;
-			tongue.xRot = -0.174533F; // 10
-			
-			// swing legs
-			frontSwing1.xRot = Mth.cos(limbSwing * 0.349066f * 1f) * 1.4F * limbSwingAmount;
-			backSwing1.xRot = Mth.cos(limbSwing * 0.349066f  * 1f + (float)Math.PI) * 1.4F * limbSwingAmount;
-			
-			frontSwing2.xRot = backSwing1.xRot;
-			backSwing2.xRot = frontSwing1.xRot;
-			
-			// bob spikes
-			bob(spike1, ageInTicks, 0.26f, -1);
-			bob(spike2, ageInTicks, 0.26f, -1);
-			bob(spike3, ageInTicks, 0.26f, -1);
-			
-		} else {
-			if (mimic.getAmount() < 1F) {
-				body.xRot = mimic.getAmount() * 0.2618F;
-				frontLeg1.xRot = body.xRot;
-				frontLeg2.xRot = body.xRot;
-				backLeg1.xRot = body.xRot;
-				backLeg2.xRot = body.xRot;				
-				
-				lid.xRot = mimic.getAmount() * -0.7854F;
-				rightLid.zRot = mimic.getAmount() * -2.26893F; //130
-				leftLid.zRot = -rightLid.zRot;
-				spike1.xRot =  mimic.getAmount() * 1.13446F; // 65
-				spike2.xRot =  mimic.getAmount() * 0.959931F; //
-				spike3.xRot = mimic.getAmount() * 0.7854F; // 45
-				
-				eye1.xRot = mimic.getAmount() * -1.003564F;
-				eye2.xRot = eye1.xRot;
-				eye3.xRot = eye1.xRot;
-				tongue.xRot = mimic.getAmount() * -0.174533F;
-			}
-		}
-	}
+//	@Override
+//	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+//		CauldronChestMimic mimic = (CauldronChestMimic)entity;
+//		if (mimic.isActive()) {
+//			body.xRot = 0.2618F; // 15 degrees
+//
+//
+//			// chomp lid
+//			if (mimic.hasTarget()) {
+//				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
+//			}
+//			else {
+//				bobMouth(lid, 22.5f, 3f, ageInTicks);
+//			}
+//
+//
+//		} else {
+//			if (mimic.getAmount() < 1F) {
+//
+//			}
+//		}
+//	}
 
-	public static void bob(ModelPart part, float age, float radians, int direction) {
-		part.xRot += direction * (Mth.sin(age * 0.05F) * radians + 0.05F);
-	}
-	
-	public static void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * maxRot));
-	}
-	
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		legs.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
+
+	public void bobXRot(ModelPart part, float age, float radians, int direction) {
+		part.xRot += direction * (Mth.sin(age * 0.05F) * radians + 0.05F);
+	}
+
+	@Override
+	public void bob(ModelPart part, float originY, float age) {
+		// do nothing
+	}
 	
-	protected static float degToRad(float degrees) {
-		return degrees * (float)Math.PI / 180 ;
+	@Override
+	public void activeAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		super.activeAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+		// reset
+		frontLeg1.xRot = body.xRot;
+		frontLeg2.xRot = body.xRot;
+		backLeg1.xRot = body.xRot;
+		backLeg2.xRot = body.xRot;
+		
+		rightLid.zRot = -2.26893F; //130
+		leftLid.zRot = -rightLid.zRot;
+		spike1.xRot =  1.13446F; // 65
+		spike2.xRot =  0.959931F; //
+		spike3.xRot = 0.7854F; // 45
+
+		eye1.xRot = -1.003564F;
+		eye2.xRot = eye1.xRot;
+		eye3.xRot = eye1.xRot;
+		tongue.xRot = -0.174533F; // 10
+
+		// swing legs
+		frontSwing1.xRot = Mth.cos(limbSwing * 0.349066f * 1f) * 1.4F * limbSwingAmount;
+		backSwing1.xRot = Mth.cos(limbSwing * 0.349066f  * 1f + (float)Math.PI) * 1.4F * limbSwingAmount;
+
+		frontSwing2.xRot = backSwing1.xRot;
+		backSwing2.xRot = frontSwing1.xRot;
+
+		// bob spikes
+		bobXRot(spike1, ageInTicks, 0.26f, -1);
+		bobXRot(spike2, ageInTicks, 0.26f, -1);
+		bobXRot(spike3, ageInTicks, 0.26f, -1);
+	}
+
+	@Override
+	public void openAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float timeSlice) {
+		body.xRot = timeSlice * 0.2618F;
+		frontLeg1.xRot = body.xRot;
+		frontLeg2.xRot = body.xRot;
+		backLeg1.xRot = body.xRot;
+		backLeg2.xRot = body.xRot;
+
+		lid.xRot = timeSlice * getMaxOpenAngle();
+		rightLid.zRot = timeSlice * -2.26893F; //130
+		leftLid.zRot = -rightLid.zRot;
+		spike1.xRot =  timeSlice * 1.13446F; // 65
+		spike2.xRot =  timeSlice * 0.959931F; //
+		spike3.xRot = timeSlice * 0.7854F; // 45
+
+		eye1.xRot = timeSlice * -1.003564F;
+		eye2.xRot = eye1.xRot;
+		eye3.xRot = eye1.xRot;
+		tongue.xRot = timeSlice * -0.174533F;
+	}
+
+	@Override
+	public ModelPart getBody() {
+		return body;
+	}
+
+	@Override
+	public float getBodyY() {
+		return 0F;
+	}
+
+	@Override
+	public ModelPart getLid() {
+		return lid;
 	}
 }

@@ -329,7 +329,6 @@ public class TreasureApi {
 	 * Registers the chest generator by rarity and generatorType.
 	 * @param rarity
 	 * @param featureType
-	 * @param chestGeneratorType
 	 */
 	public static void registerChestFeatureGenerator(IRarity rarity, IFeatureType featureType) {
 		RarityLevelWeightedChestGeneratorRegistry.registerGenerator(rarity, featureType);		
@@ -354,8 +353,8 @@ public class TreasureApi {
 		RuinGeneratorRegistry.register(category, generator);
 	}
 	
-	public static void registerWellGenerator(IStructureCategory category, IWellGenerator<GeneratorResult<GeneratorData>> generator) {
-		WellGeneratorRegistry.register(category, generator);		
+	public static void registerWellGenerator(IStructureCategory category, IWellGenerator<GeneratorResult<? extends GeneratorData>> generator) {
+		WellGeneratorRegistry.register(category, generator);
 	}
 	
 	/*

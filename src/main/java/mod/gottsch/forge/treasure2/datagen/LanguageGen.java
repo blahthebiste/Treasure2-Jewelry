@@ -105,8 +105,12 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.POUCH.get(), "Pouch");
         add(TreasureBlocks.SPANISH_MOSS.get(), "Spanish Moss");
         add(TreasureBlocks.WISHING_WELL.get(), "Wishing Well Stone");
+        add(TreasureBlocks.WISHING_WELL_COBBLESTONE.get(), "Wishing Well Cobblestone");
+        add(TreasureBlocks.WISHING_WELL_STONE_BRICKS.get(), "Wishing Well Stone Bricks");
+        add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get(), "Wishing Well Mossy Stone Bricks");
         add(TreasureBlocks.DESERT_WISHING_WELL.get(), "Desert Wishing Well Stone");
         add(TreasureItems.EYE_PATCH.get(), "Eye Patch");
+        add(TreasureItems.CLOVER_ITEM.get(), "Four Leaf Clover");
         
         // swords
         add(TreasureItems.COPPER_SHORT_SWORD.get(), "Copper Short Sword");
@@ -170,6 +174,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.VIKING_CHEST.get(), "Viking Chest");
         add(TreasureBlocks.CARDBOARD_BOX.get(), "Cardboard Box");
         add(TreasureBlocks.MILK_CRATE.get(), "Milk Crate");
+        add(TreasureBlocks.BARREL_CHEST.get(), "Treasure Barrel");
+        add(TreasureBlocks.VANILLA_CHEST.get(), "Treasure Chest");
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_BRANCH.get(), "Wither Branch");
@@ -211,6 +217,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.GRAVESTONE3_SMOOTH_QUARTZ.get(), "Quartz Gravestone");
         add(TreasureBlocks.SKULL_CROSSBONES.get(), "Skull and Crossbones");
         add(TreasureBlocks.SKELETON.get(), "Skeleton");
+        add(TreasureBlocks.CLOVER.get(), "Four Leaf Clover");
         
         add(TreasureBlocks.GRAVESTONE1_SPAWNER_STONE.get(), "Stone Gravestone Spawner");
         add(TreasureBlocks.GRAVESTONE2_SPAWNER_COBBLESTONE.get(), "Cobblestone Gravestone Spawner");
@@ -229,7 +236,9 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Crate Chest Mimic");
         add(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Moldy Chest Mimic");
         add(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), "Cardboard Box Mimic");
-
+        add(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), "Milk Crate Mimic");
+        add(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), "Barrel Mimic");
+        add(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), "Chest Mimic");
         // eggs
         add(TreasureItems.BOUND_SOUL_EGG.get(), "Bound Soul Spawn Egg");
         add(TreasureItems.WOOD_CHEST_MIMIC_EGG.get(), "Wood Chest Mimic Spawn Egg");
@@ -240,6 +249,8 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureItems.MOLDY_CRATE_CHEST_MIMIC_EGG.get(), "Moldy Crate Chest Mimic Spawn Egg");
         add(TreasureItems.CARDBOARD_BOX_MIMIC_EGG.get(), "Cardboard Box Mimic Spawn Egg");
         add(TreasureItems.MILK_CRATE_MIMIC_EGG.get(), "Milk Crate Mimic Spawn Egg");
+        add(TreasureItems.BARREL_MIMIC_EGG.get(), "Barrel Mimic Spawn Egg");
+        add(TreasureItems.VANILLA_CHEST_MIMIC_EGG.get(), "Chest Mimic Spawn Egg");
 
         /*
          *  Util.tooltips
@@ -251,7 +262,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("treasure_tool"), "Required for most Treasure2 recipes");
         add(LangUtil.tooltip("pouch"), "Holds small valuables - coins, gems, charms, etc.");
         add(LangUtil.tooltip("wishable"), "Can be thrown into Wishing Wells for loot");
-        
+        add(LangUtil.tooltip("clover"), "Can use on certain blocks, like Mossy Cobblestone, to transform them into Wishing Well blocks.~All adjacent block with in a 4 block radius will be transformed.");
+
         // keys and locks
         add(LangUtil.tooltip("key_lock.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("key_lock.category"), "Category: %s");
@@ -273,6 +285,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("key_lock.key_ring"), "Container for keys");
         
         // chests
+        add(LangUtil.tooltip("chest.locked"), "Locked!");
+        add(LangUtil.tooltip("chest.usage"), "Can be thrown into Wishing Well to remove all locks... for a price.");
         add(LangUtil.tooltip("chest.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("chest.max_locks"), "Max Locks: %s");
         add(LangUtil.tooltip("chest.container_size"), "Inventory Size: %s");
@@ -338,6 +352,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.screen("spider_chest.name"), "Spider Chest");
         add(LangUtil.screen("cardboard_box.name"), "Cardboard Box");
         add(LangUtil.screen("milk_crate.name"), "Milk Crate");
+        add(LangUtil.screen("barrel_chest.name"), "Treasure Barrel");
+        add(LangUtil.screen("vanilla_chest.name"), "Treasure Chest");
         add(LangUtil.screen("wither_chest.name"), "Wither Chest");
 
         add(LangUtil.screen("treasure_map.uncommon"), "Uncommon Treasure Map");

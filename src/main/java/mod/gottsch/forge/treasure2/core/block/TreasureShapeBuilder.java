@@ -148,7 +148,7 @@ public class TreasureShapeBuilder {
 	}
 
 	public static VoxelShape[] buildFullBlock() {
-		VoxelShape block = Block.box(0, 0, 0, 16, 16, 16);
+		VoxelShape block = Block.box(0, 0.01, 0, 16, 16, 16);
 		return new VoxelShape[] {
 				 block,  block,  block,  block
 		};
@@ -171,7 +171,12 @@ public class TreasureShapeBuilder {
 				);		
 		return new VoxelShape[] { shape, shape, shape, shape };
 	}
-	
+
+	public static VoxelShape[] buildIronboundChest() {
+		VoxelShape shape = Block.box(1, 0.5, 1, 15, 13.5, 15);
+		return new VoxelShape[] { shape, shape, shape, shape };
+	}
+
 	public static VoxelShape[] buildStrongbox() {
 		VoxelShape shape = Block.box(3, 0.5, 4, 13, 7.5, 12);
 		VoxelShape shape2 = Block.box(4, 0.5, 3, 12, 7.5, 13);

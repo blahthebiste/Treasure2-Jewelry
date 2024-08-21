@@ -1,5 +1,8 @@
 {
-  "sources" : [ {
+  "sources" : [     {
+    "type" : "single",
+    "resource" : "treasure2:entity/chest/barrel_chest"
+  }, {
     "type" : "single",
     "resource" : "treasure2:entity/chest/wood_chest"
   }, {
@@ -56,5 +59,8 @@
   }, {
     "type" : "single",
     "resource" : "treasure2:entity/chest/wither_chest"
-  } ]
+  }, {
+    "type" : "single",
+    "resource" : "treasure2:entity/chest/vanilla_chest"
+  }]
 }

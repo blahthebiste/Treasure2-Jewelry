@@ -251,7 +251,7 @@ public abstract class AbstractTreasureChestBlockEntity extends BlockEntity imple
 	 * @param pos
 	 */
 	public void dropContents(Level level, BlockPos pos) {
-		Optional<IItemHandler> handler = 	getCapability(ForgeCapabilities.ITEM_HANDLER).map(h -> h);
+		Optional<IItemHandler> handler = getCapability(ForgeCapabilities.ITEM_HANDLER).map(h -> h);
 		if (handler.isPresent()) {
 			int numberOfSlots = handler.get().getSlots();
 			for (int i = 0; i < numberOfSlots; i++) {
@@ -376,7 +376,7 @@ public abstract class AbstractTreasureChestBlockEntity extends BlockEntity imple
 			// write lock states
 			if (getLockStates() != null && !getLockStates().isEmpty()) {
 				ListTag list = new ListTag();
-				// write custom tile entity properties
+				// write custom block entity properties
 				for (LockState state : getLockStates()) {
 					Treasure.LOGGER.trace("saving lock state:" + state);
 					CompoundTag stateTag = new CompoundTag();

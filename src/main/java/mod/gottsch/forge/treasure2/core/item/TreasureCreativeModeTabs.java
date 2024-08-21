@@ -50,7 +50,7 @@ public class TreasureCreativeModeTabs {
 			.displayItems((displayParams, output) -> {
 				// add all items
 				Registration.ITEMS.getEntries().forEach(item -> {
-					if (!item.equals(TreasureItems.LOGO)) {
+					if (!item.equals(TreasureItems.LOGO) && !item.equals(TreasureItems.MOB)) {
 						output.accept(item.get(), TabVisibility.PARENT_AND_SEARCH_TABS);
 					}
 				});

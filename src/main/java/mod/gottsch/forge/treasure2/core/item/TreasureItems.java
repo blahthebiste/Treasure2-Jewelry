@@ -47,6 +47,9 @@ public class TreasureItems {
 	// tab items
 	public static final RegistryObject<Item> LOGO = Registration.ITEMS.register("treasure_tab", () -> new Item(new Item.Properties()));
 
+	// patchouli items
+	public static final RegistryObject<Item> MOB = Registration.ITEMS.register("mob", () -> new Item(new Item.Properties()));
+
 	// item properties
 	public static final Item.Properties TREASURE_ITEM_PROPERTIES = new Item.Properties();
 	public static final Supplier<Item.Properties> TREASURE_PROPS_SUPPLIER = () -> new Item.Properties();
@@ -335,9 +338,13 @@ public class TreasureItems {
 	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE_ITEM = fromBlock(TreasureBlocks.DEEPSLATE_SAPPHIRE_ORE, TREASURE_PROPS_SUPPLIER);
 
 	public static final RegistryObject<Item> WISHING_WELL_ITEM = fromBlock(TreasureBlocks.WISHING_WELL, TREASURE_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> WISHING_WELL_COBBLESTONE_ITEM = fromBlock(TreasureBlocks.WISHING_WELL_COBBLESTONE, TREASURE_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> WISHING_WELL_STONE_BRICKS_ITEM = fromBlock(TreasureBlocks.WISHING_WELL_STONE_BRICKS, TREASURE_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> WISHING_WELL_MOSSY_STONE_BRICKS_ITEM = fromBlock(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS, TREASURE_PROPS_SUPPLIER);
 	public static final RegistryObject<Item> DESERT_WISHING_WELL_ITEM = fromBlock(TreasureBlocks.DESERT_WISHING_WELL, TREASURE_PROPS_SUPPLIER);
 
 	public static final RegistryObject<Item> SKELETON_ITEM = Registration.ITEMS.register("skeleton", () -> new SkeletonItem(TreasureBlocks.SKELETON.get(), TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> CLOVER_ITEM = Registration.ITEMS.register("clover", () -> new CloverItem(TreasureBlocks.CLOVER.get(), TREASURE_PROPS_SUPPLIER.get()));
 
 	// vanity items
 	public static final RegistryObject<Item> EYE_PATCH = Registration.ITEMS.register("eye_patch",
@@ -353,6 +360,8 @@ public class TreasureItems {
 	public static final RegistryObject<Item> MOLDY_CRATE_CHEST_MIMIC_EGG = Registration.ITEMS.register("moldy_crate_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE, 0x635360, 0x464646, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> CARDBOARD_BOX_MIMIC_EGG = Registration.ITEMS.register("cardboard_box_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE, 0x6f5e60, 0x404040, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> MILK_CRATE_MIMIC_EGG = Registration.ITEMS.register("milk_crate_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE, 0x965738, 0x773e28, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> BARREL_MIMIC_EGG = Registration.ITEMS.register("barrel_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE, 0x9f854d, 0x54452c, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> VANILLA_CHEST_MIMIC_EGG = Registration.ITEMS.register("vanilla_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE, 0x8f691d, 0xab792d, TREASURE_PROPS_SUPPLIER.get()));
 
 	// tiers
 	public static final ForgeTier COPPER = new ForgeTier(1, 200, 5.0F, 1.0F, 10, BlockTags.NEEDS_STONE_TOOL, () -> Ingredient.of(Items.COPPER_INGOT));

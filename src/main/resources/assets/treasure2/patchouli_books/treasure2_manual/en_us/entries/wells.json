@@ -1,0 +1,33 @@
+{
+  "name": "Wishing Wells",
+  "icon": "minecraft:mossy_cobblestone",
+  "category": "treasure2:manual",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/wishing_well_patchouli.png"],
+      "title": "Wishing Wells",
+      "text": "A simple wishing well.",
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Wishing Wells and Fountains are rare structures that can spawn virtually anywhere in the overworld. They will appear encircled with flowers or cacti in the desert (v3.10.0+) and have an item frame with a gold coin (v3.10.0+). Simply toss any coin or gem into the water to receive loot. The loot spawned depends on the rarity of the coin/gem."
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["treasure2:textures/gui/entries/clover_patchouli.png"],
+      "title": "Four-Leaf Clover",
+      "text": "Sometimes a clover is spawn around a Wishing Well."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Clovers can be harvested, but cannot be re-planted. You can use a clover item on a structure made from Cobblestone, Mossy Cobblestone, Stone Bricks or Mossy Stone Bricks to create a custom Wishing Well. A clover will only affect the blocks within a 4 block radius, and they must be adjacent to each other (NESWUD)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Locked Chests",
+      "text": "If you are unable to find keys for a locked chest, you can toss the whole chest into a Wishing Well. This will remove ALL locks on the chest, however, there is a cost to do so. You have been warned!"
+    }
+  ]
+}

@@ -17,9 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.generator.ruin;
 
-import java.util.List;
-import java.util.Optional;
-
 import mod.gottsch.forge.gottschcore.block.BlockContext;
 import mod.gottsch.forge.gottschcore.size.DoubleRange;
 import mod.gottsch.forge.gottschcore.spatial.Coords;
@@ -29,7 +26,6 @@ import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.gottschcore.world.gen.structure.BlockInfoContext;
 import mod.gottsch.forge.gottschcore.world.gen.structure.GottschTemplate;
 import mod.gottsch.forge.gottschcore.world.gen.structure.PlacementSettings;
-import mod.gottsch.forge.gottschcore.world.gen.structure.StructureMarkers;
 import mod.gottsch.forge.treasure2.Treasure;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.config.StructureConfiguration.StructMeta;
@@ -38,6 +34,7 @@ import mod.gottsch.forge.treasure2.core.generator.GeneratorResult;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorUtil;
 import mod.gottsch.forge.treasure2.core.generator.TemplateGeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.template.TemplateGenerator;
+import mod.gottsch.forge.treasure2.core.generator.template.TemplatePoiInspector;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
 import mod.gottsch.forge.treasure2.core.structure.StructureType;
 import mod.gottsch.forge.treasure2.core.structure.TemplateHolder;
@@ -45,6 +42,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
+
+import java.util.Optional;
 
 /**
  * 
@@ -164,7 +163,8 @@ public class SurfaceRuinGenerator implements IRuinGenerator<GeneratorResult<Ches
 		}
 
 		// check if it has % land base using the standardizedSpawnCoords
-		for (int i = 0; i < 3; i++) {
+
+        for (int i = 0; i < 3; i++) {
 			Treasure.LOGGER.debug("finding solid base index -> {} at coords -> {}", i, standardizedSpawnCoords.toShortString());
 			if (!WorldInfo.isSolidBase(context.level(), standardizedSpawnCoords, rotatedSize.getX(), rotatedSize.getZ(), REQUIRED_BASE_SIZE)) {
 				if (i == 2) {
@@ -200,97 +200,110 @@ public class SurfaceRuinGenerator implements IRuinGenerator<GeneratorResult<Ches
 		/**
 		 * Build
 		 */
-		GeneratorResult<TemplateGeneratorData> genResult = generator.generate(context, template, placement, alignedSpawnCoords, offsetCoords);
-		 if (!genResult.isSuccess()) {
+		GeneratorResult<TemplateGeneratorData> templateGenerationResult = generator.generate(context, template, placement, alignedSpawnCoords, offsetCoords);
+		 if (!templateGenerationResult.isSuccess()) {
 			 return Optional.empty();
 		 }
-		Treasure.LOGGER.debug("surface gen result -> {}", genResult);
+		Treasure.LOGGER.debug("surface gen result -> {}", templateGenerationResult);
 
 		/*
 		 * adjust coords with offset and fill below
 		 * NOTE the offset value here uses only what is provided by the meta value,
 		 * it does not check the structure itself for a marker
 		 */
-		GeneratorUtil.fillBelow(context, genResult.getData().getSpawnCoords(), rotatedSize, 5, Blocks.DIRT.defaultBlockState());
+		GeneratorUtil.fillBelow(context, templateGenerationResult.getData().getSpawnCoords(), rotatedSize, 5, Blocks.DIRT.defaultBlockState());
 
-		// interrogate info for spawners and any other special block processing (except chests that are handler by caller
-		List<BlockInfoContext> bossChestContexts =
-					(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.BOSS_CHEST));
-		List<BlockInfoContext> chestContexts =
-				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.CHEST));
-		List<BlockInfoContext> spawnerContexts =
-				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.SPAWNER));
-		List<BlockInfoContext> proximityContexts =
-				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.PROXIMITY_SPAWNER));
+//		// interrogate info for spawners and any other special block processing (except chests that are handler by caller
+//		List<BlockInfoContext> bossChestContexts =
+//					(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.BOSS_CHEST));
+//		List<BlockInfoContext> chestContexts =
+//				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.CHEST));
+//		List<BlockInfoContext> spawnerContexts =
+//				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.SPAWNER));
+//		List<BlockInfoContext> proximityContexts =
+//				(List<BlockInfoContext>) genResult.getData().getMap().get(GeneratorUtil.getMarkerBlock(StructureMarkers.PROXIMITY_SPAWNER));
+//
+//		/*
+//		 *  NOTE currently only 1 chest is allowed per structure - the rest are ignored.
+//		 */
+//		// check if there is a boss chest(s)
+//		// TODO turn these checks into methods --> getChestContext();
+//		BlockInfoContext chestContext = null;
+//		if (bossChestContexts != null && bossChestContexts.size() > 0) {
+//			if (bossChestContexts.size() > 1) {
+//				chestContext = bossChestContexts.get(context.random().nextInt(bossChestContexts.size()));
+//			}
+//			else {
+//				chestContext = bossChestContexts.get(0);
+//			}
+//		}
+//
+//		// if a boss chest wasn't found, search for regular chests
+//		if (chestContext == null) {
+//			if (chestContexts != null && chestContexts.size() > 0) {
+//				if (chestContexts.size() > 1) {
+//					chestContext = chestContexts.get(context.random().nextInt(chestContexts.size()));
+//				}
+//				else {
+//					chestContext = chestContexts.get(0);
+//				}
+//			}
+//		}
 
-		/*
-		 *  NOTE currently only 1 chest is allowed per structure - the rest are ignored.
-		 */
-		// check if there is a boss chest(s)
-		// TODO turn these checks into methods --> getChestContext();
-		BlockInfoContext chestContext = null;
-		if (bossChestContexts != null && bossChestContexts.size() > 0) {
-			if (bossChestContexts.size() > 1) {
-				chestContext = bossChestContexts.get(context.random().nextInt(bossChestContexts.size()));
-			}
-			else {
-				chestContext = bossChestContexts.get(0);
-			}			
-		}		
+		// locate structure poi's
+		TemplatePoiInspector inspector = new TemplatePoiInspector();
+		inspector.inspect(templateGenerationResult.getData().getMap());
 
-		// if a boss chest wasn't found, search for regular chests
-		if (chestContext == null) {
-			if (chestContexts != null && chestContexts.size() > 0) {
-				if (chestContexts.size() > 1) {
-					chestContext = chestContexts.get(context.random().nextInt(chestContexts.size()));
-				}
-				else {
-					chestContext = chestContexts.get(0);
-				}			
-			}			
-		}
+		// select a treasure chest (if any)
+		Optional<BlockInfoContext> treasureChestContext = GeneratorUtil.selectTreasureChest(context, inspector);
+		Treasure.LOGGER.debug("treasure chest context outside call-> {}", treasureChestContext.get());
 
-		ICoords chestCoords = null;
-		if (chestContext != null) {
-			Treasure.LOGGER.debug("chest context coords -> {}", chestContext.getCoords());
-			// move the chest coords to the first solid block beneath it.
-			// NOTE can't use this method as it will disregard the entire structure as the chunkGenerator only looks at the land mass.
-			// TODO need to use the old non-chunk generator version of doing this. ie stepping down a block and check.
-			// NOTE however, since there isn't a decay processor, there is no need to perform this operation.
-//			chestCoords = WorldInfo.getDryLandSurfaceCoords(context.level(), context.chunkGenerator(), chestContext.getCoords());
-			chestCoords = chestContext.getCoords();
-			if (chestCoords == Coords.EMPTY) {
-				chestCoords = null;
-			}
-			chestContext.setCoords(chestCoords);
-		}
-		if (chestCoords == null) {
+		if (treasureChestContext.isEmpty()) {
 			return Optional.empty();
 		}
+
+//		ICoords chestCoords = null;
+//		if (chestContext != null) {
+//			Treasure.LOGGER.debug("chest context coords -> {}", chestContext.getCoords());
+//			// move the chest coords to the first solid block beneath it.
+//			// NOTE can't use this method as it will disregard the entire structure as the chunkGenerator only looks at the land mass.
+//			// TODO need to use the old non-chunk generator version of doing this. ie stepping down a block and check.
+//			// NOTE however, since there isn't a decay processor, there is no need to perform this operation.
+////			chestCoords = WorldInfo.getDryLandSurfaceCoords(context.level(), context.chunkGenerator(), chestContext.getCoords());
+//			chestCoords = chestContext.getCoords();
+//			if (chestCoords == Coords.EMPTY) {
+//				chestCoords = null;
+//			}
+//			chestContext.setCoords(chestCoords);
+//		}
+//		if (chestCoords == null) {
+//			return Optional.empty();
+//		}
 		
-		if (proximityContexts != null)
-			Treasure.LOGGER.debug("Proximity spawners size -> {}", proximityContexts.size());
-		else
-			Treasure.LOGGER.debug("No proximity spawners found.");
+//		if (proximityContexts != null)
+//			Treasure.LOGGER.debug("Proximity spawners size -> {}", proximityContexts.size());
+//		else
+//			Treasure.LOGGER.debug("No proximity spawners found.");
 		
 		// populate vanilla spawners
-		GeneratorUtil.buildVanillaSpawners(context, spawnerContexts);
+		GeneratorUtil.buildVanillaSpawners(context, inspector.getSpawners());
 		
 		// populate proximity spawners
-		GeneratorUtil.buildOneTimeSpawners(context, proximityContexts, new DoubleRange(1,2), 5D);
+		GeneratorUtil.buildOneTimeSpawners(context,inspector.getProximitySpawners(), new DoubleRange(1,2), 5D);
 		
-		// copy all data from genResult
-		result.getData().setSpawnCoords(genResult.getData().getSpawnCoords());
+		// copy all data from templateGenerationResult
+		result.getData().setSpawnCoords(templateGenerationResult.getData().getSpawnCoords());
 		
 		// update with chest context
-		result.getData().setCoords(chestContext.getCoords());
-		result.getData().setState(chestContext.getState());
+		result.getData().setCoords(treasureChestContext.get().getCoords());
+		result.getData().setState(treasureChestContext.get().getState());
+		result.success();
 		
 		return Optional.of(result);
 	}
 
 	/**
-	 * TODO replace call to this with one in GottschCore. it not exist then use the chunkGenerator
+	 * TODO replace call to this with one in GottschCore. if not exist then use the chunkGenerator
 	 * NOTE candidate for GottschCore
 	 * @param serverLevelAccessor
 	 * @param coords

@@ -320,6 +320,8 @@ public class CommonSetup {
 		TreasureApi.registerChest(TreasureBlocks.VIKING_CHEST);
 		TreasureApi.registerChest(TreasureBlocks.CARDBOARD_BOX);
 		TreasureApi.registerChest(TreasureBlocks.MILK_CRATE);
+		TreasureApi.registerChest(TreasureBlocks.BARREL_CHEST);
+		TreasureApi.registerChest(TreasureBlocks.VANILLA_CHEST);
 		TreasureApi.registerChest(TreasureBlocks.WITHER_CHEST);
 
 		// register mimics
@@ -331,6 +333,8 @@ public class CommonSetup {
 		TreasureApi.registerMimic(TreasureBlocks.MOLDY_CRATE_CHEST.getId(), TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.CARDBOARD_BOX.getId(), TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.MILK_CRATE.getId(), TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.getId());
+		TreasureApi.registerMimic(TreasureBlocks.BARREL_CHEST.getId(), TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.getId());
+		TreasureApi.registerMimic(TreasureBlocks.VANILLA_CHEST.getId(), TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.getId());
 
 		/*
 		 *  register wishable handlers
@@ -451,6 +455,8 @@ public class CommonSetup {
 		event.put(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimic.createAttributes().build());
 		event.put(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimic.createAttributes().build());
+		event.put(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), BarrelMimic.createAttributes().build());
+		event.put(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), VanillaChestMimic.createAttributes().build());
 	}
 
 	@SubscribeEvent
@@ -467,6 +473,7 @@ public class CommonSetup {
 		event.register(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
-
+		event.register(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+		event.register(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 	}
 }
