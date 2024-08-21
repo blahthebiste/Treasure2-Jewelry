@@ -532,7 +532,7 @@ public class Config extends AbstractConfig {
 
 				this.cloverProbability = builder
 						.comment(" The probability that a well will generate a Clover.")
-						.defineInRange("probability", 5.0, 0.0, 100.0);
+						.defineInRange("cloverProbability", 5.0, 0.0, 100.0);
 
 				builder.pop();
 			}
