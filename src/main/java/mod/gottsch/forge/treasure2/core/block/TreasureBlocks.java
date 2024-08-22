@@ -26,10 +26,7 @@ import mod.gottsch.forge.treasure2.core.block.entity.*;
 import mod.gottsch.forge.treasure2.core.lock.LockLayouts;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
@@ -216,14 +213,23 @@ public class TreasureBlocks {
 	public static final RegistryObject<Block> FALLING_RED_SAND = Registration.BLOCKS.register("falling_red_sand", () -> new FallingRedSandBlock(Properties.of().mapColor(MapColor.SAND)
 			.strength(0.6F).sound(SoundType.SAND)));
 
-	// other
-	public static final RegistryObject<Block> WITHER_BRANCH = Registration.BLOCKS.register("wither_branch", () -> new WitherBranchBlock(Properties.of().mapColor(MapColor.WOOD)));
-	public static final RegistryObject<Block> WITHER_ROOT = Registration.BLOCKS.register("wither_root", () -> new WitherRootBlock(Properties.of().mapColor(MapColor.WOOD)));
-	public static final RegistryObject<Block> WITHER_LOG = Registration.BLOCKS.register("wither_log", () -> log(MapColor.WOOD, MapColor.PODZOL));
-	public static final RegistryObject<Block> WITHER_BROKEN_LOG = Registration.BLOCKS.register("wither_broken_log", () -> new WitherBrokenLogBlock(Properties.of().mapColor(MapColor.WOOD)));
-	public static final RegistryObject<Block> WITHER_SOUL_LOG = Registration.BLOCKS.register("wither_soul_log", () -> new WitherSoulLog(Properties.of().mapColor(MapColor.WOOD)));
-	public static final RegistryObject<Block> WITHER_PLANKS = Registration.BLOCKS.register("wither_planks", () -> new WitherPlanksBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+	// wither
+	public static final RegistryObject<Block> WITHERWOOD_BROKEN_LOG = Registration.BLOCKS.register("witherwood_broken_log", () -> new WitherBrokenLogBlock(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHERWOOD_SOUL_LOG = Registration.BLOCKS.register("witherwood_soul_log", () -> new WitherSoulLog(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHERWOOD_BRANCH = Registration.BLOCKS.register("witherwood_branch", () -> new WitherBranchBlock(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHERWOOD_ROOT = Registration.BLOCKS.register("witherwood_root", () -> new WitherRootBlock(Properties.of().mapColor(MapColor.WOOD)));
 
+	public static final RegistryObject<Block> WITHERWOOD_LOG = Registration.BLOCKS.register("witherwood_log", () -> log(MapColor.WOOD, MapColor.PODZOL));
+	public static final RegistryObject<Block> WITHERWOOD_WOOD = Registration.BLOCKS.register("witherwood_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+	public static final RegistryObject<Block> STRIPPED_WITHERWOOD_LOG = Registration.BLOCKS.register("stripped_witherwood_log", () -> log(MapColor.PODZOL, MapColor.PODZOL));
+	public static final RegistryObject<Block> STRIPPED_WITHERWOOD_WOOD = Registration.BLOCKS.register("stripped_witherwood_wood", () -> log(MapColor.PODZOL, MapColor.PODZOL));
+
+	public static final RegistryObject<Block> WITHERWOOD_PLANKS = Registration.BLOCKS.register("witherwood_planks", () -> new WitherPlanksBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+	public static final RegistryObject<Block> WITHERWOOD_SLAB = Registration.BLOCKS.register("witherwood_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
+	public static final RegistryObject<Block> WITHERWOOD_STAIRS = Registration.BLOCKS.register("witherwood_stairs", () -> new StairBlock(() -> WITHERWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)));
+	// TODO wither vine
+
+	// other
 	public static final RegistryObject<Block> SPANISH_MOSS = Registration.BLOCKS.register("spanish_moss", () -> new SpanishMossBlock(Properties.of().mapColor(MapColor.WOOD)));
 	public static final RegistryObject<Block> WISHING_WELL = Registration.BLOCKS.register("wishing_well_block", () -> new WishingWellBlock(
 			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));

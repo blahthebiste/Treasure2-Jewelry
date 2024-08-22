@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "wither_log",
+      "name": "witherwood_log",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "treasure2:wither_log"
+          "name": "treasure2:witherwood_log"
         }
       ],
       "conditions": [

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "treasure2:block/witherwood_log",
+    "side": "treasure2:block/witherwood_log"
+  }
+}

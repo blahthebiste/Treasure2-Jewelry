@@ -172,7 +172,7 @@ public class TreasureBlockEntities {
 	public static final RegistryObject<BlockEntityType<MistEmitterBlockEntity>> MIST_EMITTER_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("mist_emitter", 
 				() -> BlockEntityType.Builder.of(MistEmitterBlockEntity::new, 
-						TreasureBlocks.WITHER_SOUL_LOG.get()
+						TreasureBlocks.WITHERWOOD_SOUL_LOG.get()
 					).build(null));
 
 	

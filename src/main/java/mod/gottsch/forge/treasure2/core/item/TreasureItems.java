@@ -316,12 +316,19 @@ public class TreasureItems {
 	public static RegistryObject<PouchItem> POUCH = Registration.ITEMS.register("pouch", () -> new PouchItem(TREASURE_PROPS_SUPPLIER.get()));
 
 	// block items
-	public static RegistryObject<WitherStickItem> WITHER_STICK_ITEM = Registration.ITEMS.register("wither_stick_item", () -> new WitherStickItem(TreasureBlocks.WITHER_BRANCH.get(), TREASURE_PROPS_SUPPLIER.get()));
-	public static RegistryObject<WitherRootItem> WITHER_ROOT_ITEM = Registration.ITEMS.register("wither_root_item", () -> new WitherRootItem(TreasureBlocks.WITHER_ROOT.get(), TREASURE_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> WITHER_LOG_ITEM = fromBlock(TreasureBlocks.WITHER_LOG, TREASURE_PROPS_SUPPLIER);
-	public static RegistryObject<Item> WITHER_BROKEN_LOG_ITEM = fromBlock(TreasureBlocks.WITHER_BROKEN_LOG, TREASURE_PROPS_SUPPLIER);
-	public static RegistryObject<Item> WITHER_SOUL_LOG_ITEM = fromBlock(TreasureBlocks.WITHER_SOUL_LOG, TREASURE_PROPS_SUPPLIER);
-	public static RegistryObject<Item> WISHING_PLANKS_ITEM = fromBlock(TreasureBlocks.WITHER_PLANKS, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<WitherStickItem> WITHERWOOD_STICK_ITEM = Registration.ITEMS.register("witherwood_stick_item", () -> new WitherStickItem(TreasureBlocks.WITHERWOOD_BRANCH.get(), TREASURE_PROPS_SUPPLIER.get()));
+	public static RegistryObject<WitherRootItem> WITHERWOOD_ROOT_ITEM = Registration.ITEMS.register("witherwood_root_item", () -> new WitherRootItem(TreasureBlocks.WITHERWOOD_ROOT.get(), TREASURE_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> WITHERWOOD_LOG_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_LOG, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHER_BROKEN_LOG_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_BROKEN_LOG, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHER_SOUL_LOG_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_SOUL_LOG, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHERWOOD_PLANKS_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_PLANKS, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHERWOOD_STAIRS_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_STAIRS, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHERWOOD_SLAB_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_SLAB, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> WITHERWOOD_WOOD_ITEM = fromBlock(TreasureBlocks.WITHERWOOD_WOOD, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> STRIPPED_WITHERWOOD_LOG_ITEM = fromBlock(TreasureBlocks.STRIPPED_WITHERWOOD_LOG, TREASURE_PROPS_SUPPLIER);
+	public static RegistryObject<Item> STRIPPED_WITHERWOOD_WOOD_ITEM = fromBlock(TreasureBlocks.STRIPPED_WITHERWOOD_WOOD, TREASURE_PROPS_SUPPLIER);
+
+
 
 	public static final RegistryObject<Item> SPANISH_MOSS_ITEM = fromBlock(TreasureBlocks.SPANISH_MOSS, TREASURE_PROPS_SUPPLIER);
 

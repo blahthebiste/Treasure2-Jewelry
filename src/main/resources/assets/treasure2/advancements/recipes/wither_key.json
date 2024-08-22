@@ -22,12 +22,12 @@
         ]
       }
     },
-    "has_wither_root": {
+    "has_witherwood_root": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "treasure2:wither_root_item"
+            "item": "treasure2:witherwood_root_item"
           }
         ]
       }
@@ -47,7 +47,7 @@
     [
       "has_the_recipe",
       "has_wither_stick",
-      "has_wither_root",
+      "has_witherwood_root",
       "has_tool"
     ]
   ]

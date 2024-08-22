@@ -178,13 +178,21 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.VANILLA_CHEST.get(), "Treasure Chest");
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
-        add(TreasureBlocks.WITHER_BRANCH.get(), "Wither Branch");
-        add(TreasureBlocks.WITHER_ROOT.get(), "Wither Root");
-        add(TreasureBlocks.WITHER_LOG.get(), "Wither Log");
-        add(TreasureBlocks.WITHER_BROKEN_LOG.get(), "Wither Broken Log");
-        add(TreasureBlocks.WITHER_SOUL_LOG.get(), "Wither Soul Log");
-        add(TreasureBlocks.WITHER_PLANKS.get(), "Wither Planks");
-        
+
+        add(TreasureBlocks.WITHERWOOD_BRANCH.get(), "Wither Branch");
+        add(TreasureBlocks.WITHERWOOD_ROOT.get(), "Wither Root");
+
+        add(TreasureBlocks.WITHERWOOD_LOG.get(), "Witherwood Log");
+        add(TreasureBlocks.WITHERWOOD_BROKEN_LOG.get(), "Wither Broken Log");
+        add(TreasureBlocks.WITHERWOOD_SOUL_LOG.get(), "Wither Soul Log");
+        add(TreasureBlocks.WITHERWOOD_PLANKS.get(), "Witherwood Planks");
+        add(TreasureBlocks.WITHERWOOD_SLAB.get(), "Witherwood Slab");
+        add(TreasureBlocks.WITHERWOOD_STAIRS.get(), "Witherwood Stairs");
+        add(TreasureBlocks.WITHERWOOD_WOOD.get(), "Witherwood Wood");
+        add(TreasureBlocks.STRIPPED_WITHERWOOD_LOG.get(), "Stripped Witherwood Log");
+        add(TreasureBlocks.STRIPPED_WITHERWOOD_WOOD.get(), "Stripped Witherwood Wood");
+
+
         // ore
         add(TreasureBlocks.TOPAZ_ORE.get(), "Topaz Ore");
         add(TreasureBlocks.ONYX_ORE.get(), "Onyx Ore");

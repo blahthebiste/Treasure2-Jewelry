@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "wither_branch",
+      "name": "witherwood_branch",
       "rolls": 1,
       "entries": [
         {
@@ -12,7 +12,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "treasure2:wither_root_item",
+          "name": "treasure2:witherwood_root_item",
           "weight": 50
         }
       ],

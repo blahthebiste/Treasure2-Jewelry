@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "treasure2:block/stripped_witherwood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "treasure2:block/stripped_witherwood_log"
+    },
+    "axis=z": {
+      "model": "treasure2:block/stripped_witherwood_log_horizontal",
+      "x": 90
+    }
+  }
+}

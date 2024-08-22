@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "w": {
+      "item": "treasure2:witherwood_planks"
+    }
+  },
+  "pattern": [
+    "  w",
+    " ww",
+    "www"
+  ],
+  "result": {
+    "count": 4,
+    "item": "treasure2:witherwood_stairs"
+  },
+  "show_notification": true
+}

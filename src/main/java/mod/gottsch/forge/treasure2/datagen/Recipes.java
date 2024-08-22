@@ -163,8 +163,8 @@ public class Recipes extends RecipeProvider {
 					.pattern(" b ")
 					.pattern(" br")
 					.define('t', TreasureItems.TREASURE_TOOL.get())
-					.define('b', TreasureItems.WITHER_STICK_ITEM.get())
-					.define('r', TreasureItems.WITHER_ROOT_ITEM.get())
+					.define('b', TreasureItems.WITHERWOOD_STICK_ITEM.get())
+					.define('r', TreasureItems.WITHERWOOD_ROOT_ITEM.get())
 					.unlockedBy("has_tool", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureItems.TREASURE_TOOL.get()))
 					.save(recipe);
 
@@ -198,11 +198,35 @@ public class Recipes extends RecipeProvider {
 					.save(recipe);
 
 			// wither planks
-			ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TreasureBlocks.WITHER_PLANKS.get())
-					.requires(TreasureBlocks.WITHER_LOG.get())
-					.unlockedBy("has_log", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureBlocks.WITHER_LOG.get()))
+			ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TreasureBlocks.WITHERWOOD_PLANKS.get())
+					.requires(TreasureBlocks.WITHERWOOD_LOG.get())
+					.unlockedBy("has_log", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureBlocks.WITHERWOOD_LOG.get()))
 					.save(recipe);
 
+			// wither wood stairs
+			ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TreasureBlocks.WITHERWOOD_STAIRS.get(), 4)
+					.pattern("  w")
+					.pattern(" ww")
+					.pattern("www")
+					.define('w', TreasureBlocks.WITHERWOOD_PLANKS.get())
+					.unlockedBy("has_planks", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureBlocks.WITHERWOOD_PLANKS.get()))
+					.save(recipe);
+
+			// wither wood slab
+			ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TreasureBlocks.WITHERWOOD_SLAB.get(), 6)
+					.pattern("   ")
+					.pattern("   ")
+					.pattern("www")
+					.define('w', TreasureBlocks.WITHERWOOD_PLANKS.get())
+					.unlockedBy("has_planks", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureBlocks.WITHERWOOD_PLANKS.get()))
+					.save(recipe);
+
+			ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TreasureBlocks.WITHERWOOD_WOOD.get(), 6)
+					.pattern("ww")
+					.pattern("ww")
+							.define('w', TreasureBlocks.WITHERWOOD_LOG.get())
+					.unlockedBy("has_log", InventoryChangeTrigger.TriggerInstance.hasItems(TreasureBlocks.WITHERWOOD_LOG.get()))
+					.save(recipe);
 
 			// gravestones
 			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TreasureBlocks.SKULL_CROSSBONES.get())
