@@ -275,7 +275,9 @@ public class WellGenerator implements IWellGenerator<GeneratorResult<? extends G
 		}
 
 		// set the block state
-		context.level().setBlock(markerCoords.toPos(), blockState, 3);
+		if (blockState != null) {
+			context.level().setBlock(markerCoords.toPos(), blockState, 3);
+		}
 	}
 
 
