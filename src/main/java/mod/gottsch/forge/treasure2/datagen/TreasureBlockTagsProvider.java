@@ -24,6 +24,7 @@ import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -72,6 +73,9 @@ public class TreasureBlockTagsProvider extends BlockTagsProvider {
 		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.STONE_BRICKS);
 		tag(TreasureTags.Blocks.WISHING_WELL_CANDIDATES).add(Blocks.MOSSY_STONE_BRICKS);
 
-    }
+		tag(BlockTags.FENCES).add(TreasureBlocks.WITHERWOOD_FENCE.get());
+		tag(BlockTags.WOODEN_FENCES).add(TreasureBlocks.WITHERWOOD_FENCE.get());
+		;
+	}
 
 }

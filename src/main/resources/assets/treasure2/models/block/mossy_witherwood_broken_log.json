@@ -3,6 +3,6 @@
     "textures": {
         "0": "treasure2:block/mossy_witherwood_log",
         "1": "treasure2:block/witherwood_log_top",
-        "2": "treasure2:block/mossy_witherwood_log"
+        "2": "treasure2:block/stripped_witherwood_log"
     }
 }

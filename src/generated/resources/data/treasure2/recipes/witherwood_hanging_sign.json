@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:chain"
+    },
+    "w": {
+      "item": "treasure2:stripped_witherwood_log"
+    }
+  },
+  "pattern": [
+    "# #",
+    "www",
+    "www"
+  ],
+  "result": {
+    "count": 6,
+    "item": "treasure2:witherwood_hanging_sign"
+  },
+  "show_notification": true
+}

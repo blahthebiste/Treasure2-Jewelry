@@ -19,11 +19,16 @@ package mod.gottsch.forge.treasure2.core.biome;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import mod.gottsch.forge.treasure2.api.TreasureApi;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 
 /**
  * Temporary class. TODO move to GottschCore.
@@ -118,7 +123,53 @@ public class TreasureBiomeHelper {
     	// neither white list nor black list have values = all biomes are valid
     	return Result.OK;
 	}
-	
+
+	/**
+	 * tag version of biome check.
+	 * @param biome
+	 * @param whitelistTag
+	 * @param blacklistTag
+	 * @return
+	 */
+	public static Result isBiomeAllowed(Holder<Biome> biome, TagKey<Biome> whitelistTag, TagKey<Biome> blacklistTag) {
+
+		ITag<Biome> tag = ForgeRegistries.BIOMES.tags().getTag(whitelistTag);
+		if (!tag.isEmpty()) {
+			if (biome.is(whitelistTag)) {
+				return Result.WHITE_LISTED;
+			} else {
+				return Result.BLACK_LISTED;
+			}
+		}
+
+		tag = ForgeRegistries.BIOMES.tags().getTag(blacklistTag);
+		if (!tag.isEmpty()) {
+			if (biome.is(blacklistTag)) {
+				return Result.BLACK_LISTED;
+			}
+		}
+//		if (whiteList != null && whiteList.size() > 0) {
+//			for (String biomeName : whiteList) {
+//				if (biomeName.equals(biome.toString())) {
+//					return Result.WHITE_LISTED;
+//				}
+//			}
+//			// added in 1.15. If white list has values and biome is not in it, then by definition, it is black listed.
+//			return Result.BLACK_LISTED;
+//		}
+//
+//		if (blackList != null && blackList.size() > 0) {
+//			for (String biomeName : blackList) {
+//				if (biomeName.equals(biome.toString())) {
+//					return Result.BLACK_LISTED;
+//				}
+//			}
+//		}
+
+		// neither white list nor black list have values = all biomes are valid
+		return Result.OK;
+	}
+
 /*
  Ocean	ocean	0
 Deep Ocean	deep_ocean	24

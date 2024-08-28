@@ -20,6 +20,7 @@ package mod.gottsch.forge.treasure2.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.datagen.loot.TreasureBlockLootTables;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -48,9 +49,10 @@ public class DataGenerators {
             generator.addProvider(true, new TreasureItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), event.getExistingFileHelper()));
             generator.addProvider(true, new TreasureBiomeTagsProvider(output, lookupProvider, event.getExistingFileHelper()));
 //            generator.addProvider(true, new TreasureWorldGenProvider(output, lookupProvider));
+            generator.addProvider(true, TreasureLootTableProvider.create(output));
         }
         if (event.includeClient()) {
-        	 generator.addProvider(true, new BlockStates(output, event.getExistingFileHelper()));
+        	 generator.addProvider(true, new TreasureBlockStateProvider(output, event.getExistingFileHelper()));
             generator.addProvider(true, new ItemModelsProvider(output, event.getExistingFileHelper()));
             generator.addProvider(true, new LanguageGen(output, "en_us"));
         }

@@ -25,6 +25,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -160,5 +161,8 @@ public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "wintry_origin_valley"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "withered_abyss"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "woodland"));
+
+//        tag(TreasureTags.Biomes.WITHER_TREE_BIOME_WHITELIST).add(Biomes.BADLANDS);
+        tag(TreasureTags.Biomes.WITHER_BIOME_BLACKLIST).addTag(BiomeTags.IS_OCEAN);
     }
 }

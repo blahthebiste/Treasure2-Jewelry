@@ -110,7 +110,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.WISHING_WELL_MOSSY_STONE_BRICKS.get(), "Wishing Well Mossy Stone Bricks");
         add(TreasureBlocks.DESERT_WISHING_WELL.get(), "Desert Wishing Well Stone");
         add(TreasureItems.EYE_PATCH.get(), "Eye Patch");
-        add(TreasureItems.CLOVER_ITEM.get(), "Four Leaf Clover");
+        add(TreasureItems.CLOVER.get(), "Four Leaf Clover");
         
         // swords
         add(TreasureItems.COPPER_SHORT_SWORD.get(), "Copper Short Sword");
@@ -179,19 +179,39 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureBlocks.WITHER_CHEST.get(), "Wither Chest");
         add(TreasureBlocks.WITHER_CHEST_TOP.get(), "Wither Chest");
 
-        add(TreasureBlocks.WITHERWOOD_BRANCH.get(), "Wither Branch");
-        add(TreasureBlocks.WITHERWOOD_ROOT.get(), "Wither Root");
+        // legacy wither
+        add(TreasureBlocks.WITHER_BRANCH.get(), "Witherwood Branch");
+        add(TreasureBlocks.WITHER_ROOT.get(), "Witherwood Root");
+        add(TreasureBlocks.WITHER_LOG.get(), "Witherwood Log");
+        add(TreasureBlocks.WITHER_BROKEN_LOG.get(), "Witherwood Broken Log");
+        add(TreasureBlocks.WITHER_SOUL_LOG.get(), "Witherwood Soul Log");
+        add(TreasureBlocks.WITHER_PLANKS.get(), "Witherwood Planks");
+
+        // current wither
+        add(TreasureBlocks.WITHERWOOD_BRANCH.get(), "Witherwood Branch");
+        add(TreasureBlocks.WITHERWOOD_ROOT.get(), "Witherwood Root");
 
         add(TreasureBlocks.WITHERWOOD_LOG.get(), "Witherwood Log");
-        add(TreasureBlocks.WITHERWOOD_BROKEN_LOG.get(), "Wither Broken Log");
-        add(TreasureBlocks.WITHERWOOD_SOUL_LOG.get(), "Wither Soul Log");
+        add(TreasureBlocks.WITHERWOOD_BROKEN_LOG.get(), "Witherwood Broken Log");
+        add(TreasureBlocks.WITHERWOOD_SOUL_LOG.get(), "Witherwood Soul Log");
         add(TreasureBlocks.WITHERWOOD_PLANKS.get(), "Witherwood Planks");
         add(TreasureBlocks.WITHERWOOD_SLAB.get(), "Witherwood Slab");
         add(TreasureBlocks.WITHERWOOD_STAIRS.get(), "Witherwood Stairs");
         add(TreasureBlocks.WITHERWOOD_WOOD.get(), "Witherwood Wood");
         add(TreasureBlocks.STRIPPED_WITHERWOOD_LOG.get(), "Stripped Witherwood Log");
         add(TreasureBlocks.STRIPPED_WITHERWOOD_WOOD.get(), "Stripped Witherwood Wood");
+        add(TreasureBlocks.WITHERWOOD_FENCE.get(), "Witherwood Fence");
+        add(TreasureBlocks.WITHERWOOD_FENCE_GATE.get(), "Witherwood Fence Gate");
+        add(TreasureBlocks.WITHERWOOD_BUTTON.get(), "Witherwood Button");
+        add(TreasureBlocks.WITHERWOOD_PRESSURE_PLATE.get(), "Witherwood Pressure Plate");
+        add(TreasureBlocks.WITHERWOOD_DOOR.get(), "Witherwood Door");
+        add(TreasureBlocks.WITHERWOOD_TRAPDOOR.get(), "Witherwood Trap Door");
+        add(TreasureBlocks.WITHERWOOD_SIGN.get(), "Witherwood Sign");
+        add(TreasureBlocks.WITHERWOOD_HANGING_SIGN.get(), "Witherwood Hanging Sign");
+        add(TreasureBlocks.WITHERWOOD_TWIG.get(), "Witherwood Twig");
 
+        add(TreasureBlocks.STRANGLE_VINES.get(), "Strangle Vine");
+        add(TreasureBlocks.STRANGLE_VINES_PLANT.get(), "Strangle Vine Plant");
 
         // ore
         add(TreasureBlocks.TOPAZ_ORE.get(), "Topaz Ore");

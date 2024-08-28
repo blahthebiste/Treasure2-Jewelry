@@ -104,7 +104,6 @@ public class WellFeature extends Feature<NoneFeatureConfiguration> implements IC
 			return false;
 		}
 		
-		// TODO might have feature generator specific biome and proximity criteria checks. ie Wither
 		if (!meetsBiomeCriteria(genLevel.getLevel(), spawnCoords,
 				(List<String>)Config.SERVER.wells.biomes.whiteList.get(), (List<String>)Config.SERVER.wells.biomes.blackList.get())) {
 			return false;

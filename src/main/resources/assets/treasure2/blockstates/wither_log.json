@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=x": [
+				{"model": "treasure2:block/witherwood_log",	"x": 90, "y": 90},
+				{"model": "treasure2:block/mossy_witherwood_log",	"x": 90, "y": 90}
+			],
+		"axis=y": [
+				{"model": "treasure2:block/witherwood_log"},
+				{"model": "treasure2:block/mossy_witherwood_log"}
+			],
+		"axis=z": [
+				{"model": "treasure2:block/witherwood_log",	"x": 90},
+				{"model": "treasure2:block/mossy_witherwood_log",	"x": 90}
+			]
+	}
+}

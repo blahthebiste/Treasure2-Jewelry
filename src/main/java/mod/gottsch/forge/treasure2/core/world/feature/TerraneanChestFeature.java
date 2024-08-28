@@ -26,11 +26,13 @@ import mod.gottsch.forge.gottschcore.spatial.Coords;
 import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
+import mod.gottsch.forge.treasure2.api.TreasureApi;
 import mod.gottsch.forge.treasure2.core.config.ChestFeaturesConfiguration;
 import mod.gottsch.forge.treasure2.core.config.ChestFeaturesConfiguration.ChestRarity;
 import mod.gottsch.forge.treasure2.core.config.ChestFeaturesConfiguration.Generator;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.enums.Rarity;
+import mod.gottsch.forge.treasure2.core.enums.SpecialRarity;
 import mod.gottsch.forge.treasure2.core.generator.ChestGeneratorData;
 import mod.gottsch.forge.treasure2.core.generator.GeneratorResult;
 import mod.gottsch.forge.treasure2.core.persistence.TreasureSavedData;
@@ -41,11 +43,18 @@ import mod.gottsch.forge.treasure2.core.registry.RarityLevelWeightedChestGenerat
 import mod.gottsch.forge.treasure2.core.registry.support.GeneratedChestContext;
 import mod.gottsch.forge.treasure2.core.world.feature.gen.IFeatureGenerator;
 import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.IFeatureGeneratorSelector;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * NOTE: Feature is the equivalent to 1.12 WorldGenerator
@@ -129,11 +138,25 @@ public class TerraneanChestFeature extends ChestFeature {
 			Treasure.LOGGER.warn("unable to locate rarity config for rarity - >{}", rarity);
 			return false;
 		}
-		// test if the override (global) biome is allowed
 
-		// TODO might have feature generator specific biome and proximity criteria checks. ie Wither
-		if (!meetsBiomeCriteria(genLevel.getLevel(), spawnCoords, rarityConfig.get().getBiomeWhitelist(), rarityConfig.get().getBiomeBlacklist())) {
-			return false;
+		///// TODO currently, this is only setup for Wither Trees //////
+		if (rarity == SpecialRarity.WITHER) {
+			// get the biome white/blacklist rarity tag
+			Holder<Biome> biome = genLevel.getLevel().getBiome(spawnCoords.toPos());
+			Optional<TagKey<Biome>> biomeWhitelistTag = TreasureApi.getBiomeWhitelistTag(rarity);
+			Optional<TagKey<Biome>> biomeBlacklistTag = TreasureApi.getBiomeBlacklistTag(rarity);
+
+			if (biomeWhitelistTag.isPresent() && biomeBlacklistTag.isPresent()) {
+				if (!meetsBiomeCriteria(genLevel.getLevel(), spawnCoords, rarityConfig.get().getBiomeWhitelist(), rarityConfig.get().getBiomeBlacklist())) {
+					return false;
+				}
+			}
+		}
+		////////////////////////////
+		else {
+			if (!meetsBiomeCriteria(genLevel.getLevel(), spawnCoords, rarityConfig.get().getBiomeWhitelist(), rarityConfig.get().getBiomeBlacklist())) {
+				return false;
+			}
 		}
 
 		// check against all registered chests

@@ -23,15 +23,19 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 import mod.gottsch.forge.treasure2.core.block.entity.*;
+import mod.gottsch.forge.treasure2.core.block.state.properties.TreasureWoodTypes;
 import mod.gottsch.forge.treasure2.core.lock.LockLayouts;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.core.Direction;
+import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -214,20 +218,45 @@ public class TreasureBlocks {
 			.strength(0.6F).sound(SoundType.SAND)));
 
 	// wither
+
+	// legacy
+	public static final RegistryObject<Block> WITHER_LOG = Registration.BLOCKS.register("wither_log", () -> witherwoodLog(MapColor.WOOD, MapColor.PODZOL));
+	public static final RegistryObject<Block> WITHER_BROKEN_LOG = Registration.BLOCKS.register("wither_broken_log", () -> log(MapColor.WOOD, MapColor.PODZOL));
+	public static final RegistryObject<Block> WITHER_SOUL_LOG = Registration.BLOCKS.register("wither_soul_log", () -> new WitherSoulLog(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHER_BRANCH = Registration.BLOCKS.register("wither_branch", () -> new WitherBranchBlock(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHER_ROOT = Registration.BLOCKS.register("wither_root", () -> new WitherRootBlock(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHER_PLANKS = Registration.BLOCKS.register("wither_planks", () -> new WitherPlanksBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
+	// current
 	public static final RegistryObject<Block> WITHERWOOD_BROKEN_LOG = Registration.BLOCKS.register("witherwood_broken_log", () -> new WitherBrokenLogBlock(Properties.of().mapColor(MapColor.WOOD)));
 	public static final RegistryObject<Block> WITHERWOOD_SOUL_LOG = Registration.BLOCKS.register("witherwood_soul_log", () -> new WitherSoulLog(Properties.of().mapColor(MapColor.WOOD)));
 	public static final RegistryObject<Block> WITHERWOOD_BRANCH = Registration.BLOCKS.register("witherwood_branch", () -> new WitherBranchBlock(Properties.of().mapColor(MapColor.WOOD)));
 	public static final RegistryObject<Block> WITHERWOOD_ROOT = Registration.BLOCKS.register("witherwood_root", () -> new WitherRootBlock(Properties.of().mapColor(MapColor.WOOD)));
+	public static final RegistryObject<Block> WITHERWOOD_TWIG = Registration.BLOCKS.register("witherwood_twig", () -> new WitherTwigBlock(Properties.of()));
 
-	public static final RegistryObject<Block> WITHERWOOD_LOG = Registration.BLOCKS.register("witherwood_log", () -> log(MapColor.WOOD, MapColor.PODZOL));
-	public static final RegistryObject<Block> WITHERWOOD_WOOD = Registration.BLOCKS.register("witherwood_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+	public static final RegistryObject<Block> WITHERWOOD_LOG = Registration.BLOCKS.register("witherwood_log", () -> witherwoodLog(MapColor.WOOD, MapColor.PODZOL));
+	public static final RegistryObject<Block> WITHERWOOD_WOOD = Registration.BLOCKS.register("witherwood_wood", () -> witherwoodLog(MapColor.WOOD, MapColor.PODZOL));
 	public static final RegistryObject<Block> STRIPPED_WITHERWOOD_LOG = Registration.BLOCKS.register("stripped_witherwood_log", () -> log(MapColor.PODZOL, MapColor.PODZOL));
 	public static final RegistryObject<Block> STRIPPED_WITHERWOOD_WOOD = Registration.BLOCKS.register("stripped_witherwood_wood", () -> log(MapColor.PODZOL, MapColor.PODZOL));
 
 	public static final RegistryObject<Block> WITHERWOOD_PLANKS = Registration.BLOCKS.register("witherwood_planks", () -> new WitherPlanksBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 	public static final RegistryObject<Block> WITHERWOOD_SLAB = Registration.BLOCKS.register("witherwood_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
 	public static final RegistryObject<Block> WITHERWOOD_STAIRS = Registration.BLOCKS.register("witherwood_stairs", () -> new StairBlock(() -> WITHERWOOD_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)));
-	// TODO wither vine
+	public static final RegistryObject<Block> WITHERWOOD_FENCE = Registration.BLOCKS.register("witherwood_fence", () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
+	public static final RegistryObject<Block> WITHERWOOD_FENCE_GATE = Registration.BLOCKS.register("witherwood_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS), TreasureWoodTypes.WITHERWOOD_TYPE));
+	public static final RegistryObject<Block> WITHERWOOD_BUTTON = Registration.BLOCKS.register("witherwood_button", () -> woodenButton(BlockSetType.OAK));
+	public static final RegistryObject<Block> WITHERWOOD_PRESSURE_PLATE = Registration.BLOCKS.register("witherwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
+			BlockBehaviour.Properties.copy(Blocks.MANGROVE_PRESSURE_PLATE), BlockSetType.MANGROVE));
+	public static final RegistryObject<Block> WITHERWOOD_DOOR = Registration.BLOCKS.register("witherwood_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_DOOR), BlockSetType.CRIMSON));
+	public static final RegistryObject<Block> WITHERWOOD_TRAPDOOR = Registration.BLOCKS.register("witherwood_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.SPRUCE));
+
+	public static final RegistryObject<Block> WITHERWOOD_SIGN = Registration.BLOCKS.register("witherwood_sign", () -> new TreasureStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), TreasureWoodTypes.WITHERWOOD_TYPE));
+	public static final RegistryObject<Block> WITHERWOOD_WALL_SIGN = Registration.BLOCKS.register("witherwood_wall_sign", () -> new TreasureWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), TreasureWoodTypes.WITHERWOOD_TYPE));
+	public static final RegistryObject<Block> WITHERWOOD_HANGING_SIGN = Registration.BLOCKS.register("witherwood_hanging_sign", () -> new TreasureHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), TreasureWoodTypes.WITHERWOOD_TYPE));
+	public static final RegistryObject<Block> WITHERWOOD_WALL_HANGING_SIGN = Registration.BLOCKS.register("witherwood_wall_hanging_sign", () -> new TreasureWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), TreasureWoodTypes.WITHERWOOD_TYPE));
+
+	public static final RegistryObject<Block> STRANGLE_VINES = Registration.BLOCKS.register("strangle_vines", () -> new StrangleVinesBlock(BlockBehaviour.Properties.copy(Blocks.TWISTING_VINES)));
+	public static final RegistryObject<Block> STRANGLE_VINES_PLANT = Registration.BLOCKS.register("strangle_vines_plant", () -> new StrangleVinesPlantBlock(BlockBehaviour.Properties.copy(Blocks.TWISTING_VINES_PLANT)));
 
 	// other
 	public static final RegistryObject<Block> SPANISH_MOSS = Registration.BLOCKS.register("spanish_moss", () -> new SpanishMossBlock(Properties.of().mapColor(MapColor.WOOD)));
@@ -242,7 +271,6 @@ public class TreasureBlocks {
 
 	public static final RegistryObject<Block> DESERT_WISHING_WELL = Registration.BLOCKS.register("desert_wishing_well_block", () -> new WishingWellBlock(
 			Properties.of().mapColor(MapColor.STONE).strength(2.0F).sound(SoundType.STONE)));
-
 
 	public static final RegistryObject<Block> CLOVER = Registration.BLOCKS.register("clover_block", () -> new Block(Properties.copy(Blocks.TALL_GRASS)));
 
@@ -307,11 +335,25 @@ public class TreasureBlocks {
 	public static void register(IEventBus bus) {
 		// cycle through all block and create items
 		Registration.registerBlocks(bus);
-	}	
+	}
 
-	private static RotatedPillarBlock log(MapColor p_285370_, MapColor p_285126_) {
-		return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
-			return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_285370_ : p_285126_;
+	private static RotatedPillarBlock witherwoodLog(MapColor mapColor, MapColor mapColor1) {
+		return new WitherwoodRotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
+			return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? mapColor : mapColor1;
 		}).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
+	}
+
+	private static RotatedPillarBlock log(MapColor mapColor, MapColor mapColor1) {
+		return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
+			return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? mapColor : mapColor1;
+		}).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
+	}
+
+	private static ButtonBlock woodenButton(BlockSetType blockSetType, FeatureFlag... featureFlags) {
+		BlockBehaviour.Properties blockbehaviour$properties = BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+		if (featureFlags.length > 0) {
+			blockbehaviour$properties = blockbehaviour$properties.requiredFeatures(featureFlags);
+		}
+		return new ButtonBlock(blockbehaviour$properties, blockSetType, 30, true);
 	}
 }

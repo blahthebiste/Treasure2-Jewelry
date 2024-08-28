@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "treasure2:block/strangle_vines_plant"
+  },
+  "render_type": "cutout"
+}

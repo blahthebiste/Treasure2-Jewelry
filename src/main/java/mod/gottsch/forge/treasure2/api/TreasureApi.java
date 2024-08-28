@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 import mod.gottsch.forge.gottschcore.enums.IEnum;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.treasure2.Treasure;
-import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.enums.ILootTableType;
 import mod.gottsch.forge.treasure2.core.enums.IMarkerType;
 import mod.gottsch.forge.treasure2.core.enums.IPitType;
@@ -40,12 +39,10 @@ import mod.gottsch.forge.treasure2.core.generator.well.IWellGenerator;
 import mod.gottsch.forge.treasure2.core.item.IKeyLockCategory;
 import mod.gottsch.forge.treasure2.core.item.KeyItem;
 import mod.gottsch.forge.treasure2.core.item.LockItem;
-import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.registry.*;
 import mod.gottsch.forge.treasure2.core.structure.IStructureCategory;
 import mod.gottsch.forge.treasure2.core.structure.IStructureType;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
-import mod.gottsch.forge.treasure2.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.wishable.IWishableHandler;
 import mod.gottsch.forge.treasure2.core.world.feature.FeatureType;
 import mod.gottsch.forge.treasure2.core.world.feature.IFeatureType;
@@ -54,6 +51,7 @@ import mod.gottsch.forge.treasure2.core.world.feature.gen.selector.IFeatureGener
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -284,7 +282,24 @@ public class TreasureApi {
 	public static void registerWishableTag(IRarity rarity, TagKey<Item> tag) {
 		TagRegistry.registerWishable(rarity, tag);
 	}
-	
+
+	// TODO are these white/blacklist registrations necessary - not registering the biomes inside of them.... simply using the tags in conditions
+	public static void registerBiomeWhitelistTag(IRarity rarity, TagKey<Biome> tag) {
+		TagRegistry.registerBiomeWhitelist(rarity, tag);
+	}
+
+	public static void registerBiomeBlacklistTag(IRarity rarity, TagKey<Biome> tag) {
+		TagRegistry.registerBiomeBlacklist(rarity, tag);
+	}
+
+	public static Optional<TagKey<Biome>> getBiomeWhitelistTag(IRarity rarity) {
+		return TagRegistry.getBiomeWhitelistTag(rarity);
+	}
+
+	public static Optional<TagKey<Biome>> getBiomeBlacklistTag(IRarity rarity) {
+		return TagRegistry.getBiomeBlacklistTag(rarity);
+	}
+
 	// TODO does the api need to expose this?
 	public static TagKey<Item> getKeyTag(IRarity rarity) {
 		return TagRegistry.getKeyTag(rarity);

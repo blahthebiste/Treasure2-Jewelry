@@ -33,25 +33,20 @@ import mod.gottsch.forge.treasure2.client.screen.WitherChestScreen;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.block.entity.TreasureBlockEntities;
 import mod.gottsch.forge.treasure2.core.entity.TreasureEntities;
+import mod.gottsch.forge.treasure2.core.block.state.properties.TreasureWoodTypes;
 import mod.gottsch.forge.treasure2.core.inventory.TreasureContainers;
-import mod.gottsch.forge.treasure2.core.particle.BillowingMistParticle;
-import mod.gottsch.forge.treasure2.core.particle.CoinParticle;
-import mod.gottsch.forge.treasure2.core.particle.MistParticle;
-import mod.gottsch.forge.treasure2.core.particle.PoisonMistParticle;
-import mod.gottsch.forge.treasure2.core.particle.SpanishMossParticle;
-import mod.gottsch.forge.treasure2.core.particle.TreasureParticles;
-import mod.gottsch.forge.treasure2.core.particle.WitherMistParticle;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -80,6 +75,10 @@ public class ClientSetup {
 	 */
     public static void init(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+
+			// register wood types
+			Sheets.addWoodType(TreasureWoodTypes.WITHERWOOD_TYPE);
+
         	// TODO might need a screen for every chest if there is a different colored gui to use.
         	// attach our container(s) to the screen(s)
             MenuScreens.register(TreasureContainers.STANDARD_CHEST_CONTAINER.get(), StandardChestScreen::new);           
@@ -148,6 +147,10 @@ public class ClientSetup {
 		event.registerEntityRenderer(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.BARREL_MIMIC_ENTITY_TYPE.get(), BarrelMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), VanillaChestMimicRenderer::new);
+
+		event.registerBlockEntityRenderer(TreasureBlockEntities.TREASURE_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(TreasureBlockEntities.TREASURE_HANGING_SIGN.get(), HangingSignRenderer::new);
+
 	}
 	
 	/**

@@ -18,6 +18,7 @@
 package mod.gottsch.forge.treasure2.core.tags;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.treasure2.Treasure;
@@ -81,8 +82,6 @@ public class TreasureTags {
 		public static final TagKey<Item> MYTHICAL_WISHABLE = mod(Treasure.MODID, "wishable/mythical");
 		public static final TagKey<Item> WISHABLES = mod(Treasure.MODID, "wishable/wishables");
 
-
-
 		// other
 		public static final TagKey<Item> POUCH = mod(Treasure.MODID, "pouch");
 
@@ -119,6 +118,10 @@ public class TreasureTags {
 	public static class Biomes {
 		public static final TagKey<Biome> ALL_OVERWORLD = mod(Treasure.MODID, "all_overworld");
 		public static final TagKey<Biome> BOP_OVERWORLD = mod(Treasure.MODID, "bop_overworld");
+
+		// POC convert config file generator raritie white/blacklists into Tags
+		public static final TagKey<Biome> WITHER_BIOME_WHITELIST = mod(Treasure.MODID, "config/generators/rarities/wither/whitelist");
+		public static final TagKey<Biome> WITHER_BIOME_BLACKLIST = mod(Treasure.MODID, "config/generators/rarities/wither/blacklist");
 
 		public static TagKey<Biome> mod(String domain, String path) {
 			return TagKey.create(Registries.BIOME, new ResourceLocation(domain, path));
@@ -185,9 +188,9 @@ public class TreasureTags {
 		});
 
 		/*
-		 * process tags to and register wishables according to rarity
+		 * process tags to register wishables according to rarity
 		 */
-		for (IRarity rarity : TreasureApi.getRarities()) {	
+		for (IRarity rarity : TreasureApi.getRarities()) {
 			TagKey<Item> tagKey = TagRegistry.getWishableTag(rarity);
 			if (tagKey != null) {
 				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
@@ -199,5 +202,19 @@ public class TreasureTags {
 				}
 			}
 		}
+
+		/*
+		 * process tags to register biome white/blacklists by rarity
+		 */
+//		for (IRarity rarity : TreasureApi.getRarities()) {
+//			Optional<TagKey<Biome>> tagKey = TagRegistry.getBiomeWhitelistTag(rarity);
+//			tagKey.ifPresent(key -> {
+//				ITag<Biome> tag = ForgeRegistries.BIOMES.tags().getTag(key);
+//				for (Iterator<Biome> iterator = tag.iterator(); iterator.hasNext();) {
+//					Biome biome = iterator.next();
+//					....
+//				}
+//			});
+//		}
 	}
 }
