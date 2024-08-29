@@ -188,7 +188,7 @@ public class ItemModelsProvider extends ItemModelProvider {
 				mcLoc("item/generated"), "layer0", modLoc("item/skeleton_item"));
 		singleTexture(TreasureItems.EYE_PATCH.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/eye_patch"));
-		singleTexture(TreasureItems.CLOVER_ITEM.getId().getPath(),
+		singleTexture(TreasureItems.CLOVER.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/clover"));
 
 		// short swords
@@ -318,7 +318,25 @@ public class ItemModelsProvider extends ItemModelProvider {
 		withExistingParent(TreasureItems.WISHING_WELL_STONE_BRICKS_ITEM.getId().getPath(), modLoc("block/wishing_well_stone_bricks_block"));
 		withExistingParent(TreasureItems.WISHING_WELL_MOSSY_STONE_BRICKS_ITEM.getId().getPath(), modLoc("block/wishing_well_mossy_stone_bricks_block"));
 		withExistingParent(TreasureItems.DESERT_WISHING_WELL_ITEM.getId().getPath(), modLoc("block/desert_wishing_well_block"));
-		
+
+		// witherwood
+		withExistingParent(TreasureItems.WITHERWOOD_FENCE.getId().getPath(), modLoc("block/witherwood_fence_inventory"));
+		withExistingParent(TreasureItems.WITHERWOOD_FENCE_GATE.getId().getPath(), modLoc("block/witherwood_fence_gate"));
+		withExistingParent(TreasureItems.WITHERWOOD_BUTTON.getId().getPath(), modLoc("block/witherwood_button_inventory"));
+		withExistingParent(TreasureItems.WITHERWOOD_PRESSURE_PLATE.getId().getPath(), modLoc("block/witherwood_pressure_plate"));
+		withExistingParent(TreasureItems.WITHERWOOD_TRAPDOOR.getId().getPath(), modLoc("block/witherwood_trapdoor_bottom"));
+		withExistingParent(TreasureItems.WITHERWOOD_TWIG.getId().getPath(), modLoc("block/witherwood_twig"));
+
+		singleTexture(TreasureItems.WITHERWOOD_DOOR.getId().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/witherwood_door"));
+		singleTexture(TreasureItems.WITHERWOOD_SIGN.getId().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/witherwood_sign"));
+		singleTexture(TreasureItems.WITHERWOOD_HANGING_SIGN.getId().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/witherwood_hanging_sign"));
+
+		withExistingParent(TreasureItems.STRANGLE_VINES.getId().getPath(), modLoc("block/strangle_vines"));
+
+
 		TreasureBlocks.CHESTS.forEach(g -> {
 			withExistingParent(g.getId().getPath(), modLoc("block/" + g.getId().getPath()));
 		});

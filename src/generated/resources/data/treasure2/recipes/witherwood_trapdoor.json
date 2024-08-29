@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "w": [
+      {
+        "item": "treasure2:witherwood_planks"
+      },
+      {
+        "item": "treasure2:wither_planks"
+      }
+    ]
+  },
+  "pattern": [
+    "www",
+    "www"
+  ],
+  "result": {
+    "count": 2,
+    "item": "treasure2:witherwood_trapdoor"
+  },
+  "show_notification": true
+}

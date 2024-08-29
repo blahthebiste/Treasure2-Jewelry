@@ -435,6 +435,7 @@ public class Config extends AbstractConfig {
 			public ConfigValue<Integer> maxTrunkSize;
 			public ConfigValue<Integer> minSupportingTrees;
 			public ConfigValue<Integer> maxSupportingTrees;
+			public BiomesConfig biomes;
 
 			public WitherTree(final ForgeConfigSpec.Builder builder)	 {
 				builder.comment(CATEGORY_DIV, " Wither Tree properties", CATEGORY_DIV)
@@ -457,6 +458,11 @@ public class Config extends AbstractConfig {
 				maxSupportingTrees = builder
 						.comment(" The maximum number of supporting wither trees that surround the main tree in the grove.")
 						.defineInRange("maxSupportingTrees", 15, 0, 30);
+
+				BiomesConfig.Data biomesData = new BiomesConfig.Data(new String[] {}, new String[] { "minecraft:ocean", "minecraft:deep_ocean", "minecraft:deep_frozen_ocean", "minecraft:cold_ocean",
+						"minecraft:deep_cold_ocean", "minecraft:lukewarm_ocean", "minecraft:warm_ocean" },
+						new String[] {}, new String[] { "minecraft:ocean", "minecraft:deep_ocean" });
+				biomes = new BiomesConfig(builder, biomesData);
 
 				builder.pop();
 			}

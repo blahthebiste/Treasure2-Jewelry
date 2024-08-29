@@ -52,22 +52,20 @@ public class WitherRootBlock extends FacingBlock implements ITreasureBlock, IMis
 	 * An array of VoxelShape shapes for the bounding box
 	 */
 	private VoxelShape[] shapes = new VoxelShape[4];
-	
+
 	/**
-	 * 
-	 * @param modID
-	 * @param name
-	 * @param material
+	 *
+	 * @param properties
 	 */
 	public WitherRootBlock(Block.Properties properties) {
 		super(properties.sound(SoundType.WOOD).strength(3.0F));
 		registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(ACTIVATED, Boolean.valueOf(false)));
 		setShapes(
 			new VoxelShape[] {
-					Block.box(3, 0, 0, 13, 4, 15),	// S
-					Block.box(0, 0, 4, 15, 4, 12),	// W
-					Block.box(3, 0, 0, 13, 4, 15),	// N
-					Block.box(0, 0, 4, 15, 4, 12)	// E
+					Block.box(0.01, 0, 0.01, 15.99, 12, 15.99),	// S
+					Block.box(0.01, 0, 0.01, 15.99, 12, 15.99),	// W
+					Block.box(0.01, 0, 0.01, 15.99, 12, 15.99),	// N
+					Block.box(0.01, 0, 0.01, 15.99, 12, 15.99)	// E
 			});
 	}
 	

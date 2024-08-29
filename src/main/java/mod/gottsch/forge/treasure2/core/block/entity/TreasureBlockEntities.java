@@ -172,10 +172,21 @@ public class TreasureBlockEntities {
 	public static final RegistryObject<BlockEntityType<MistEmitterBlockEntity>> MIST_EMITTER_BLOCK_ENTITY_TYPE = 
 			Registration.BLOCK_ENTITIES.register("mist_emitter", 
 				() -> BlockEntityType.Builder.of(MistEmitterBlockEntity::new, 
-						TreasureBlocks.WITHER_SOUL_LOG.get()
+						TreasureBlocks.WITHERWOOD_SOUL_LOG.get()
 					).build(null));
 
-	
+	// signs
+	public static final RegistryObject<BlockEntityType<TreasureSignBlockEntity>> TREASURE_SIGN =
+			Registration.BLOCK_ENTITIES.register("treasure_sign",
+					() -> BlockEntityType.Builder.of(TreasureSignBlockEntity::new,
+					TreasureBlocks.WITHERWOOD_SIGN.get(), TreasureBlocks.WITHERWOOD_WALL_SIGN.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<TreasureHangingSignBlockEntity>> TREASURE_HANGING_SIGN =
+			Registration.BLOCK_ENTITIES.register("treasure_hanging_sign",
+					() -> BlockEntityType.Builder.of(TreasureHangingSignBlockEntity::new,
+							TreasureBlocks.WITHERWOOD_HANGING_SIGN.get(), TreasureBlocks.WITHERWOOD_WALL_HANGING_SIGN.get()).build(null));
+
+
 	public static void register(IEventBus bus) {
 		// cycle through all block and create items
 		Registration.registerBlockEntities(bus);

@@ -19,6 +19,9 @@ package mod.gottsch.forge.treasure2.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
+import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
+import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import mod.gottsch.forge.treasure2.Treasure;
@@ -132,6 +135,5 @@ public class TreasureItemTagsProvider extends ItemTagsProvider {
 		tag(TreasureTags.Items.POUCH).add(Items.EMERALD);
 		tag(TreasureTags.Items.POUCH).addTag(TreasureTags.Items.KEYS);
 		tag(TreasureTags.Items.POUCH).addTag(TreasureTags.Items.LOCKS);
-
 	}
 }

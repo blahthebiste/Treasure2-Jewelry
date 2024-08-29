@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "w": [
+      {
+        "item": "treasure2:witherwood_planks"
+      },
+      {
+        "item": "treasure2:wither_planks"
+      }
+    ]
+  },
+  "pattern": [
+    "www",
+    "www",
+    " # "
+  ],
+  "result": {
+    "count": 3,
+    "item": "treasure2:witherwood_sign"
+  },
+  "show_notification": true
+}
