@@ -25,6 +25,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -42,52 +43,55 @@ public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
     @Override
     protected void addTags(Provider provider) {
         String BOP = "biomesoplenty";
+        String BWG = "biomeswevegone";
 
     	// blocks rarity
-    	tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BAMBOO_JUNGLE);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BASALT_DELTAS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BIRCH_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BEACH);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.CHERRY_GROVE);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.CRIMSON_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DARK_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DESERT);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DEEP_DARK);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DRIPSTONE_CAVES);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FLOWER_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_PEAKS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_RIVER);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.GROVE);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.ICE_SPIKES);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.JUNGLE);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.JAGGED_PEAKS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.LUSH_CAVES);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MANGROVE_SWAMP);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MEADOW);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MUSHROOM_FIELDS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_PINE_TAIGA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_SPRUCE_TAIGA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.PLAINS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.RIVER);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA_PLATEAU);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_PLAINS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_SLOPES);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_TAIGA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SPARSE_JUNGLE);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.STONY_PEAKS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SUNFLOWER_PLAINS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SWAMP);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.TAIGA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_FOREST);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_SAVANNA);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_HILLS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
-        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WOODED_BADLANDS);
+//    	tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BAMBOO_JUNGLE);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BASALT_DELTAS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BIRCH_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.BEACH);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.CHERRY_GROVE);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.CRIMSON_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DARK_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DESERT);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DEEP_DARK);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.DRIPSTONE_CAVES);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FLOWER_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_PEAKS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_RIVER);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.GROVE);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.ICE_SPIKES);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.JUNGLE);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.JAGGED_PEAKS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.LUSH_CAVES);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MANGROVE_SWAMP);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MEADOW);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.MUSHROOM_FIELDS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_PINE_TAIGA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_SPRUCE_TAIGA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.PLAINS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.RIVER);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA_PLATEAU);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_PLAINS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_SLOPES);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_TAIGA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SPARSE_JUNGLE);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.STONY_PEAKS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SUNFLOWER_PLAINS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.SWAMP);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.TAIGA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_FOREST);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_SAVANNA);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_HILLS);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
+        tag(TreasureTags.Biomes.ALL_OVERWORLD).addTag(BiomeTags.IS_OVERWORLD);
+//        tag(TreasureTags.Biomes.ALL_OVERWORLD).add(Biomes.WOODED_BADLANDS);
 
+        // BOP
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "aspen_glade"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "auroral_garden"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "bayou"));
@@ -160,5 +164,9 @@ public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "wintry_origin_valley"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "withered_abyss"));
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "woodland"));
+
+        // BWG
+        tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptionalTag(new ResourceLocation(BWG, "overworld"));
+
     }
 }
