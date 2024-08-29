@@ -57,12 +57,12 @@
 	"block.treasure2.skeleton":"Skeleton",
 	"block.treasure2.skull_and_crossbones":"Skull and Crossbones",
 	
-	"block.treasure2.wither_log":"Wither Log",
-	"block.treasure2.wither_broken_log":"Wither Broken Log",
+	"block.treasure2.witherwood_log":"Wither Log",
+	"block.treasure2.witherwood_broken_log":"Wither Broken Log",
 	"block.treasure2.wither_soul_log":"Wither Soul Log",
 	"block.treasure2.wither_planks":"Wither Planks",	
-	"block.treasure2.wither_branch":"Wither Branch",
-	"block.treasure2.wither_root":"Wither Root",
+	"block.treasure2.witherwood_branch":"Wither Branch",
+	"block.treasure2.witherwood_root":"Wither Root",
 	
 	"block.treasure2.topaz_ore":"Topaz Ore",
 	"block.treasure2.onyx_ore":"Onyx Ore",
@@ -475,7 +475,7 @@
 	"item.treasure2.peasants_fortune": "Peasant's Fortune",
 
 	"item.treasure2.wither_stick_item":"Wither Branch",
-	"item.treasure2.wither_root_item":"Wither Root",
+	"item.treasure2.witherwood_root_item":"Wither Root",
 	"item.treasure2.eye_patch":"Eye Patch",
 	"item.treasure2.skull_sword":"Skull Sword",
 	"item.treasure2.bound_soul_spawn_egg":"Bound Soul Spawn Egg",

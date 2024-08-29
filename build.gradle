@@ -114,6 +114,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:oh-the-trees-youll-grow-962544:5630466")
 //    implementation fg.deobf("curse.maven:terrablender-563928:5378180")
     // implementation fg.deobf("curse.maven:diamethysts-606423:5354532")
+
 //    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE:api")
 //    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
 }

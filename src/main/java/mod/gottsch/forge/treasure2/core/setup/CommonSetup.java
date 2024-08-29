@@ -57,7 +57,6 @@ import mod.gottsch.forge.treasure2.core.generator.ruin.SubaquaticRuinGenerator;
 import mod.gottsch.forge.treasure2.core.generator.ruin.SurfaceRuinGenerator;
 import mod.gottsch.forge.treasure2.core.generator.well.WellGenerator;
 import mod.gottsch.forge.treasure2.core.item.KeyLockCategory;
-import mod.gottsch.forge.treasure2.core.item.TreasureCreativeModeTabs;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.network.TreasureNetworking;
 import mod.gottsch.forge.treasure2.core.structure.StructureCategory;
@@ -70,7 +69,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -254,6 +252,10 @@ public class CommonSetup {
 		TreasureApi.registerWishableTag(Rarity.EPIC, TreasureTags.Items.EPIC_WISHABLE);
 		TreasureApi.registerWishableTag(Rarity.LEGENDARY, TreasureTags.Items.LEGENDARY_WISHABLE);
 		TreasureApi.registerWishableTag(Rarity.MYTHICAL, TreasureTags.Items.MYTHICAL_WISHABLE);
+
+		// biome white/blacklist tags by rarity
+		TreasureApi.registerBiomeWhitelistTag(SpecialRarity.WITHER, TreasureTags.Biomes.WITHER_BIOME_WHITELIST);
+		TreasureApi.registerBiomeBlacklistTag(SpecialRarity.WITHER, TreasureTags.Biomes.WITHER_BIOME_BLACKLIST);
 
 		// register all the keys
 		TreasureApi.registerKey(TreasureItems.WOOD_KEY);

@@ -52,7 +52,7 @@ public class WitherRootItem extends BlockItem {
 		if (WorldInfo.isClientSide(context.getLevel())) {
             return InteractionResult.PASS;
         }
-		BlockState state = TreasureBlocks.WITHER_ROOT.get().defaultBlockState().setValue(WitherBranchBlock.FACING, context.getHorizontalDirection().getOpposite());
+		BlockState state = TreasureBlocks.WITHERWOOD_ROOT.get().defaultBlockState().setValue(WitherBranchBlock.FACING, context.getHorizontalDirection().getOpposite());
 		
  		ItemStack heldItem = context.getPlayer().getItemInHand(context.getHand());	     		
  		this.placeBlock(new BlockPlaceContext(context), state);     		

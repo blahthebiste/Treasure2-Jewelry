@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "treasure2:block/witherwood_slab"
+    },
+    "type=double": {
+      "model": "treasure2:block/witherwood_planks"
+    },
+    "type=top": {
+      "model": "treasure2:block/witherwood_slab_top"
+    }
+  }
+}

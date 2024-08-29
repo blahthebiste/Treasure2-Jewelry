@@ -17,11 +17,9 @@
  */
 package mod.gottsch.forge.treasure2.core.registry;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import net.minecraft.world.level.biome.Biome;
 import org.apache.commons.lang3.tuple.Triple;
 
 import com.google.common.collect.Maps;
@@ -46,7 +44,10 @@ public class TagRegistry {
 	 */
 	// wishable registry
 	private static final Map<IRarity, TagKey<Item>> WISHABLE_TAGS_REGISTRY = Maps.newHashMap();
-	
+	// biome white/blacklists
+	private static final Map<IRarity, TagKey<Biome>> BIOME_WHITELIST_TAGS_REGISTRY = Maps.newHashMap();
+	private static final Map<IRarity, TagKey<Biome>> BIOME_BLACKLIST_TAGS_REGISTRY = Maps.newHashMap();
+
 	private TagRegistry() {}
 	
 //	public static void register(IRarity rarity) {
@@ -94,7 +95,14 @@ public class TagRegistry {
 //		registerRarity(rarity);
 		registerWishableTag(rarity, wishableTag);
 	}
-	
+
+	public static void registerBiomeWhitelist(IRarity rarity, TagKey<Biome> tag) {
+		registerBiomeWhitelistTag(rarity, tag);
+	}
+	public static void registerBiomeBlacklist(IRarity rarity, TagKey<Biome> tag) {
+		registerBiomeBlacklistTag(rarity, tag);
+	}
+
 //	private static void registerRarity(IRarity rarity) {
 //		if (!REGISTRY.containsKey(rarity.getName())) {
 //			REGISTRY.put(rarity.getName(), rarity);
@@ -110,6 +118,18 @@ public class TagRegistry {
 	private static void registerWishableTag(IRarity rarity, TagKey<Item> wishableTag) {
 		if (!WISHABLE_TAGS_REGISTRY.containsKey(rarity)) {
 			WISHABLE_TAGS_REGISTRY.put(rarity, wishableTag);
+		}
+	}
+
+	private static void registerBiomeWhitelistTag(IRarity rarity, TagKey<Biome> wishableTag) {
+		if (!BIOME_WHITELIST_TAGS_REGISTRY.containsKey(rarity)) {
+			BIOME_WHITELIST_TAGS_REGISTRY.put(rarity, wishableTag);
+		}
+	}
+
+	private static void registerBiomeBlacklistTag(IRarity rarity, TagKey<Biome> wishableTag) {
+		if (!BIOME_BLACKLIST_TAGS_REGISTRY.containsKey(rarity)) {
+			BIOME_BLACKLIST_TAGS_REGISTRY.put(rarity, wishableTag);
 		}
 	}
 
@@ -171,5 +191,18 @@ public class TagRegistry {
 	public static List<IRarity> getWishableKeys() {
 		Set<IRarity> keys = WISHABLE_TAGS_REGISTRY.keySet();
 		return new ArrayList<>(keys);
+	}
+
+	public static Optional<TagKey<Biome>> getBiomeWhitelistTag(IRarity rarity) {
+		if(BIOME_WHITELIST_TAGS_REGISTRY.containsKey(rarity)) {
+			return Optional.of(BIOME_WHITELIST_TAGS_REGISTRY.get(rarity));
+		}
+		return Optional.empty();
+	}
+	public static Optional<TagKey<Biome>> getBiomeBlacklistTag(IRarity rarity) {
+		if(BIOME_BLACKLIST_TAGS_REGISTRY.containsKey(rarity)) {
+			return Optional.of(BIOME_BLACKLIST_TAGS_REGISTRY.get(rarity));
+		}
+		return Optional.empty();
 	}
 }

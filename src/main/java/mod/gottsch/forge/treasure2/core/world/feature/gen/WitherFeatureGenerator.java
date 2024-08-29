@@ -185,7 +185,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 			// add tree if criteria is met
 			if (c != null && c != Coords.EMPTY) {
 				if (c.getDistanceSq(spawnCoords) > 4) {
-					if (context.level().getBlockState(c.toPos()).getBlock() != TreasureBlocks.WITHER_LOG.get()) {
+					if (context.level().getBlockState(c.toPos()).getBlock() != TreasureBlocks.WITHERWOOD_LOG.get()) {
 						buildClearing(context, c, spawnCoords);
 						buildTree(context, c, spawnCoords);
 
@@ -334,7 +334,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 
 					if (!hasLifeBeenAdded) {
 						context.level().setBlock(trunkCoords[trunkIndex].add(0, y, 0).toPos(),
-								TreasureBlocks.WITHER_SOUL_LOG.get().defaultBlockState()
+								TreasureBlocks.WITHERWOOD_SOUL_LOG.get().defaultBlockState()
 								.setValue(WitherSoulLog.APPEARANCE, WitherSoulLog.Appearance.FACE)
 								.setValue(WitherSoulLog.FACING, Direction.SOUTH), 3);
 						hasLifeBeenAdded = true;
@@ -344,7 +344,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 
 				// add the trunk
 				context.level().setBlock(trunkCoords[trunkIndex].add(0, y, 0).toPos(),
-						TreasureBlocks.WITHER_LOG.get().defaultBlockState(), 3);
+						TreasureBlocks.WITHERWOOD_LOG.get().defaultBlockState(), 3);
 
 				// add the decorations (branches, roots, top)
 				if (y == 0) {
@@ -377,14 +377,14 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 		for (int y = 0; y < maxSize; y++) {
 			if (y == 0) {
 				if (!hasLifeBeenAdded) {
-					context.level().setBlock(coords.add(0, y, 0).toPos(), TreasureBlocks.WITHER_SOUL_LOG.get().defaultBlockState(), 3);
+					context.level().setBlock(coords.add(0, y, 0).toPos(), TreasureBlocks.WITHERWOOD_SOUL_LOG.get().defaultBlockState(), 3);
 					hasLifeBeenAdded = true;
 					continue;
 				}
 			}
 
 			// add the trunk
-			context.level().setBlock(coords.add(0, y, 0).toPos(), TreasureBlocks.WITHER_LOG.get().defaultBlockState(), 3);
+			context.level().setBlock(coords.add(0, y, 0).toPos(), TreasureBlocks.WITHERWOOD_LOG.get().defaultBlockState(), 3);
 
 			// add the branches/roots
 			if (y == 0) {
@@ -414,7 +414,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 				if (groundBlockContext.isSolid()
 						&& (replaceBlockContext.isAir() || replaceBlockContext.isReplaceable())) {
 					// rotate the branch in the right direction
-					BlockState state = TreasureBlocks.WITHER_ROOT.get().defaultBlockState()
+					BlockState state = TreasureBlocks.WITHERWOOD_ROOT.get().defaultBlockState()
 							.setValue(WitherRootBlock.FACING, direction)
 							.setValue(WitherRootBlock.ACTIVATED, true);
 
@@ -457,7 +457,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 					// if able to place branch here
 					if (replaceBlockContext.isAir() || replaceBlockContext.isReplaceable()) {
 						// rotate the branch in the right direction
-						BlockState state = TreasureBlocks.WITHER_BRANCH.get().defaultBlockState()
+						BlockState state = TreasureBlocks.WITHERWOOD_BRANCH.get().defaultBlockState()
 								.setValue(WitherBranchBlock.FACING, direction);
 
 						// add the branch to the world
@@ -483,7 +483,7 @@ public class WitherFeatureGenerator implements IFeatureGenerator {
 	
 	private void addTop(IWorldGenContext context, ICoords coords, ICoords originalSpawnCoords, int y, Direction direction) {
 		if (direction != null) {
-			BlockState state = TreasureBlocks.WITHER_BROKEN_LOG.get().defaultBlockState().setValue(WitherRootBlock.FACING, direction);
+			BlockState state = TreasureBlocks.WITHERWOOD_BROKEN_LOG.get().defaultBlockState().setValue(WitherRootBlock.FACING, direction);
 			// add the top log to the world
 			//			world.setBlockState(coords.add(0, y, 0).toPos(), state, 3);
 			ICoords topCoords = coords.add(0, y, 0);

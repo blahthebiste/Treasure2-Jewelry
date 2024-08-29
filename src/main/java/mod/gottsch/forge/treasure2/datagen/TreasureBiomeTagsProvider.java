@@ -168,5 +168,8 @@ public class TreasureBiomeTagsProvider extends BiomeTagsProvider {
         // BWG
         tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptionalTag(new ResourceLocation(BWG, "overworld"));
 
+//        tag(TreasureTags.Biomes.WITHER_TREE_BIOME_WHITELIST).add(Biomes.BADLANDS);
+        tag(TreasureTags.Biomes.WITHER_BIOME_BLACKLIST).addTag(BiomeTags.IS_OCEAN);
+
     }
 }

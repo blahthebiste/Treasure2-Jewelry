@@ -18,10 +18,13 @@
 package mod.gottsch.forge.treasure2.core.entity;
 
 
+import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
+import mod.gottsch.forge.treasure2.core.block.entity.TreasureSignBlockEntity;
 import mod.gottsch.forge.treasure2.core.entity.monster.*;
 import mod.gottsch.forge.treasure2.core.setup.Registration;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 

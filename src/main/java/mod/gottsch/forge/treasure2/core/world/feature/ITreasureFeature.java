@@ -30,6 +30,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 /**
@@ -49,17 +50,10 @@ public interface ITreasureFeature {
 		return Config.SERVER.integration.dimensionsWhiteList.get().contains(dimension.toString());
 	}
 
-	/**
-	 * 
-	 * @param world
-	 * @param spawnCoords
-	 * @param chestConfig
-	 * @return
-	 */
 	default public boolean meetsBiomeCriteria(ServerLevel world, ICoords spawnCoords, List<String> whitelist, List<String> blacklist) {
 		ResourceLocation name = ModUtil.getName(world.getBiome(spawnCoords.toPos()));
 		TreasureBiomeHelper.Result biomeCheck =TreasureBiomeHelper.isBiomeAllowed(name, whitelist, blacklist);
-		
+
 		if(biomeCheck == TreasureBiomeHelper.Result.BLACK_LISTED ) {
 			if (WorldInfo.isClientSide(world)) {
 				Treasure.LOGGER.debug("biome {} is not a valid biome at -> {}", name, spawnCoords.toShortString());
@@ -68,6 +62,25 @@ public interface ITreasureFeature {
 				// TODO test if this crashes with the getRegistryName because in 1.12 this was a client side only
 				Treasure.LOGGER.debug("biome {} is not valid at -> {}", name, spawnCoords.toShortString());
 			}					
+			return false;
+		}
+		return true;
+	}
+
+	default public boolean meetsBiomeCriteria(ServerLevel world, ICoords spawnCoords, TagKey<Biome> whitelist, TagKey<Biome> blacklist) {
+		ResourceLocation name = ModUtil.getName(world.getBiome(spawnCoords.toPos()));
+
+		Holder<Biome> biome =world.getBiome(spawnCoords.toPos());
+		TreasureBiomeHelper.Result biomeCheck = TreasureBiomeHelper.isBiomeAllowed(biome, whitelist, blacklist);
+
+		if(biomeCheck == TreasureBiomeHelper.Result.BLACK_LISTED ) {
+			if (WorldInfo.isClientSide(world)) {
+				Treasure.LOGGER.debug("biome {} is not a valid biome at -> {}", name, spawnCoords.toShortString());
+			}
+			else {
+				// TODO test if this crashes with the getRegistryName because in 1.12 this was a client side only
+				Treasure.LOGGER.debug("biome {} is not valid at -> {}", name, spawnCoords.toShortString());
+			}
 			return false;
 		}
 		return true;

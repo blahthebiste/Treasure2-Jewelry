@@ -31,10 +31,10 @@ public class WitherBrokenLogBlock extends FacingBlock implements ITreasureBlock 
 		// TODO make better shape
 		setShapes(
 				new VoxelShape[] {
-					Block.box(0, 0, 0, 16, 16, 16), 	// N
-					Block.box(0, 0, 0, 16, 16, 16),  	// E
-					Block.box(0, 0, 0, 16, 16, 16),  	// S
-					Block.box(0, 0, 0, 16, 16, 16) 	// W)
+					Block.box(1, 0, 1, 15, 15, 15), 	// N
+					Block.box(1, 0, 1, 15, 15, 15),  	// E
+					Block.box(1, 0, 1, 15, 15, 15),  	// S
+					Block.box(1, 0, 1, 15, 15, 15) 	// W)
 				}
 			);
 	}

@@ -1,0 +1,7 @@
+{
+	"parent": "treasure2:block/witherwood_branch5",
+	"textures": {
+		"0": "treasure2:block/mossy_witherwood_log",
+		"1": "treasure2:block/witherwood_log_top"
+	}
+}
