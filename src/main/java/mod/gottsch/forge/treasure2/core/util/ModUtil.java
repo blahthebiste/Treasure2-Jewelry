@@ -236,7 +236,6 @@ public class ModUtil {
 				if (!WorldInfo.isClientSide(level)) {
 					SpawnPlacements.Type placement = SpawnPlacements.getPlacementType(entityType);
 					if (NaturalSpawner.isSpawnPositionOk(placement, level, spawnCoords.toPos(), entityType)) {
-						//						mob = entityType.create(level);
 						mob.setPos((double)spawnX, (double)spawnY, (double)spawnZ);
 						level.addFreshEntityWithPassengers(mob);
 						isSpawned = true;
