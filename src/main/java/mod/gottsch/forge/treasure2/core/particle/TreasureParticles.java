@@ -44,7 +44,9 @@ public class TreasureParticles {
 	public static final RegistryObject<SimpleParticleType> COPPER_COIN_PARTICLE = Registration.PARTICLES.register("copper_coin_particle", () -> new SimpleParticleType(true));
 	public static final RegistryObject<SimpleParticleType> SILVER_COIN_PARTICLE = Registration.PARTICLES.register("silver_coin_particle", () -> new SimpleParticleType(true));
 	public static final RegistryObject<SimpleParticleType> GOLD_COIN_PARTICLE = Registration.PARTICLES.register("gold_coin_particle", () -> new SimpleParticleType(true));
-	
+
+	public static final RegistryObject<SimpleParticleType> BLACK_SPORE_PARTICLE = Registration.PARTICLES.register("black_spore", () -> new SimpleParticleType(false));
+
 	// DOESNT WORK?
 	public static void register(IEventBus bus) {
 		Registration.registerParticles(bus);
@@ -62,5 +64,8 @@ public class TreasureParticles {
 		event.registerSpriteSet(COPPER_COIN_PARTICLE.get(), CoinParticle.Provider::new);
 		event.registerSpriteSet(SILVER_COIN_PARTICLE.get(), CoinParticle.Provider::new);
 		event.registerSpriteSet(GOLD_COIN_PARTICLE.get(), CoinParticle.Provider::new);
+
+		event.registerSpriteSet(BLACK_SPORE_PARTICLE.get(), BlackSporeParticle.Provider::new);
+
 	}
 }

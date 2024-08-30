@@ -257,6 +257,7 @@ public class LanguageGen extends LanguageProvider {
 
         // mobs
         add(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), "Bound Soul");
+        add(TreasureEntities.WITHERWOOD_GOLEM_ENTITY_TYPE.get(), "Witherwood Golem");
         add(TreasureEntities.WOOD_CHEST_MIMIC_ENTITY_TYPE.get(), "Wood Chest Mimic");
         add(TreasureEntities.PIRATE_CHEST_MIMIC_ENTITY_TYPE.get(), "Pirate Chest Mimic");
         add(TreasureEntities.VIKING_CHEST_MIMIC_ENTITY_TYPE.get(), "Viking Chest Mimic");
@@ -269,6 +270,7 @@ public class LanguageGen extends LanguageProvider {
         add(TreasureEntities.VANILLA_CHEST_MIMIC_ENTITY_TYPE.get(), "Chest Mimic");
         // eggs
         add(TreasureItems.BOUND_SOUL_EGG.get(), "Bound Soul Spawn Egg");
+        add(TreasureItems.WITHERWOOD_GOLEM_EGG.get(), "Witherwood Golem Spawn Egg");
         add(TreasureItems.WOOD_CHEST_MIMIC_EGG.get(), "Wood Chest Mimic Spawn Egg");
         add(TreasureItems.PIRATE_CHEST_MIMIC_EGG.get(), "Pirate Chest Mimic Spawn Egg");
         add(TreasureItems.VIKING_CHEST_MIMIC_EGG.get(), "Viking Chest Mimic Spawn Egg");

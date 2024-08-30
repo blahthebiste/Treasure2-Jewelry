@@ -351,6 +351,8 @@ public class ItemModelsProvider extends ItemModelProvider {
 		
 		// eggs
 		withExistingParent(TreasureItems.BOUND_SOUL_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(TreasureItems.WITHERWOOD_GOLEM_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
 		withExistingParent(TreasureItems.WOOD_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.PIRATE_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(TreasureItems.VIKING_CHEST_MIMIC_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
