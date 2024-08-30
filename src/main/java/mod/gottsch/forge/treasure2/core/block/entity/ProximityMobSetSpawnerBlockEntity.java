@@ -36,13 +36,17 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.DungeonHooks;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.*;
 
@@ -157,6 +161,9 @@ public class ProximityMobSetSpawnerBlockEntity extends AbstractProximityBlockEnt
                         continue;
                     }
                     Entity mob = ((EntityType<?>) entityType.get()).create(level);
+                    if (mob instanceof Mob) {
+                        ForgeEventFactory.onFinalizeSpawn((Mob)mob, level, level.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.EVENT, null, null);
+                    }
                     ModUtil.SpawnEntityHelper.spawn(level, random, entityType.get(), mob, blockCoords);
                 }
             }

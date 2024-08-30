@@ -145,21 +145,28 @@ public class WellFeature extends Feature<NoneFeatureConfiguration> implements IC
 			if (chestCoords != null) {
 				BlockState chestState = chestGenData.getState();
 				// wells aren't tied to any rarity, so randomly select one
-				IRarity rarity = TreasureApi.getRarities().get(context.random().nextInt(TreasureApi.getRarities().size()));
+				IRarity rarity = (IRarity) RarityLevelWeightedChestGeneratorRegistry.getNextRarity(dimension, FeatureType.TERRANEAN);
+
 				// get the chest generator
+				Treasure.LOGGER.debug("attempting to fetch chest generator for rarity -> {}", rarity);
 				IChestGenerator chestGenerator = RarityLevelWeightedChestGeneratorRegistry.getNextGenerator(rarity, FeatureType.TERRANEAN);
-				GeneratorResult<ChestGeneratorData> chestGenerationResult = chestGenerator.generate(new FeatureGenContext(context, FeatureType.TERRANEAN), chestCoords, rarity, chestState);
-				if (chestGenerationResult.isSuccess()) {
-					Treasure.LOGGER.debug("generating chest is success");
-					// NOTE don't require the registry in order to create the chest for a well - it'd be nice to register the chest though
-					// get the chest registry
-					GeneratedCache<GeneratedChestContext> chestCache = DimensionalGeneratedCache.getChestGeneratedCache(dimension, FeatureType.TERRANEAN);
-					if (chestCache != null) {
-						chestGenerationResult.getData().setPit(false);
-						chestGenerationResult.getData().setRarity(rarity);
-						cacheGeneratedChest(context.level(), rarity, FeatureType.TERRANEAN, chestCache, chestGenerationResult);
-						updateChestGeneratorRegistry(dimension, rarity, FeatureType.TERRANEAN);
+
+				if (chestGenerator != null) {
+					GeneratorResult<ChestGeneratorData> chestGenerationResult = chestGenerator.generate(new FeatureGenContext(context, FeatureType.TERRANEAN), chestCoords, rarity, chestState);
+					if (chestGenerationResult.isSuccess()) {
+						Treasure.LOGGER.debug("generating chest is success");
+						// NOTE don't require the registry in order to create the chest for a well - it'd be nice to register the chest though
+						// get the chest registry
+						GeneratedCache<GeneratedChestContext> chestCache = DimensionalGeneratedCache.getChestGeneratedCache(dimension, FeatureType.TERRANEAN);
+						if (chestCache != null) {
+							chestGenerationResult.getData().setPit(false);
+							chestGenerationResult.getData().setRarity(rarity);
+							cacheGeneratedChest(context.level(), rarity, FeatureType.TERRANEAN, chestCache, chestGenerationResult);
+							updateChestGeneratorRegistry(dimension, rarity, FeatureType.TERRANEAN);
+						}
 					}
+				} else {
+					Treasure.LOGGER.debug("unable to locate chest generator for rarity -> {}", rarity);
 				}
 			}
 		}
