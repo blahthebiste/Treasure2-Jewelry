@@ -46,7 +46,7 @@ public class WitherwoodGolem extends Monster {
      * @param entityType
      * @param level
      */
-    protected WitherwoodGolem(EntityType<? extends Monster> entityType, Level level) {
+    public WitherwoodGolem(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
         this.restrictTo(BlockPos.ZERO, 24);
     }

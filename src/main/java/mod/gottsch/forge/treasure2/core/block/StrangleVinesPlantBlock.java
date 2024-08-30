@@ -65,6 +65,7 @@ public class StrangleVinesPlantBlock extends GrowingPlantBodyBlock {
 
         try {
             world.addParticle(particle, false, xPos, yPos, zPos, velocityX, velocityY, velocityZ);
+            world.addParticle(TreasureParticles.BLACK_SPORE_PARTICLE.get(), false, xPos, yPos, zPos, velocityX, velocityY, velocityZ);
         }
         catch(Exception e) {
             Treasure.LOGGER.error("error with particle:", e);

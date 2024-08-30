@@ -49,10 +49,11 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class GravestoneProximitySpawnerBlockEntity extends ProximitySpawnerBlockEntity {
 	private boolean hasEntity;
-	
+
 	/**
-	 * 
-	 * @param type
+	 *
+	 * @param pos
+	 * @param state
 	 */
 	public GravestoneProximitySpawnerBlockEntity(BlockPos pos, BlockState state) {
 		super(TreasureBlockEntities.GRAVESTONE_PROXIMITY_SPAWNER_ENTITY_TYPE.get(), pos, state);
