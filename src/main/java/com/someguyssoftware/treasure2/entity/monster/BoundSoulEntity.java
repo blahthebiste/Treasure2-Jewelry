@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import com.someguyssoftware.gottschcore.world.WorldInfo;
 import com.someguyssoftware.treasure2.Treasure;
+import com.someguyssoftware.treasure2.config.TreasureConfig;
 import com.someguyssoftware.treasure2.particle.AbstractMistParticle;
 import com.someguyssoftware.treasure2.particle.MistParticle;
 
@@ -104,7 +105,8 @@ public class BoundSoulEntity extends EntityZombie {
 		 *  this is slight change to the vanilla call EntityLiving#isServerWorld()
 		 */
 		if (WorldInfo.isClientSide(this.world)) {
-			if (!this.isAIDisabled()) {
+			if (!this.isAIDisabled()
+					&& TreasureConfig.WORLD_GEN.getGeneralProperties().enableBoundSoulFog) {
 				spawnMist();
 			}
 		}

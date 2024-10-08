@@ -91,9 +91,10 @@ public class WitherLogSoulBlock extends CardinalDirectionFacadeBlock
 			return;
 		}
 
-		if (!TreasureConfig.WORLD_GEN.getGeneralProperties().enablePoisonFog) {
+		if (!TreasureConfig.WORLD_GEN.getGeneralProperties().enableWitherFog) {
 			return;
 		}
+
 		// get the appearance property
 		Appearance appearance = state.getValue(APPEARANCE);
 

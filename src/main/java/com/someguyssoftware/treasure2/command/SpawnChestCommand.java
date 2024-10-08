@@ -15,8 +15,6 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -254,8 +252,7 @@ public class SpawnChestCommand extends CommandBase {
 	 * Get a list of options for when the user presses the TAB key
 	 */
 	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
-			@Nullable BlockPos targetPos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
 		if (args.length > 3) {
 			if (args[args.length - 2].equals("-" + RARITY_ARG)) {
 				return getListOfStringsMatchingLastWord(args, Rarity.getNames());
