@@ -10,7 +10,6 @@ import net.minecraftforge.common.config.Config.Name;
  * @author Mark Gottschling on Nov 30, 2019
  *
  */
-// TODO move to GottschCore 1.9/1.8
 public class ModConfig {
 	@Comment({"Enables/Disables mod."})
 	@Name("01. Enable the mod:")

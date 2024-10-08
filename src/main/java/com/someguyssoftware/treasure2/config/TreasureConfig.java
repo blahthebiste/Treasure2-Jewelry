@@ -179,18 +179,6 @@ public class TreasureConfig implements IConfig, ILoggerConfig {
 	@Ignore public static final String WISHING_WELL_BLOCK_ID = "wishing_well_block";
 	@Ignore public static final String DESERT_WISHING_WELL_BLOCK_ID = "desert_wishing_well_block";
 	@Ignore public static final String BLACKSTONE_ID = "blackstone";
-	@Ignore public static final String FOG_BLOCK_ID = "fog";
-	@Ignore public static final String HIGH_FOG_BLOCK_ID = "high_fog";
-	@Ignore public static final String MED_FOG_BLOCK_ID = "med_fog";
-	@Ignore public static final String LOW_FOG_BLOCK_ID = "low_fog";
-	@Ignore public static final String WITHER_FOG_ID = "wither_fog";
-	@Ignore public static final String HIGH_WITHER_FOG_ID = "high_wither_fog";
-	@Ignore public static final String MED_WITHER_FOG_ID = "med_wither_fog";
-	@Ignore public static final String LOW_WITHER_FOG_ID = "low_wither_fog";
-	@Ignore public static final String POISON_FOG_ID = "poison_fog";
-	@Ignore public static final String HIGH_POISON_FOG_ID = "high_poison_fog";
-	@Ignore public static final String MED_POISON_FOG_ID = "med_poison_fog";
-	@Ignore public static final String LOW_POISON_FOG_ID = "low_poison_fog";
 
 	@Ignore public static final String WITHER_LOG_ID = "wither_log";
 	@Ignore public static final String WITHER_BRANCH_ID = "wither_branch";
@@ -1095,7 +1083,7 @@ public class TreasureConfig implements IConfig, ILoggerConfig {
 		public MarkerProperties markerProperties = new MarkerProperties();
 
 		public class GeneralProperties {
-			@Comment({ "Enable/Disable whether a fog is generated (ex. around graves/tombstones and wither trees)" })
+			@Comment({ "Enable/Disable whether a fog is generated (ex. white around graves/tombstones)" })
 			@Name("01. Enable fog:")
 			public boolean enableFog = true;
 			@Comment({ "Enable/Disable whether a wither fog is generated (ex. around wither trees)" })
@@ -1104,6 +1092,10 @@ public class TreasureConfig implements IConfig, ILoggerConfig {
 			@Comment({ "Enable/Disable whether a poison fog is generated (ex. around wither trees)" })
 			@Name("03. Enable poison fog:")
 			public boolean enablePoisonFog = true;
+			@Comment({ "Enable/Disable whether Bound Soul fog is generated" })
+			@Name("03.5 Enable Bound Soul fog:")
+			public boolean enableBoundSoulFog = true;
+
 
 			//			@Comment({"This is a temporary property.", "@since v1.5.0."})
 			//			@Name("04. Probability of (under)water structure spawn:")

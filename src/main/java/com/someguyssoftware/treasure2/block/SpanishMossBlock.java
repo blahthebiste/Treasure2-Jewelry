@@ -63,7 +63,7 @@ public class SpanishMossBlock extends BlockBush {
 			return;
 		}
 
-		if (!TreasureConfig.WORLD_GEN.getGeneralProperties().enableFog) {
+		if (!TreasureConfig.WORLD_GEN.getGeneralProperties().enablePoisonFog) {
 			return;
 		}
 

@@ -126,7 +126,6 @@ public class CharmEventHandler {
 			if (heldStack != null & heldStack.getItem() instanceof IWeapon) {
 				IWeapon weapon = (IWeapon) heldStack.getItem();
 				Treasure.LOGGER.debug("original damage -> {}", event.getAmount());
-				// TODO this is wrong - don't multiple by 100 or set the critical change in the item to 0-1. and also make it a double, not a float.
 				if (RandomHelper.checkProbability(new Random(), weapon.getCriticalChance())) {
 					event.setAmount(event.getAmount() + (weapon.getCriticalDamage() * event.getAmount()));
 					Treasure.LOGGER.debug("new + critical damage -> {}", event.getAmount());

@@ -23,10 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.Appender;
-
 import com.someguyssoftware.gottschcore.GottschCore;
 import com.someguyssoftware.gottschcore.annotation.Credits;
 import com.someguyssoftware.gottschcore.command.ShowVersionCommand;
@@ -101,10 +97,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
 
 /**
  * 
- * @author Mark Gottschling onDec 22, 2017
+ * @author Mark Gottschling on Dec 22, 2017
  *
  */
 @Mod(modid = Treasure.MODID, name = Treasure.NAME, version = Treasure.VERSION, dependencies = "required-after:gottschcore@[1.15.0,)", acceptedMinecraftVersions = "[1.12.2]", updateJSON = Treasure.UPDATE_JSON_URL)
@@ -123,7 +122,7 @@ public class Treasure extends AbstractMod {
 	// constants
 	public static final String MODID = "treasure2";
 	protected static final String NAME = "Treasure2";
-	protected static final String VERSION = "2.3.0";
+	protected static final String VERSION = "2.3.1";
 
 	public static final String UPDATE_JSON_URL = "https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/master/update.json";
 
