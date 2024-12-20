@@ -1,8 +1,8 @@
 {
     "homepage": "https://minecraft.curseforge.com/projects/treasure2",
     "promos": {
-    "1.18.2-latest": "3.9.0",
-    "1.18.2-recommended": "3.9.0"
+    "1.18.2-latest": "3.9.1",
+    "1.18.2-recommended": "3.9.1"
   },
     "1.18.2": {
         "3.0.0": "Initial port from 1.16.5. See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md",
@@ -17,7 +17,8 @@
 		"3.7.1": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md",
         "3.8.0": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md",
         "3.8.6": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md",
-        "3.9.0": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md"
+        "3.9.0": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md",
+        "3.9.1": "See https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Treasure/1.18.2-master/CHANGELOG.md"
 
     }
 }
