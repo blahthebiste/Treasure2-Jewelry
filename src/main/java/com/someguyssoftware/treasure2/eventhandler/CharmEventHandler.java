@@ -127,7 +127,7 @@ public class CharmEventHandler {
 				IWeapon weapon = (IWeapon) heldStack.getItem();
 				Treasure.LOGGER.debug("original damage -> {}", event.getAmount());
 				if (RandomHelper.checkProbability(new Random(), weapon.getCriticalChance())) {
-					event.setAmount(event.getAmount() + (weapon.getCriticalDamage() * event.getAmount()));
+					event.setAmount(event.getAmount() + weapon.getCriticalDamage());
 					Treasure.LOGGER.debug("new + critical damage -> {}", event.getAmount());
 				}
 			}

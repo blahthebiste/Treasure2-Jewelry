@@ -1,8 +1,8 @@
 {
 	"homepage": "https://minecraft.curseforge.com/projects/treasure2",
 	"promos": {
-		"1.12.2-latest": "2.3.1",
-		"1.12.2-recommended": "2.3.1"
+		"1.12.2-latest": "2.3.2",
+		"1.12.2-recommended": "2.3.2"
 	},
 	"1.12.2": {
 		"0.5.0": "alpha release",
@@ -59,6 +59,7 @@
 		"2.2.0": "Fixed missing setCostEvaluator() in Charm.createEntity().\nFixed EquipmentCostEvaluator calculations.",
 		"2.2.1": "Fixed charm EquipmentCostEvaluator being recursively saved to item nbt.",
 		"2.3.0": "Ported treasure weapons from 1.18.2+ version. Included weapons in loot tables.",
-		"2.3.1": "Added config for Fog from Bound Soul. Fixed Spanish Moss fog check. Fixed Wither Soul Log fog check."
+		"2.3.1": "Added config for Fog from Bound Soul. Fixed Spanish Moss fog check. Fixed Wither Soul Log fog check.",
+		"2.3.2": "Fixed critical weapon damage -> changed from multiple to addition."
 	}
 }
