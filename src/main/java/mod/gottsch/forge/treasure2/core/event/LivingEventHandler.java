@@ -17,8 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.event;
 
-import java.util.Random;
-
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
@@ -30,6 +28,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+
+import java.util.Random;
 
 /**
  * 
@@ -52,7 +52,7 @@ public class LivingEventHandler {
 	 * @param event
 	 */
 	@SubscribeEvent
-	public void checkCharmsInteractionWithAttack(LivingHurtEvent event) {
+	public static void onLivingHurt(LivingHurtEvent event) {
 		if (WorldInfo.isClientSide(event.getEntity().getLevel())) {
 			return;
 		}
@@ -64,7 +64,7 @@ public class LivingEventHandler {
 				IWeapon weapon = (IWeapon) heldStack.getItem();
 				Treasure.LOGGER.debug("original damage -> {}", event.getAmount());
 				if (RandomHelper.checkProbability(new Random(), weapon.getCriticalChance() * 100)) {
-					event.setAmount(event.getAmount() + (weapon.getCriticalDamage() * event.getAmount()));
+					event.setAmount(event.getAmount() + weapon.getCriticalDamage());
 					Treasure.LOGGER.debug("new + critical damage -> {}", event.getAmount());
 				}
 			}
