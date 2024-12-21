@@ -7,11 +7,15 @@
         "item": "treasure2:witherwood_log"
       },
       {
+        "item": "treasure2:witherwood_wood"
+      },
+      {
         "item": "treasure2:wither_log"
       }
     ]
   ],
   "result": {
+    "count": 4,
     "item": "treasure2:witherwood_planks"
   }
 }

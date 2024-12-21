@@ -36,6 +36,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -45,6 +47,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  */
 public class SpanishMossBlock extends BushBlock implements ITreasureBlock {
 	public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
+
+	private static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 16, 13);
 
 	/**
 	 * 
@@ -121,5 +125,10 @@ public class SpanishMossBlock extends BushBlock implements ITreasureBlock {
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter getter, BlockPos pos) {
 		return true;
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+		return SHAPE;
 	}
 }

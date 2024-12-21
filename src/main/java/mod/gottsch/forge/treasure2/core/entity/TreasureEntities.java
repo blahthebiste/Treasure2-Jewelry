@@ -44,6 +44,7 @@ public class TreasureEntities {
 	public static final String MILK_CRATE_MIMIC = "milk_crate_mimic";
 	public static final String BARREL_MIMIC = "barrel_mimic";
 	public static final String VANILLA_CHEST_MIMIC = "vanilla_chest_mimic";
+	public static final String WITHERWOOD_GOLEM = "witherwood_golem";
 
 	public static final RegistryObject<EntityType<BoundSoul>> BOUND_SOUL_ENTITY_TYPE = Registration.ENTITIES.register(BOUND_SOUL, () -> EntityType.Builder.of(BoundSoul::new, MobCategory.MONSTER)
 			.sized(0.6F, 1.95F)
@@ -51,6 +52,13 @@ public class TreasureEntities {
 			.setTrackingRange(80)
 			.setShouldReceiveVelocityUpdates(true)
 			.build(BOUND_SOUL));
+
+	public static final RegistryObject<EntityType<WitherwoodGolem>> WITHERWOOD_GOLEM_ENTITY_TYPE = Registration.ENTITIES.register(WITHERWOOD_GOLEM, () -> EntityType.Builder.of(WitherwoodGolem::new, MobCategory.MONSTER)
+			.sized(0.6F, 1.95F)
+			.clientTrackingRange(12)
+			.setTrackingRange(80)
+			.setShouldReceiveVelocityUpdates(true)
+			.build(WITHERWOOD_GOLEM));
 	
 	public static final RegistryObject<EntityType<WoodChestMimic>> WOOD_CHEST_MIMIC_ENTITY_TYPE = Registration.ENTITIES.register(WOOD_CHEST_MIMIC, () -> EntityType.Builder.of(WoodChestMimic::new, MobCategory.MONSTER)
 			.sized(0.875F, 0.875F)

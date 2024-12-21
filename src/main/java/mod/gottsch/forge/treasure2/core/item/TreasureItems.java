@@ -386,6 +386,8 @@ public class TreasureItems {
 
 	// eggs
 	public static final RegistryObject<Item> BOUND_SOUL_EGG = Registration.ITEMS.register("bound_soul_egg", () -> new ForgeSpawnEggItem(TreasureEntities.BOUND_SOUL_ENTITY_TYPE, 0x000000, 0x2b2b2b, TREASURE_PROPS_SUPPLIER.get()));
+	public static final RegistryObject<Item> WITHERWOOD_GOLEM_EGG = Registration.ITEMS.register("witherwood_golem_egg", () -> new ForgeSpawnEggItem(TreasureEntities.WITHERWOOD_GOLEM_ENTITY_TYPE, 0x121110, 0x201e1a, TREASURE_PROPS_SUPPLIER.get()));
+
 	public static final RegistryObject<Item> WOOD_CHEST_MIMIC_EGG = Registration.ITEMS.register("wood_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.WOOD_CHEST_MIMIC_ENTITY_TYPE, 0x9f844d, 0x54442c, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> PIRATE_CHEST_MIMIC_EGG = Registration.ITEMS.register("pirate_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.PIRATE_CHEST_MIMIC_ENTITY_TYPE, 0x010101, 0x3b3b3b, TREASURE_PROPS_SUPPLIER.get()));
 	public static final RegistryObject<Item> VIKING_CHEST_MIMIC_EGG = Registration.ITEMS.register("viking_chest_mimic_egg", () -> new ForgeSpawnEggItem(TreasureEntities.VIKING_CHEST_MIMIC_ENTITY_TYPE, 0x642e1e, 0x753c27, TREASURE_PROPS_SUPPLIER.get()));

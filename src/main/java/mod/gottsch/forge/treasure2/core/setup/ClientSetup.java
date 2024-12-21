@@ -137,6 +137,8 @@ public class ClientSetup {
 		event.registerBlockEntityRenderer(TreasureBlockEntities.WITHER_CHEST_BLOCK_ENTITY_TYPE.get(), WitherChestRenderer::new);
 		
 		event.registerEntityRenderer(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), BoundSoulRenderer::new);
+		event.registerEntityRenderer(TreasureEntities.WITHERWOOD_GOLEM_ENTITY_TYPE.get(), WitherwoodGolemRenderer::new);
+
 		event.registerEntityRenderer(TreasureEntities.WOOD_CHEST_MIMIC_ENTITY_TYPE.get(), WoodChestMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.PIRATE_CHEST_MIMIC_ENTITY_TYPE.get(), PirateChestMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.VIKING_CHEST_MIMIC_ENTITY_TYPE.get(), VikingChestMimicRenderer::new);
@@ -177,6 +179,8 @@ public class ClientSetup {
 		event.registerLayerDefinition(VanillaChestModel.LAYER_LOCATION, VanillaChestModel::createBodyLayer);
 
 		event.registerLayerDefinition(BoundSoulModel.LAYER_LOCATION, BoundSoulModel::createBodyLayer);
+		event.registerLayerDefinition(WitherwoodGolemModel.LAYER_LOCATION, WitherwoodGolemModel::createBodyLayer);
+
 		event.registerLayerDefinition(WoodChestMimicModel.LAYER_LOCATION, WoodChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(PirateChestMimicModel.LAYER_LOCATION, PirateChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(VikingChestMimicModel.LAYER_LOCATION, VikingChestMimicModel::createBodyLayer);
