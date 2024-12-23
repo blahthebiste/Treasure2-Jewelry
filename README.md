@@ -4,18 +4,12 @@
 [![](https://img.shields.io/github/issues/gottsch/gottsch-minecraft-Treasure/content%20add.svg?style=for-the-badge&logo=github)](https://github.com/gottsch/gottsch-minecraft-Treasure/issues)[![](https://img.shields.io/github/issues/gottsch/gottsch-minecraft-Treasure/bug.svg?style=for-the-badge&logo=github)](https://github.com/gottsch/gottsch-minecraft-Treasure/issues)</br>
 [![](http://cf.way2muchnoise.eu/treasure2.svg)](#)</br>
 
-# Treasure2! 
+# Treasure2 Jewelry
 
 ![](./Treasure2-1.12.2/src/resources/treasure2-github-logo.png)
 
+This is a minimal version of Treasure2 with JUST the jewelry items.
 
-<p align="center">  
-  Who doesn't like finding <b>loot</b>?  It is always fun to find <b>free stuff</b>!
-</p>
+No world gen, no treasure, no locks/keys, no gems, no recipes, no runestones.
 
-<b>Treasure2!</b> adds to the thrill of discovery in Minecraft. This mod adds various new and rare <b>chests of treasure</b> to be discovered. The chests are secured by a various assortment of <b>locks</b> and can only be unlocked by finding the corresponding <b>keys</b>.
-
-## Key and Locks
-Hold the **Shift** key while using a key or a lock on a chest in order to use it.
-
-## Read the [documentation](https://github.com/gottsch/gottsch-minecraft-Treasure/wiki)
+Jewelry will be enchantable only via normal enchanting methods, no charming table.
